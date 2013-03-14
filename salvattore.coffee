@@ -15,13 +15,13 @@ get_content = (element) ->
 		className = matchResult[1]
 		numberOfColumns = matchResult[2]
 
-	return numberOfColumns: +numberOfColumns, className: className
+	return numberOfColumns: numberOfColumns, className: className
 
 add_columns = (element) ->
 	dataColumnsContent = get_content(element)
 	columns = dataColumnsContent.numberOfColumns
 	columnClass = dataColumnsContent.className
-	elements = []
+	elements = new Array(columns)
 
 	i = columns
 	while i-- isnt 0
@@ -107,7 +107,7 @@ addElement = (grid, element) ->
 		currentRowCount = child.children.length
 		if i isnt 0 and highestRowCount > currentRowCount
 			break
-		else if i is (m-1)
+		else if (i+1) is m
 			child = children[0]
 			break
 
@@ -126,6 +126,6 @@ grids.forEach((grid) ->
 
 scan_media_queries()
 
-window['datacolumns'] =
+window['salvattore'] =
 	addElement: addElement,
 	addElements: addElements

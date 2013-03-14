@@ -19,7 +19,7 @@ http://github.com/bandd/salvattore
       numberOfColumns = matchResult[2];
     }
     return {
-      numberOfColumns: +numberOfColumns,
+      numberOfColumns: numberOfColumns,
       className: className
     };
   };
@@ -29,7 +29,7 @@ http://github.com/bandd/salvattore
     dataColumnsContent = get_content(element);
     columns = dataColumnsContent.numberOfColumns;
     columnClass = dataColumnsContent.className;
-    elements = [];
+    elements = new Array(columns);
     i = columns;
     while (i-- !== 0) {
       elements.push(element.querySelectorAll('[data-columns] > *:nth-child(' + columns + 'n-' + i + ')'));
@@ -118,7 +118,7 @@ http://github.com/bandd/salvattore
       currentRowCount = child.children.length;
       if (i !== 0 && highestRowCount > currentRowCount) {
         break;
-      } else if (i === (m - 1)) {
+      } else if ((i + 1) === m) {
         child = children[0];
         break;
       }
@@ -141,7 +141,7 @@ http://github.com/bandd/salvattore
 
   scan_media_queries();
 
-  window['datacolumns'] = {
+  window['salvattore'] = {
     addElement: addElement,
     addElements: addElements
   };
