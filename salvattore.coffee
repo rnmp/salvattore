@@ -129,9 +129,3 @@ scan_media_queries()
 window['datacolumns'] =
 	addElement: addElement,
 	addElements: addElements
-
-window['test'] = ->
-	el = document.createElement('article')
-	el.classList.add('_item')
-	el.innerHTML = 'Item #001'
-	window['datacolumns'].addElement document.querySelectorAll('[data-columns]')[0], el

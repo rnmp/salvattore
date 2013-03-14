@@ -146,12 +146,4 @@ http://github.com/bandd/salvattore
     addElements: addElements
   };
 
-  window['test'] = function() {
-    var el;
-    el = document.createElement('article');
-    el.classList.add('_item');
-    el.innerHTML = 'Item #001';
-    return window['datacolumns'].addElement(document.querySelectorAll('[data-columns]')[0], el);
-  };
-
 }).call(this);
