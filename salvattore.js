@@ -4,7 +4,7 @@ http://github.com/bandd/salvattore
 */
 
 (function() {
-  var addElement, addElements, add_columns, forEach, get_content, grids, media_query_change, media_rule_has_columns_selector, proto, remove_columns, scan_media_queries, slice;
+  var addElement, addElements, add_columns, forEach, get_content, grids, media_query_change, media_rule_has_columns_selector, proto, recreate_columns, remove_columns, scan_media_queries, slice;
 
   get_content = function(element) {
     var className, content, matchResult, numberOfColumns;
@@ -29,7 +29,7 @@ http://github.com/bandd/salvattore
     dataColumnsContent = get_content(element);
     columns = dataColumnsContent.numberOfColumns;
     columnClass = dataColumnsContent.className;
-    elements = new Array(columns);
+    elements = new Array(+columns);
     i = columns;
     while (i-- !== 0) {
       elements.push(element.querySelectorAll('[data-columns] > *:nth-child(' + columns + 'n-' + i + ')'));
@@ -47,7 +47,7 @@ http://github.com/bandd/salvattore
   };
 
   remove_columns = function(element) {
-    var children, i, ncol, orderedChildren;
+    var children, ncol, orderedChildren;
     children = element.children;
     ncol = children.length;
     orderedChildren = new Array(children[0].children.length * element.dataset.columns);
@@ -61,8 +61,7 @@ http://github.com/bandd/salvattore
         return element.appendChild(child);
       }
     });
-    i = ncol;
-    while (i-- !== 0) {
+    while (ncol-- !== 0) {
       element.removeChild(children[0]);
     }
   };
@@ -78,17 +77,20 @@ http://github.com/bandd/salvattore
     return false;
   };
 
+  recreate_columns = function(grid) {
+    remove_columns(grid);
+    return add_columns(grid);
+  };
+
   media_query_change = function(mql) {
     if (mql.matches) {
-      return grids.forEach(function(grid) {
-        remove_columns(grid);
-        return add_columns(grid);
-      });
+      return grids.forEach(recreate_columns);
     }
   };
 
   scan_media_queries = function() {
     var mediaQueries, stylesheets;
+    console.log(slice.call(document.querySelectorAll('style[type="text/css"]')).concat);
     stylesheets = slice.call(document.querySelectorAll('style[type="text/css"]')).concat(slice.call(document.querySelectorAll('link[rel="stylesheet"]')));
     mediaQueries = [];
     forEach.call(stylesheets, function(stylesheet) {
@@ -104,9 +106,7 @@ http://github.com/bandd/salvattore
   };
 
   addElements = function(grid, elements) {
-    return elements.forEach(function(element) {
-      return addElement(element);
-    });
+    return elements.forEach(addElement);
   };
 
   addElement = function(grid, element) {
@@ -135,9 +135,7 @@ http://github.com/bandd/salvattore
 
   grids = slice.call(document.querySelectorAll('[data-columns]'));
 
-  grids.forEach(function(grid) {
-    return add_columns(grid);
-  });
+  grids.forEach(add_columns);
 
   scan_media_queries();
 

@@ -21,7 +21,7 @@ add_columns = (element) ->
 	dataColumnsContent = get_content(element)
 	columns = dataColumnsContent.numberOfColumns
 	columnClass = dataColumnsContent.className
-	elements = new Array(columns)
+	elements = new Array(+columns)
 
 	i = columns
 	while i-- isnt 0
@@ -55,8 +55,7 @@ remove_columns = (element) ->
 		if child? then element.appendChild(child)
 	)
 
-	i = ncol
-	while i-- isnt 0
+	while ncol-- isnt 0
 		element.removeChild(children[0])
 
 	return
@@ -69,18 +68,20 @@ media_rule_has_columns_selector = (rules) ->
 
 	return false
 
+recreate_columns = (grid) ->
+	remove_columns(grid)
+	add_columns(grid)
+
 media_query_change = (mql) ->
-	if mql.matches
-		grids.forEach((grid) ->
-			remove_columns(grid)
-			add_columns(grid)
-		)
+	if mql.matches then grids.forEach(recreate_columns)
 
 scan_media_queries = ->
+	console.log(slice.call(document.querySelectorAll('style[type="text/css"]')).concat)
 	stylesheets = slice.call(
-		document.querySelectorAll('style[type="text/css"]')).concat(slice.call(
-		document.querySelectorAll('link[rel="stylesheet"]'))
-	)
+		document.querySelectorAll('style[type="text/css"]')
+	).concat(slice.call(
+		document.querySelectorAll('link[rel="stylesheet"]')
+	))
 	mediaQueries = []
 
 	forEach.call(stylesheets, (stylesheet) ->
@@ -95,9 +96,7 @@ scan_media_queries = ->
 	)
 
 addElements = (grid, elements) ->
-	elements.forEach((element) ->
-		addElement(element)
-	)
+	elements.forEach(addElement)
 
 addElement = (grid, element) ->
 	children = grid.children
@@ -120,9 +119,7 @@ forEach = proto.forEach
 slice = proto.slice
 grids = slice.call document.querySelectorAll('[data-columns]')
 
-grids.forEach((grid) ->
-	add_columns(grid)
-)
+grids.forEach(add_columns)
 
 scan_media_queries()
 
