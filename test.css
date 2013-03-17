@@ -1,46 +1,129 @@
-@media screen and (max-width: 600px){
-        section[data-columns] {
-          content: '._col 2';
-        }
-      }
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
-      @media screen and (min-width: 601px){
-        section[data-columns] {
-          content: '._col 3';
-        }
-      }
+aside, footer, figure, header, 
+section, img, object, embed {
+    display: block;
+}
 
-      .medium-block {
-        overflow: hidden;
-      }
-      [data-columns="3"] ._col {
-        width: 33.333%;
-        float: left;
-      }
-      [data-columns="2"] ._col {
-        width: 50%;
-        float: left;
-      }
+textarea {
+    resize: vertical;    
+}
 
-      ._item {
-        margin: 0 10px 20px;
-        padding: 20px 15px 15px;
-        color: #845a83;
-        background: #cbacce;
-        font-size: 16px;
-        font-style: italic;
-        text-align: center;
-      }
-      ._item > p { margin: 0; }
-      ._item:last-child {
-        margin-bottom: 0;
-      }
-      ._item > header {
-        color: #3d0938;
-        font-size: 21px;
-        font-style: normal;
-        line-height: 1;
-      }
-      ._item > hr {
-        border-color: #845a83;
-      }
+img, object, embed {
+    max-width: 100%;    
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: Franchise;
+  src: url('assets/franchise.eot');
+  src: url('assets/franchise.eot?#iefix') format('embedded-opentype'),
+    url('assets/franchise.woff') format('woff'),
+    url('assets/franchise.ttf') format('truetype'),
+    url('assets/franchise.svg#franchiseregular') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  font: 14px/1.5 georgia;
+  background: #e05424;
+  color: #fff;
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+  font: 32px/1.25 Franchise;
+  color: #fff;
+}
+.branding {
+  position: relative;
+  text-align: center;
+  font-size: 128px;
+}
+.branding > span {
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+  background: #e05424;
+}
+.branding:after {
+  content: '';
+  position: absolute;
+  top: 42.5%;
+  bottom: 42.5%;
+  right: 0;
+  left: 0;
+  border: solid #fff;
+  border-width: 2px 0;
+}
+
+.item {
+  margin: 0 10px 20px;
+  padding: 20px;
+  color: #e67650;
+  background: #000;
+  background: rgba(0,0,0,0.5);
+}
+.item h1 {
+  float: left;
+  margin-right: 15px;
+}
+
+.grid {
+  padding: 0 10px;
+}
+
+.column {
+  float: left;
+}
+
+@media screen and (max-width: 480px){
+  .branding {
+    font-size: 72px;
+  }
+  .grid[data-columns] {
+    content: '1';
+  }
+}
+@media screen and (max-width: 768px) and (min-width: 481px){
+  .branding {
+    font-size: 96px;
+  }
+  .grid[data-columns] {
+    content: '2';
+  }
+  .grid[data-columns] .column {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .grid[data-columns] {
+    content: '3';
+  }
+  .grid[data-columns] .column {
+    width: 33.333%;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .grid[data-columns] {
+    content: '4';
+  }
+  .grid[data-columns] .column {
+    width: 25%;
+  }
+}
