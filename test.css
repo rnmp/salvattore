@@ -38,28 +38,70 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 body {
-  font: 14px/1.5 georgia;
-  background: #e05424;
+  padding: 0 20px;
   color: #fff;
+}
+
+body, .page-bg {
+  background: #e05424;
+}
+
+body, .font-body {
+  font: 18px/1.5 palatino;
+}
+
+.font-body {
+  text-transform: none;
 }
 
 h1, h2, h3 {
   text-transform: uppercase;
-  font: 32px/1.25 Franchise;
+  font: 32px/1 Franchise;
   color: #fff;
 }
+
+h1, .font-alpha, .rs-font-alpha {
+  font-size: 72px;
+}
+
+h2, .font-beta, .rs-font-beta {
+  font-size: 48px;
+}
+
+h3, .font-gamma, .rs-font-gamma {
+  font-size: 36px;
+}
+
+h4, .font-delta, .rs-font-delta {
+  font-size: 24px;
+}
+
+.font-accent {
+  font-style: italic;
+}
+
+.spacing-alpha {
+  margin-bottom: 0.75em;
+}
+
+.t-center {
+  text-align: center;
+}
+
 .branding {
   position: relative;
-  text-align: center;
+  margin-top: 0.25em;
+  margin-bottom: -0.1em;
   font-size: 128px;
 }
+
 .branding > span {
   position: relative;
   z-index: 1;
   padding: 0 20px;
-  background: #e05424;
 }
-.branding:after {
+
+.double-border-heading:after {
   content: '';
   position: absolute;
   top: 42.5%;
@@ -83,6 +125,8 @@ h1, h2, h3 {
 }
 
 .grid {
+  overflow: hidden;
+  margin: 0 -20px;
   padding: 0 10px;
 }
 
@@ -91,6 +135,25 @@ h1, h2, h3 {
 }
 
 @media screen and (max-width: 480px){
+  body {
+    font-size: 14px;
+  }
+  .rs-font-alpha {
+    font-size: 36px;
+  }
+
+  .rs-font-beta {
+    font-size: 24px;
+  }
+
+  .rs-font-gamma {
+    font-size: 18px;
+  }
+
+  .rs-font-delta {
+    font-size: 14px;
+  }
+
   .branding {
     font-size: 72px;
   }
@@ -99,6 +162,25 @@ h1, h2, h3 {
   }
 }
 @media screen and (max-width: 768px) and (min-width: 481px){
+  body {
+    font-size: 16px;
+  }
+  .rs-font-alpha {
+    font-size: 48px;
+  }
+
+  .rs-font-beta {
+    font-size: 36px;
+  }
+
+  .rs-font-gamma {
+    font-size: 24px;
+  }
+
+  .rs-font-delta {
+    font-size: 18px;
+  }
+
   .branding {
     font-size: 96px;
   }
