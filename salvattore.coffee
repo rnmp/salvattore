@@ -3,8 +3,211 @@ Salvattore by @rnmp and @ppold
 http://github.com/bandd/salvattore
 ###
 
+nodeList2Array = (nodes) ->
+	arr = []
+
+	for own node, i in nodes
+		arr[i] = node
+
+	return arr
+
+if typeof document isnt 'undefined' and not ('classList' of document.createElement('a'))
+	((view) ->
+		'use strict'
+		 
+		return if not ('HTMLElement' of view) and not ('Element' of view)
+		classListProp = 'classList'
+		protoProp = 'prototype'
+		elemCtrProto = (view.HTMLElement or view.Element)[protoProp]
+		objCtr = Object
+		strTrim = String[protoProp].trim or ->
+			return @replace(/^\s+|\s+$/g, '')
+		arrIndexOf = Array[protoProp].indexOf or (item) ->
+			i = 0
+			len = this.length
+
+			while i < len
+				if i of this and this[i] is item
+					return i
+				i++
+
+			return -1
+
+		# Vendors: please allow content code to instantiate DOMExceptions
+		DOMEx = (type, message) ->
+			@name = type
+			@code = DOMException[type]
+			@message = message
+
+		# Most DOMException implementations don't allow calling DOMException's toString()
+		# on non-DOMExceptions. Error's toString() is sufficient here.
+		DOMEx[protoProp] = Error[protoProp]
+
+		checkTokenAndGetIndex = (classList, token) ->
+			if token is ''
+				throw new DOMEx('SYNTAX_ERR', 'An invalid or illegal string was specified')
+
+			if /\s/.test(token)
+				throw new DOMEx('INVALID_CHARACTER_ERR', 'String contains an invalid character')
+
+			return arrIndexOf.call(classList, token)
+
+		class ClassList extends Array
+			constructor: (elem) ->
+				trimmedClasses = if elem.className then strTrim.call(elem.className)
+				classes = if trimmedClasses then trimmedClasses.split(/\s+/) else []
+
+				for cls in classes
+					this.push(cls)
+
+				this._updateClassName = ->
+					elem.className = this.toString()
+
+			item: (i) ->
+				return this[i] or null
+
+			contains: (token) ->
+				token += ''
+				return checkTokenAndGetIndex(this, token) isnt -1
+
+			add: ->
+				tokens = arguments
+				i = 0
+				l = tokens.length
+				token
+				updated = false
+
+				while i++ < l
+					token = tokens[i] + ''
+					if checkTokenAndGetIndex(this, token) is -1
+						this.push(token)
+						updated = true
+
+				if updated
+					this._updateClassName()
+
+			remove: ->
+				tokens = arguments
+				i = 0
+				l = tokens.length
+				token
+				updated = false
+
+				while i++ < l
+					token = tokens[i] + ''
+					index = checkTokenAndGetIndex(this, token)
+					if index isnt -1
+						this.splice(index, 1)
+						updated = true
+
+				if updated
+					this._updateClassName()
+
+			toggle: (token, forse) ->
+				token += ''
+
+				result = this.contains(token)
+
+				if result
+					method = forse isnt true and 'remove'
+				else
+					method = forse isnt false and 'add'
+
+				if method
+					this[method](token)
+
+				return result
+
+			toString: ->
+				return this.join(' ')
+
+		classListGetter = ->
+			return new ClassList(@)
+
+		if objCtr.defineProperty
+			classListPropDesc =
+				get: classListGetter
+				, enumerable: true
+				, configurable: true
+
+			try
+				objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc)
+			catch ex # IE 8 doesn't support enumerable:true
+				if ex.number is -0x7FF5EC54
+					classListPropDesc.enumerable = false
+					objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc)
+		else if objCtr[protoProp].__defineGetter__
+			elemCtrProto.__defineGetter__(classListProp, classListGetter)
+	)(self)
+
+# Production steps of ECMA-262, Edition 5, 15.4.4.18
+# Reference: http://es5.github.com/#x15.4.4.18
+unless Array.prototype.forEach
+
+	Array.prototype.forEach = (callback, thisArg) ->
+		unless @
+			throw new TypeError('this is null or not defined')
+
+		# 1. Let O be the result of calling ToObject passing the |this| value as the argument.
+		O = Object(@)
+
+		# 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".
+		# 3. Let len be ToUint32(lenValue).
+		len = O.length >>> 0 # Hack to convert O.length to a UInt32
+
+		# 4. If IsCallable(callback) is false, throw a TypeError exception.
+		# See: http://es5.github.com/#x9.11
+		if  {}.toString.call(callback) isnt '[object Function]'
+			throw new TypeError(callback + ' is not a function')
+
+		# 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
+		if thisArg
+			T = thisArg
+
+		# 6. Let k be 0
+		k = 0
+
+		# 7. Repeat, while k < len
+		while k < len
+			# a. Let Pk be ToString(k).
+			#   This is implicit for LHS operands of the in operator
+			# b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.
+			#   This step can be combined with c
+			# c. If kPresent is true, then
+			if Object.prototype.hasOwnProperty.call(O, k)
+
+				# i. Let kValue be the result of calling the Get internal method of O with argument Pk.
+				kValue = O[k]
+
+				# ii. Call the Call internal method of callback with T as the this value and
+				# argument list containing kValue, k, and O.
+				callback.call(T, kValue, k, O)
+			# d. Increase k by 1.
+			k++
+
+		# 8. return undefined
+
+unless window.getComputedStyle
+	window.getComputedStyle = (el, pseudo) ->
+		@el = el
+		@getPropertyValue = (prop) ->
+			if prop is 'float' then prop = 'styleFloat'
+
+			# re = /(\-([a-z]){1})/g
+			# if re.test(prop)
+			# 	prop = prop.replace(re, ->
+			# 		return arguments[2].toUpperCase()
+			# 	)
+
+			return el.currentStyle[prop] or null
+
+		return @
+
 get_content = (element) ->
-	content = window.getComputedStyle(element).getPropertyValue('content').slice(1, -1)
+	computedStyle = window.getComputedStyle(element, ':before')
+	content = (	computedStyle.getPropertyValue('content') or
+				computedStyle.getPropertyValue('-ms-content'))
+		.slice(1, -1)
 	matchResult = content.match(/^\s*(\d+)(?:\s?\.(.+))?\s*$/)
 
 	if matchResult
@@ -17,6 +220,33 @@ get_content = (element) ->
 
 	return numberOfColumns: numberOfColumns, className: className
 
+get_direct_children = (element) ->
+	directChildren = element.children
+	if directChildren.length isnt 1
+		return directChildren
+
+	directChildren = []
+	nodes = element.childNodes
+	m = nodes.length
+	while --m isnt -1
+		node = nodes[m]
+		if node.nodeType is 1
+			directChildren.push(node)
+
+	return directChildren
+
+filter_children = (elements, a, b) ->
+	# nth-child(an + b)
+	filtered_children = new Array(Math.ceil(elements.length/a))
+
+	j = 0
+	for own element, i in elements
+		if i % a is b
+			filtered_children[j++] = element
+
+	return filtered_children
+
+
 add_columns = (element) ->
 	dataColumnsContent = get_content(element)
 	columns = dataColumnsContent.numberOfColumns
@@ -24,8 +254,14 @@ add_columns = (element) ->
 	elements = new Array(+columns)
 
 	i = columns
+
 	while i-- isnt 0
-		elements.push element.querySelectorAll('[data-columns] > *:nth-child('+columns+'n-'+i+')')
+		try
+			columnElements = element.querySelectorAll('[data-columns] > *:nth-child('+columns+'n-'+i+')')
+		catch error
+			columnElements = filter_children(get_direct_children(element), columns, i)
+
+		elements.push(columnElements)
 
 	forEach.call(elements, (columnElements) ->
 		column = document.createElement('div')
@@ -38,7 +274,7 @@ add_columns = (element) ->
 		element.appendChild(column)
 	)
 
-	element.dataset.columns = columns
+	element.setAttribute('dataColumns', columns)
 
 remove_columns = (element) ->
 	children = element.children
@@ -76,7 +312,8 @@ media_query_change = (mql) ->
 	if mql.matches then grids.forEach(recreate_columns)
 
 scan_media_queries = ->
-	console.log(slice.call(document.querySelectorAll('style[type="text/css"]')).concat)
+	return unless document.matchMedia
+
 	stylesheets = slice.call(
 		document.querySelectorAll('style[type="text/css"]')
 	).concat(slice.call(
@@ -117,8 +354,8 @@ addElement = (grid, element) ->
 proto = Array.prototype
 forEach = proto.forEach
 slice = proto.slice
-grids = slice.call document.querySelectorAll('[data-columns]')
 
+grids = nodeList2Array document.querySelectorAll('[data-columns]')
 grids.forEach(add_columns)
 
 scan_media_queries()

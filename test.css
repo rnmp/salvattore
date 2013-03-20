@@ -8,17 +8,17 @@
     box-sizing: border-box;
 }
 
-aside, footer, figure, header, 
+aside, footer, figure, header,
 section, img, object, embed {
     display: block;
 }
 
 textarea {
-    resize: vertical;    
+    resize: vertical;
 }
 
 img, object, embed {
-    max-width: 100%;    
+    max-width: 100%;
 }
 
 button::-moz-focus-inner, input::-moz-focus-inner {
@@ -94,7 +94,7 @@ h1, h2, h3 {
   .branding {
     font-size: 72px;
   }
-  .grid[data-columns] {
+  .grid[data-columns]:before {
     content: '1';
   }
 }
@@ -102,7 +102,7 @@ h1, h2, h3 {
   .branding {
     font-size: 96px;
   }
-  .grid[data-columns] {
+  .grid[data-columns]:before {
     content: '2';
   }
   .grid[data-columns] .column {
@@ -111,7 +111,7 @@ h1, h2, h3 {
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-  .grid[data-columns] {
+  .grid[data-columns]:before {
     content: '3';
   }
   .grid[data-columns] .column {
@@ -120,10 +120,16 @@ h1, h2, h3 {
 }
 
 @media screen and (min-width: 1025px) {
-  .grid[data-columns] {
+  .grid[data-columns]:before {
     content: '4';
   }
   .grid[data-columns] .column {
     width: 25%;
   }
+}
+
+.grid[data-columns]:before {
+  -ms-content: '4';
+  content: '4';
+  display: none;
 }
