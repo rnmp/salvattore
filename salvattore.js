@@ -215,21 +215,21 @@ http://github.com/bandd/salvattore
   }
 
   get_content = function(element) {
-    var className, computedStyle, content, matchResult, numberOfColumns;
+    var classes, computedStyle, content, matchResult, numberOfColumns, _ref, _ref1;
     computedStyle = window.getComputedStyle(element, ':before');
     content = (computedStyle.getPropertyValue('content') || computedStyle.getPropertyValue('-ms-content')).slice(1, -1);
     matchResult = content.match(/^\s*(\d+)(?:\s?\.(.+))?\s*$/);
     if (matchResult) {
       numberOfColumns = matchResult[1];
-      className = matchResult[2] || 'column';
+      classes = ((_ref = matchResult[2]) != null ? _ref.split('.') : void 0) || ['column'];
     } else {
       matchResult = content.match(/^\s*\.(.+)\s+(\d+)\s*$/);
-      className = matchResult[1];
-      numberOfColumns = matchResult[2];
+      classes = matchResult[1];
+      numberOfColumns = (_ref1 = matchResult[2]) != null ? _ref1.split('.') : void 0;
     }
     return {
       numberOfColumns: numberOfColumns,
-      className: className
+      classes: classes
     };
   };
 
@@ -265,10 +265,10 @@ http://github.com/bandd/salvattore
   };
 
   add_columns = function(element) {
-    var columnClass, columnElements, columns, dataColumnsContent, elements, i;
+    var classes, columnElements, columns, dataColumnsContent, elements, i;
     dataColumnsContent = get_content(element);
     columns = dataColumnsContent.numberOfColumns;
-    columnClass = dataColumnsContent.className;
+    classes = dataColumnsContent.classes;
     elements = new Array(+columns);
     i = columns;
     while (i-- !== 0) {
@@ -283,9 +283,12 @@ http://github.com/bandd/salvattore
       element.removeChild(element.firstChild);
     }
     forEach.call(elements, function(columnElements) {
-      var column;
+      var cls, column, _i, _len;
       column = document.createElement('div');
-      column.classList.add(columnClass);
+      for (_i = 0, _len = classes.length; _i < _len; _i++) {
+        cls = classes[_i];
+        column.classList.add(cls);
+      }
       forEach.call(columnElements, function(element) {
         return column.appendChild(element);
       });

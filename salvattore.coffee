@@ -216,13 +216,13 @@ get_content = (element) ->
 
 	if matchResult
 		numberOfColumns = matchResult[1]
-		className = matchResult[2] or 'column'
+		classes = matchResult[2]?.split('.') or ['column']
 	else
 		matchResult = content.match(/^\s*\.(.+)\s+(\d+)\s*$/)
-		className = matchResult[1]
-		numberOfColumns = matchResult[2]
+		classes = matchResult[1]
+		numberOfColumns = matchResult[2]?.split('.')
 
-	return numberOfColumns: numberOfColumns, className: className
+	return numberOfColumns: numberOfColumns, classes: classes
 
 get_direct_children = (element) ->
 	directChildren = element.children
@@ -254,7 +254,7 @@ filter_children = (elements, a, b) ->
 add_columns = (element) ->
 	dataColumnsContent = get_content(element)
 	columns = dataColumnsContent.numberOfColumns
-	columnClass = dataColumnsContent.className
+	classes = dataColumnsContent.classes
 	elements = new Array(+columns)
 
 	i = columns
@@ -271,7 +271,9 @@ add_columns = (element) ->
 
 	forEach.call(elements, (columnElements) ->
 		column = document.createElement('div')
-		column.classList.add(columnClass)
+
+		for cls in classes
+			column.classList.add(cls)
 
 		forEach.call(columnElements, (element) ->
 			column.appendChild(element)
