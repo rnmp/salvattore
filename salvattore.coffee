@@ -240,7 +240,6 @@ get_direct_children = (element) ->
 	return directChildren
 
 filter_children = (elements, a, b) ->
-	console.log 'length ', elements.length
 	# nth-child(an + b)
 	filtered_children = new Array(Math.ceil(elements.length/a))
 
@@ -272,8 +271,6 @@ add_columns = (element) ->
 
 	forEach.call(elements, (columnElements) ->
 		column = document.createElement('div')
-
-		console.log 'adding this stuff ', columnClass
 		column.classList.add(columnClass)
 
 		forEach.call(columnElements, (element) ->
@@ -308,7 +305,7 @@ remove_columns = (element) ->
 media_rule_has_columns_selector = (rules) ->
 	i = rules.length
 	while i-- isnt 0
-		if rules[i].selectorText.match(/\[data-columns\]$/)
+		if rules[i].selectorText.match(/\[data-columns\]::before$/)
 			return true
 
 	return false
@@ -321,7 +318,7 @@ media_query_change = (mql) ->
 	if mql.matches then grids.forEach(recreate_columns)
 
 scan_media_queries = ->
-	return unless document.matchMedia
+	return unless window.matchMedia
 
 	stylesheets = slice.call(
 		document.querySelectorAll('style[type="text/css"]')

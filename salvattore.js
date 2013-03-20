@@ -253,7 +253,6 @@ http://github.com/bandd/salvattore
 
   filter_children = function(elements, a, b) {
     var element, filtered_children, i, j, _i, _len;
-    console.log('length ', elements.length);
     filtered_children = new Array(Math.ceil(elements.length / a));
     j = 0;
     for (i = _i = 0, _len = elements.length; _i < _len; i = ++_i) {
@@ -286,7 +285,6 @@ http://github.com/bandd/salvattore
     forEach.call(elements, function(columnElements) {
       var column;
       column = document.createElement('div');
-      console.log('adding this stuff ', columnClass);
       column.classList.add(columnClass);
       forEach.call(columnElements, function(element) {
         return column.appendChild(element);
@@ -320,7 +318,7 @@ http://github.com/bandd/salvattore
     var i;
     i = rules.length;
     while (i-- !== 0) {
-      if (rules[i].selectorText.match(/\[data-columns\]$/)) {
+      if (rules[i].selectorText.match(/\[data-columns\]::before$/)) {
         return true;
       }
     }
@@ -340,7 +338,7 @@ http://github.com/bandd/salvattore
 
   scan_media_queries = function() {
     var mediaQueries, stylesheets;
-    if (!document.matchMedia) {
+    if (!window.matchMedia) {
       return;
     }
     stylesheets = slice.call(document.querySelectorAll('style[type="text/css"]')).concat(slice.call(document.querySelectorAll('link[rel="stylesheet"]')));
