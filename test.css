@@ -134,6 +134,12 @@ h4, .font-delta, .rs-font-delta {
   float: left;
 }
 
+.grid[data-columns]:before {
+  -ms-content: '4';
+  content: '4';
+  display: none;
+}
+
 @media screen and (max-width: 480px){
   body {
     font-size: 14px;
@@ -208,10 +214,4 @@ h4, .font-delta, .rs-font-delta {
   .grid[data-columns] .column {
     width: 25%;
   }
-}
-
-.grid[data-columns]:before {
-  -ms-content: '4';
-  content: '4';
-  display: none;
 }

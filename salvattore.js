@@ -95,12 +95,13 @@ http://github.com/bandd/salvattore
           l = tokens.length;
           token;
           updated = false;
-          while (i++ < l) {
+          while (i < l) {
             token = tokens[i] + '';
             if (checkTokenAndGetIndex(this, token) === -1) {
               this.push(token);
               updated = true;
             }
+            i++;
           }
           if (updated) {
             return this._updateClassName();
@@ -114,13 +115,14 @@ http://github.com/bandd/salvattore
           l = tokens.length;
           token;
           updated = false;
-          while (i++ < l) {
+          while (i < l) {
             token = tokens[i] + '';
             index = checkTokenAndGetIndex(this, token);
             if (index !== -1) {
               this.splice(index, 1);
               updated = true;
             }
+            i++;
           }
           if (updated) {
             return this._updateClassName();
@@ -251,6 +253,7 @@ http://github.com/bandd/salvattore
 
   filter_children = function(elements, a, b) {
     var element, filtered_children, i, j, _i, _len;
+    console.log('length ', elements.length);
     filtered_children = new Array(Math.ceil(elements.length / a));
     j = 0;
     for (i = _i = 0, _len = elements.length; _i < _len; i = ++_i) {
@@ -277,16 +280,20 @@ http://github.com/bandd/salvattore
       }
       elements.push(columnElements);
     }
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
     forEach.call(elements, function(columnElements) {
       var column;
       column = document.createElement('div');
+      console.log('adding this stuff ', columnClass);
       column.classList.add(columnClass);
       forEach.call(columnElements, function(element) {
         return column.appendChild(element);
       });
       return element.appendChild(column);
     });
-    return element.setAttribute('dataColumns', columns);
+    return element.setAttribute('data-columns', columns);
   };
 
   remove_columns = function(element) {

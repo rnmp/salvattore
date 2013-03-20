@@ -77,11 +77,13 @@ if typeof document isnt 'undefined' and not ('classList' of document.createEleme
 				token
 				updated = false
 
-				while i++ < l
+				while i < l
 					token = tokens[i] + ''
 					if checkTokenAndGetIndex(this, token) is -1
 						this.push(token)
 						updated = true
+
+					i++
 
 				if updated
 					this._updateClassName()
@@ -93,12 +95,14 @@ if typeof document isnt 'undefined' and not ('classList' of document.createEleme
 				token
 				updated = false
 
-				while i++ < l
+				while i < l
 					token = tokens[i] + ''
 					index = checkTokenAndGetIndex(this, token)
 					if index isnt -1
 						this.splice(index, 1)
 						updated = true
+
+					i++
 
 				if updated
 					this._updateClassName()
@@ -236,6 +240,7 @@ get_direct_children = (element) ->
 	return directChildren
 
 filter_children = (elements, a, b) ->
+	console.log 'length ', elements.length
 	# nth-child(an + b)
 	filtered_children = new Array(Math.ceil(elements.length/a))
 
@@ -254,7 +259,6 @@ add_columns = (element) ->
 	elements = new Array(+columns)
 
 	i = columns
-
 	while i-- isnt 0
 		try
 			columnElements = element.querySelectorAll('[data-columns] > *:nth-child('+columns+'n-'+i+')')
@@ -263,8 +267,13 @@ add_columns = (element) ->
 
 		elements.push(columnElements)
 
+	while element.firstChild
+		element.removeChild(element.firstChild)
+
 	forEach.call(elements, (columnElements) ->
 		column = document.createElement('div')
+
+		console.log 'adding this stuff ', columnClass
 		column.classList.add(columnClass)
 
 		forEach.call(columnElements, (element) ->
@@ -274,7 +283,7 @@ add_columns = (element) ->
 		element.appendChild(column)
 	)
 
-	element.setAttribute('dataColumns', columns)
+	element.setAttribute('data-columns', columns)
 
 remove_columns = (element) ->
 	children = element.children
