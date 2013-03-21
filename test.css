@@ -134,9 +134,19 @@ h4, .font-delta, .rs-font-delta {
   float: left;
 }
 
+.one-half {
+  width: 50%;
+}
+.one-third {
+  width: 33.333%;
+}
+.one-quarter {
+  width: 25%;
+}
+
 .grid[data-columns]:before {
-  -ms-content: '4';
-  content: '4 .column';
+  -ms-content: '4 .column.one-quarter';
+  content: '4 .column.one-quarter';
   display: none;
 }
 
@@ -191,27 +201,18 @@ h4, .font-delta, .rs-font-delta {
     font-size: 96px;
   }
   .grid[data-columns]:before {
-    content: '2';
-  }
-  .grid[data-columns] .column {
-    width: 50%;
+    content: '2 .column.one-half';
   }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .grid[data-columns]:before {
-    content: '3';
-  }
-  .grid[data-columns] .column {
-    width: 33.333%;
+    content: '3 .column.one-third';
   }
 }
 
 @media screen and (min-width: 1025px) {
   .grid[data-columns]:before {
-    content: '4 .column';
-  }
-  .grid[data-columns] .column {
-    width: 25%;
+    content: '4 .column.one-quarter';
   }
 }
