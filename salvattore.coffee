@@ -235,11 +235,12 @@ get_direct_children = (element) ->
 	while --m isnt -1
 		node = nodes[m]
 		if node.nodeType is 1
-			directChildren.push(node)
+			directChildren.unshift(node)
 
 	return directChildren
 
 filter_children = (elements, a, b) ->
+	b = a - b - 1
 	# nth-child(an + b)
 	filtered_children = new Array(Math.ceil(elements.length/a))
 
