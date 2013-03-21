@@ -136,7 +136,7 @@ h4, .font-delta, .rs-font-delta {
 
 .grid[data-columns]:before {
   -ms-content: '4';
-  content: '4 column';
+  content: '4 .column';
   display: none;
 }
 
@@ -209,7 +209,7 @@ h4, .font-delta, .rs-font-delta {
 
 @media screen and (min-width: 1025px) {
   .grid[data-columns]:before {
-    content: '4 column';
+    content: '4 .column';
   }
   .grid[data-columns] .column {
     width: 25%;
