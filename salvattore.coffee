@@ -331,7 +331,9 @@ scan_media_queries = ->
 	mediaQueries = []
 
 	forEach.call(stylesheets, (stylesheet) ->
-		forEach.call(stylesheet.sheet.cssRules, (rule) ->
+		cssRules = stylesheet.sheet.cssRules
+		return unless cssRules
+		forEach.call(cssRules, (rule) ->
 			if rule.media and media_rule_has_columns_selector(rule.cssRules)
 				mediaQueries.push window.matchMedia(rule.media.mediaText)
 		)

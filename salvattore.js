@@ -348,7 +348,12 @@ http://github.com/bandd/salvattore
     stylesheets = slice.call(document.querySelectorAll('style[type="text/css"]')).concat(slice.call(document.querySelectorAll('link[rel="stylesheet"]')));
     mediaQueries = [];
     forEach.call(stylesheets, function(stylesheet) {
-      return forEach.call(stylesheet.sheet.cssRules, function(rule) {
+      var cssRules;
+      cssRules = stylesheet.sheet.cssRules;
+      if (!cssRules) {
+        return;
+      }
+      return forEach.call(cssRules, function(rule) {
         if (rule.media && media_rule_has_columns_selector(rule.cssRules)) {
           return mediaQueries.push(window.matchMedia(rule.media.mediaText));
         }
