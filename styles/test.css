@@ -43,8 +43,12 @@ body {
   text-shadow: 0 1px 0 rgba(0,0,0,0.15);
 }
 
+body {
+  background: url('../assets/body.gif') center;
+}
+
 body, .page-bg {
-  background: #e04c24 url('../assets/body.gif') center top;
+  background-color: #e9632f;
 }
 
 body, .font-body {
@@ -129,12 +133,14 @@ section {
   font-size: 128px;
 }
 
-.branding > span {
+.double-border-heading {
+  position: relative;
+}
+.double-border-heading > span {
   position: relative;
   z-index: 1;
   padding: 0 20px;
 }
-
 .double-border-heading:after {
   content: '';
   position: absolute;
@@ -170,6 +176,12 @@ section {
   float: left;
 }
 
+.layout-redux {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .one-half {
   width: 50%;
 }
@@ -181,7 +193,6 @@ section {
 }
 
 .grid[data-columns]:before {
-  -ms-content: '4 .column.one-quarter';
   content: '4 .column.one-quarter';
   display: none;
 }
