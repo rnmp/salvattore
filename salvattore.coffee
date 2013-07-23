@@ -9,7 +9,7 @@
   else if typeof exports is 'object'
     module.exports = factory()
   else
-    root.returnExports = factory()
+    root.salvattore = factory()
 )(this, ->
   add_to_dataset = (element, key, value) ->
     dataset = element.dataset
