@@ -7,7 +7,7 @@
 
 (function() {
   define(function() {
-    var add_columns, add_to_dataset, append_elements, create_list_of_fragments, get_css_rules, get_from_dataset, get_stylesheets, media_query_change, media_rule_has_columns_selector, next_element_column_index, obtain_grid_settings, prepend_elements, recreate_columns, remove_columns, scan_media_queries, setup;
+    var add_columns, add_to_dataset, append_elements, create_list_of_fragments, get_css_rules, get_from_dataset, get_stylesheets, grids, media_query_change, media_rule_has_columns_selector, next_element_column_index, obtain_grid_settings, prepend_elements, recreate_columns, remove_columns, scan_media_queries, setup;
 
     add_to_dataset = function(element, key, value) {
       var dataset;
@@ -243,9 +243,8 @@
       }
       return grid.insertBefore(fragment, grid.firstChild);
     };
+    grids = null;
     setup = function() {
-      var grids;
-
       grids = document.querySelectorAll('[data-columns]');
       Array.prototype.forEach.call(grids, add_columns);
       return scan_media_queries();
