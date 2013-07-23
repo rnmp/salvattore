@@ -217,6 +217,8 @@ define ->
     # adds the fragment to the left
     grid.insertBefore(fragment, grid.firstChild)
 
+  grids = null
+
   setup = ->
     grids = document.querySelectorAll('[data-columns]')
     Array::forEach.call(grids, add_columns)
