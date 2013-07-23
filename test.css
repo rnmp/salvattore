@@ -40,10 +40,11 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 body {
   padding: 0 20px;
   color: #fff;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
 }
 
 body, .page-bg {
-  background: #e05424;
+  background: #e04c24 url('assets/body.gif') center top;
 }
 
 body, .font-body {
@@ -74,6 +75,15 @@ h3, .font-gamma, .rs-font-gamma {
 
 h4, .font-delta, .rs-font-delta {
   font-size: 24px;
+}
+
+p, pre {
+  margin-bottom: 1em;
+}
+
+p:last-child,
+pre:last-child {
+  margin-bottom: 0;
 }
 
 .font-accent {
@@ -215,4 +225,23 @@ h4, .font-delta, .rs-font-delta {
   .grid[data-columns]:before {
     content: '4 .column.one-quarter';
   }
+}
+
+code, pre {
+  font-family: 'andale mono';
+  color: #e25126;
+  background: #f8d0c0;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 1px;
+}
+
+pre {
+  padding: 1em;
+}
+
+pre .highlight {
+  background: #fff;
+  border-bottom: 1px solid #e25126;
+  border-bottom-color: rgba(229,87,41, 0.3);
+  border-radius: 1px;
 }
