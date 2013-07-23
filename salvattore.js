@@ -6,7 +6,15 @@
 
 
 (function() {
-  define(function() {
+  (function(root, factory) {
+    if (typeof define === 'function' && define.amd) {
+      return define(factory);
+    } else if (typeof exports === 'object') {
+      return module.exports = factory();
+    } else {
+      return root.returnExports = factory();
+    }
+  })(this, function() {
     var add_columns, add_to_dataset, append_elements, create_list_of_fragments, get_css_rules, get_from_dataset, get_stylesheets, grids, media_query_change, media_rule_has_columns_selector, next_element_column_index, obtain_grid_settings, prepend_elements, recreate_columns, remove_columns, scan_media_queries, setup;
 
     add_to_dataset = function(element, key, value) {
