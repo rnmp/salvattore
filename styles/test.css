@@ -97,6 +97,7 @@ code, pre {
   background: rgba(255, 255, 255, 0.7);
   border-radius: 1px;
   text-shadow: none;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.15);
 }
 
 pre {
@@ -135,6 +136,7 @@ section {
 
 .double-border-heading {
   position: relative;
+  text-align: center;
 }
 .double-border-heading > span {
   position: relative;
@@ -205,7 +207,7 @@ section {
   body {
     font-size: 14px;
   }
-  .rs-font-alpha {
+  .rs-font-alpha, h1 {
     font-size: 36px;
   }
 
@@ -227,12 +229,16 @@ section {
   .grid[data-columns]:before {
     content: '1';
   }
+
+  .layout-redux {
+    width: inherit;
+  }
 }
 @media screen and (max-width: 768px) and (min-width: 481px){
   body {
     font-size: 16px;
   }
-  .rs-font-alpha {
+  .rs-font-alpha, h1 {
     font-size: 48px;
   }
 
@@ -253,6 +259,10 @@ section {
   }
   .grid[data-columns]:before {
     content: '2 .column.one-half';
+  }
+
+  .layout-redux {
+    width: inherit;
   }
 }
 

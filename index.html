@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="styles/test.css" />
   </head>
   <body>
-    <hgroup class="page-header t-center layout-redux">
+    <hgroup class="page-header layout-redux">
       <h1 class="branding double-border-heading"><span class="page-bg">Salvattore</span></h1>
-      <h2 class="font-body rs-font-gamma font-accent spacing-alpha">Beautiful & responsive multi-column layouts</h2>
+      <h2 class="font-body t-center rs-font-gamma font-accent spacing-alpha">Beautiful & responsive multi-column layouts</h2>
     </hgroup>
     <section class="grid" data-columns>
       <article class="item">
@@ -37,11 +37,11 @@
         <p>E come quei che con lena affannata uscito fuor del pelago a la riva si volge a l'acqua perigliosa e guata, così l'animo mio, ch'ancor fuggiva, si volse a retro a rimirar lo passo che non lasciò già mai persona viva.</article>
     </section>
     <section class="layout-redux">
-      <h1 class="t-center double-border-heading"><span class="page-bg">How it works?</span></h1>
+      <h1 class="double-border-heading"><span class="page-bg">How it works?</span></h1>
       <p>Simply add a <code>data-columns</code> attribute to the element that contains the blocks you want on your layout. All the settings and conditions are defined in CSS.</p>
 
       <pre>
-&lt;div id=&quot;timeline&quot; <code class="highlight">data-columns</code>&gt;
+&lt;div id=&quot;timeline&quot; <span class="highlight">data-columns</span>&gt;
   &lt;div&gt;Item #1&lt;/div&gt;
   &lt;div&gt;Item #2&lt;/div&gt;
   &lt;div&gt;Item #3&lt;/div&gt;
@@ -53,16 +53,16 @@
 
       <pre>
 #timeline[data-columns] {
-    content: <code class="highlight">'2'</code>;
+    content: <span class="highlight">'2'</span>;
 }
 
 @media screen and (min-width: 601px){
   #timeline[data-columns] {
-    content: <code class="highlight">'3'</code>;
+    content: <span class="highlight">'3'</span>;
   }
 }</pre>
 
-      <p>Use the <code>content</code> property as a wildcard to tell Salvattore how many columns you want. The script will create columns as elements where each of the original element’s items will be placed transversely in order until all of them have a column.</p>
+      <p>Use the <code>content</code> property as a wildcard to tell Salvattore how many columns you want. The script will create columns as elements where each of the original element’s items will be distributed mathematically in these new columns.</p>
 
       <pre>
 &lt;div id=&quot;timeline&quot; data-columns&gt;
@@ -81,23 +81,23 @@
     </section>
 
     <section class="layout-redux">
-      <h1 class="t-center double-border-heading"><span class="page-bg">Customization</span></h1>
+      <h1 class="double-border-heading"><span class="page-bg">Customization</span></h1>
       <p>The class for each column is <code>.column</code> by default, but you can also re-define it or even use more than one through CSS so that you have a flexible and modular code.</p>
 
       <pre>
 #timeline[data-columns] {
-  content: '2 <code class="highlight">.col.one-half</code>';
+  content: '2 <span class="highlight">.col.one-half</span>';
 }
 
 @media screen and (min-width: 601px){
   #timeline[data-columns] {
-    content: '3 <code class="highlight">.col.one-third</code>';
+    content: '3 <span class="highlight">.col.one-third</span>';
   }
 }</pre>
     </section>
 
     <section class="layout-redux">
-      <h1 class="t-center double-border-heading"><span class="page-bg">Adding dynamic content</span></h1>
+      <h1 class="double-border-heading"><span class="page-bg">Adding dynamic content</span></h1>
 	    <section class="grid grid--extraposts" data-columns>
 	      <article class="item">
 	        <h1 class="font-gamma">1</h1>
@@ -126,7 +126,7 @@
     </section>
 
     <section class="layout-redux">
-      <h1 class="t-center double-border-heading"><span class="page-bg">Compatibility</span></h1>
+      <h1 class="double-border-heading"><span class="page-bg">Compatibility</span></h1>
       <p>Salvattore works in Safari, Chrome, Firefox and IE9+. Feel free to help us make it work for other browsers.</p>
     </section>
 
