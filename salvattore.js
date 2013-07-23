@@ -250,8 +250,8 @@
       Array.prototype.forEach.call(grids, add_columns);
       return scan_media_queries();
     };
+    setup();
     return {
-      setup: setup,
       append_elements: append_elements,
       prepend_elements: prepend_elements
     };

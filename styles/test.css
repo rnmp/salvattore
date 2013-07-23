@@ -28,11 +28,11 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 @font-face {
   font-family: Franchise;
-  src: url('assets/franchise.eot');
-  src: url('assets/franchise.eot?#iefix') format('embedded-opentype'),
-    url('assets/franchise.woff') format('woff'),
-    url('assets/franchise.ttf') format('truetype'),
-    url('assets/franchise.svg#franchiseregular') format('svg');
+  src: url('../assets/franchise.eot');
+  src: url('../assets/franchise.eot?#iefix') format('embedded-opentype'),
+    url('../assets/franchise.woff') format('woff'),
+    url('../assets/franchise.ttf') format('truetype'),
+    url('../assets/franchise.svg#franchiseregular') format('svg');
   font-weight: bold;
   font-style: normal;
 }

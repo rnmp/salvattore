@@ -222,4 +222,6 @@ define ->
     Array::forEach.call(grids, add_columns)
     scan_media_queries()
 
-  return { setup, append_elements, prepend_elements }
+  setup()
+
+  return { append_elements, prepend_elements }
