@@ -228,7 +228,7 @@
 
   setup = ->
     grids = document.querySelectorAll('[data-columns]')
-    Array::forEach.call(grids, add_columns)
+    Array::forEach.call(grids, (grid) -> add_columns(grid))
     scan_media_queries()
 
   setup()

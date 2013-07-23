@@ -254,7 +254,9 @@
     grids = null;
     setup = function() {
       grids = document.querySelectorAll('[data-columns]');
-      Array.prototype.forEach.call(grids, add_columns);
+      Array.prototype.forEach.call(grids, function(grid) {
+        return add_columns(grid);
+      });
       return scan_media_queries();
     };
     setup();
