@@ -1,5 +1,5 @@
 define(function(require) {
-  var ITEM_TEMPLATE = "<article class='item'><h1 class='font-gamma'>{{number}}</h1><p>{{content}}</p></article>";
+  var ITEM_TEMPLATE = "<article class='item added'><h1 class='font-gamma'>{{number}}</h1><p>{{content}}</p></article>";
 
   var paragraph_list = [
     "Poi ch'ei posato un poco il corpo lasso, ripresi via per la piaggia diserta, sì che 'l piè fermo sempre era 'l più basso.",
@@ -30,8 +30,7 @@ define(function(require) {
     item.outerHTML = content;
 
     if (!paragraph_list.length) {
-      prependButton.classList.add('hide');
-      appendButton.classList.add('hide');
+      buttonBlock.classList.add('hide');
     }
   }
 
@@ -48,6 +47,7 @@ define(function(require) {
   var grid = document.querySelector('.grid--extraposts');
   var prependButton = document.querySelector('.post-prepend');
   var appendButton = document.querySelector('.post-append');
+  var buttonBlock = document.querySelector('#js-button-block');
 
   appendButton.addEventListener('click', append_post);
   prependButton.addEventListener('click', prepend_post);

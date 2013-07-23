@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Salvattore</title>
     <meta name="description" content="Beautiful & responsive multi-column layouts.">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="google" value="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="styles/test.css" />
   </head>
@@ -98,6 +98,17 @@
 
     <section class="layout-redux">
       <h1 class="double-border-heading"><span class="page-bg">Adding dynamic content</span></h1>
+      <p>Salvattore has two functions you can work with: <code>append_elements</code> and <code>prepend_elements</code>. These two functions have the same attributes: the <code>grid</code> and the <code>elements</code> you want added to it. So for instance:</p>
+
+      <pre>
+var grid = document.querySelector('#timeline');
+var item = document.createElement('article');
+
+salvattore[<span class="highlight">'append_elements'</span>](<span class="highlight">grid</span>, <span class="highlight">[item]</span>)
+item.outerHTML = 'I’ve been appended!';</pre>
+
+      <p>Here's a demonstration of this principle applied to a working grid, you can check the <a href="scripts/main.js">code used</a> for it:</p>
+
 	    <section class="grid grid--extraposts" data-columns>
 	      <article class="item">
 	        <h1 class="font-gamma">1</h1>
@@ -121,8 +132,11 @@
 	        <h1 class="font-gamma">7</h1>
 	        <p>E come quei che con lena affannata uscito fuor del pelago a la riva si volge a l'acqua perigliosa e guata, così l'animo mio, ch'ancor fuggiva, si volse a retro a rimirar lo passo che non lasciò già mai persona viva.</article>
 	    </section>
-	    <button class="post-prepend">x</button>
-	    <button class="post-append">y</button>
+	    <p id="js-button-block" class="t-center double-border-heading dark">
+        <span class="page-bg"><a class="button post-prepend" title="Adds content on the top">Prepend content</a>
+          <a class="button post-append" title="Adds content on the bottom">Append content</a></span>
+      </p>
+      <p>Items are appended and prepended on the same grid without conflicts. You can combine this API with your XHR functions to have a dynamic layout with live content.</p>
     </section>
 
     <section class="layout-redux">

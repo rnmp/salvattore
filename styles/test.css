@@ -55,11 +55,18 @@ body, .font-body {
   font: 18px/1.5 palatino;
 }
 
+::selection {
+  background: #743117;
+}
+::-moz-selection {
+  background: #743117; 
+}
+
 .font-body {
   text-transform: none;
 }
 
-h1, h2, h3 {
+h1, h2, h3, button, .button {
   text-transform: uppercase;
   font: 32px/1 Franchise;
   color: #fff;
@@ -81,6 +88,17 @@ h4, .font-delta, .rs-font-delta {
   font-size: 24px;
 }
 
+a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 1px solid #f2ad94;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+a.button {
+  border: none;
+}
+
 p, pre {
   margin-bottom: 1em;
 }
@@ -95,7 +113,7 @@ code, pre {
   color: #e25126;
   background: #f8d0c0;
   background: rgba(255, 255, 255, 0.7);
-  border-radius: 1px;
+  border-radius: 2px;
   text-shadow: none;
   box-shadow: 0 1px 0 rgba(0,0,0,0.15);
 }
@@ -108,11 +126,20 @@ pre .highlight {
   background: #fff;
   border-bottom: 1px solid #e25126;
   border-bottom-color: rgba(229,87,41, 0.3);
-  border-radius: 1px;
+  border-radius: 2px;
 }
 
 section {
   margin-bottom: 2em;
+}
+
+button, .button {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+  background: #3a180b;
+  background: rgba(0,0,0,0.75);
+  border-radius: 2px;
 }
 
 .font-accent {
@@ -153,14 +180,17 @@ section {
   border: solid #fff;
   border-width: 2px 0;
 }
+.double-border-heading.dark:after {
+  border-color: rgba(0,0,0, 0.1);
+}
 
 .item {
   margin: 0 10px 20px;
   padding: 20px;
   color: #e67650;
-  background: #000;
+  background: #743117;
   background: rgba(0,0,0,0.5);
-  border-radius: 1px;
+  border-radius: 2px;
 }
 .item h1 {
   float: left;
@@ -172,6 +202,30 @@ section {
   margin-left: -20px;
   margin-right: -20px;
   padding: 0 10px;
+}
+
+@-webkit-keyframes showsup {
+  from { opacity: 0; -webkit-transform: translate(0, -20px); }
+  to   { opacity: 1; -webkit-transform: translate(0, 0); }
+}
+@-moz-keyframes showsup {
+  from { opacity: 0; -moz-transform: translate(0, -20px); }
+  to   { opacity: 1; -moz-transform: translate(0, 0); }
+}
+@-o-keyframes showsup {
+  from { opacity: 0; -o-transform: translate(0, -20px); }
+  to   { opacity: 1; -o-transform: translate(0, 0); }
+}
+@keyframes showsup {
+  from { opacity: 0; transform: translate(0, -20px); }
+  to   { opacity: 1; transform: translate(0, 0); }
+}
+
+.grid--extraposts .item.added {
+  -webkit-animation: showsup 0.5s;
+  -moz-animation: showsup 0.5s;
+  -o-animation: showsup 0.5s;
+  animation: showsup 0.5s;
 }
 
 .column {
