@@ -197,6 +197,10 @@ section {
   display: none;
 }
 
+.hide {
+  display: none;
+}
+
 @media screen and (max-width: 480px){
   body {
     font-size: 14px;
