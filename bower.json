@@ -1,7 +1,4 @@
 {
   "name": "salvattore",
-  "version": "1.0.0",
-  "dependencies": {
-    "almond": "~0.2.5"
-  }
+  "version": "1.0.0"
 }
