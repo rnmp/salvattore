@@ -13,10 +13,6 @@ section, img, object, embed {
     display: block;
 }
 
-textarea {
-    resize: vertical;
-}
-
 img, object, embed {
     max-width: 100%;
 }
@@ -146,12 +142,12 @@ button, .button {
   font-style: italic;
 }
 
-.spacing-alpha {
-  margin-bottom: 0.75em;
-}
-
 .t-center {
   text-align: center;
+}
+
+.page-header {
+  margin-bottom: 0.75em;
 }
 
 .branding {
