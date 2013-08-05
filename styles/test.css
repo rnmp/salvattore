@@ -108,7 +108,7 @@ pre:last-child {
 }
 
 code, pre {
-  font-family: 'andale mono';
+  font-family: 'andale mono', monospace;
   color: #e25126;
   background: #f8d0c0;
   background: rgba(255, 255, 255, 0.7);
