@@ -11,35 +11,38 @@
   <body>
     <a href="https://github.com/bandd/salvattore"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
     <hgroup class="page-header layout-redux">
-      <h1 class="branding double-border-heading"><span class="page-bg">Salvattore</span></h1>
+      <h1 class="branding double-border-heading"><span>Salvattore</span></h1>
       <h2 class="font-body t-center rs-font-gamma font-accent">Beautiful & responsive multi-column layouts</h2>
     </hgroup>
-    <section class="grid" data-columns>
+    <section class="test-grid clear" data-columns>
       <article class="item">
         <h1 class="font-gamma">1</h1>
-        <p>Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura ché la diritta via era smarrita.</article>
+        <p>Vergine Madre, figlia del tuo figlio, umile e alta più che creatura, termine fisso d’etterno consiglio, u se’ colei che l’umana natura nobilitasti sì, che ’l suo fattore non disdegnò di farsi sua fattura.</article>
       <article class="item">
         <h1 class="font-gamma">2</h1>
-        <p>Ahi quanto a dir qual era è cosa dura esta selva selvaggia e aspra e forte che nel pensier rinova la paura!</article>
+        <p>Nel ventre tuo si raccese l’amore, per lo cui caldo ne l’etterna pace così è germinato questo fiore. Qui se’ a noi meridïana face10 di caritate, e giuso, intra ’ mortali, se’ di speranza fontana vivace.</article>
       <article class="item">
         <h1 class="font-gamma">3</h1>
-        <p>Tant'è amara che poco è più morte; ma per trattar del ben ch'i' vi trovai, dirò de l'altre cose ch'i' v'ho scorte.</article>
+        <p>Donna, se’ tanto grande e tanto vali, che qual vuol grazia e a te non ricorre, sua disïanza vuol volar sanz’ ali. La tua benignità non pur soccorre a chi domanda, ma molte fïate liberamente al dimandar precorre.</article>
       <article class="item">
         <h1 class="font-gamma">4</h1>
-        <p>Io non so ben ridir com'i' v'intrai, tant'era pien di sonno a quel punto che la verace via abbandonai.</article>
+        <p>In te misericordia, in te pietate, in te magnificenza, in te s’aduna quantunque in creatura è di bontate.</article>
       <article class="item">
         <h1 class="font-gamma">5</h1>
-        <p>Ma poi ch'i' fui al piè d'un colle giunto, là dove terminava quella valle che m'avea di paura il cor compunto, guardai in alto, e vidi le sue spalle vestite già de' raggi del pianeta che mena dritto altrui per ogne calle.</article>
+        <p>Or questi, che da l’infima lacuna de l’universo infin qui ha vedute le vite spiritali ad una ad una, supplica a te, per grazia, di virtute tanto, che possa con li occhi levarsi più alto verso l’ultima salute.</article>
       <article class="item">
         <h1 class="font-gamma">6</h1>
-        <p>Allor fu la paura un poco queta che nel lago del cor m'era durata la notte ch'i' passai con tanta pieta.</article>
+        <p>E io, che mai per mio veder non arsi più ch’i’ fo per lo suo, tutti miei prieghi ti porgo, e priego che non sieno scarsi, perché tu ogne nube li disleghi di sua mortalità co’ prieghi tuoi, sì che ’l sommo piacer li si dispieghi.</article>
       <article class="item">
         <h1 class="font-gamma">7</h1>
-        <p>E come quei che con lena affannata uscito fuor del pelago a la riva si volge a l'acqua perigliosa e guata, così l'animo mio, ch'ancor fuggiva, si volse a retro a rimirar lo passo che non lasciò già mai persona viva.</article>
+        <p>Ancor ti priego, regina, che puoi ciò che tu vuoli, che conservi sani, dopo tanto veder, li affetti suoi.</article>
+      <article class="item">
+        <h1 class="font-gamma">8</h1>
+        <p>Vinca tua guardia i movimenti umani: vedi Beatrice con quanti beati per li miei prieghi ti chiudon le mani!</article>
     </section>
     <section class="layout-redux">
-      <h1 class="double-border-heading"><span class="page-bg">How it works?</span></h1>
-      <p>Simply add a <code>data-columns</code> attribute to the element that contains the blocks you want on your layout. All the settings and conditions are defined in CSS.</p>
+      <h1 class="double-border-heading"><span>How it works?</span></h1>
+      <p>Salvattore creates HTML elements depending on the number of columns you specify. Each of the items of your container is placed on these columns by turn. To get started simply add a <code>data-columns</code> attribute to the container.</p>
 
       <pre>
 &lt;div id=&quot;timeline&quot; <span class="highlight">data-columns</span>&gt;
@@ -50,7 +53,7 @@
   &lt;div&gt;Item #5&lt;/div&gt;
 &lt;/div&gt;</pre>
 
-      <p>In your CSS file you can set the number of columns you want to be created inside that element. You can even use media queries.</p>
+      <p>In your CSS file, set the number of columns you want to be created inside that element. You can even use media queries.</p>
 
       <pre>
 #timeline[data-columns] {
@@ -63,7 +66,7 @@
   }
 }</pre>
 
-      <p>Use the <code>content</code> property as a wildcard to tell Salvattore how many columns you want. The script will create columns as elements where each of the original element’s items will be distributed mathematically in these new columns.</p>
+      <p>Use the <code>content</code> property as a wildcard to tell Salvattore how many columns you want for the container and the elements will be created accordingly.</p>
 
       <pre>
 &lt;div id=&quot;timeline&quot; data-columns&gt;
@@ -82,8 +85,8 @@
     </section>
 
     <section class="layout-redux">
-      <h1 class="double-border-heading"><span class="page-bg">Customization</span></h1>
-      <p>The class for each column is <code>.column</code> by default, but you can also re-define it or even use more than one through CSS so that you have a flexible and modular code.</p>
+      <h1 class="double-border-heading"><span>Customization</span></h1>
+      <p>The default class for each column is <code>.column</code>, but you can re-define it or even use more than one so that you have a flexible and modular code.</p>
 
       <pre>
 #timeline[data-columns] {
@@ -98,19 +101,19 @@
     </section>
 
     <section class="layout-redux">
-      <h1 class="double-border-heading"><span class="page-bg">Adding dynamic content</span></h1>
-      <p>Salvattore has two functions you can work with: <code>append_elements</code> and <code>prepend_elements</code>. These two functions have the same attributes: the <code>grid</code> and the <code>elements</code> you want added to it. So for instance:</p>
+      <h1 class="double-border-heading"><span>Dynamic content</span></h1>
+      <p>Salvattore has two functions you can work with: <code>append_elements</code> and <code>prepend_elements</code>. These two functions have the same attributes: the <code>test-grid</code> and the <code>elements</code> you want added to it.</p>
 
       <pre>
-var grid = document.querySelector('#timeline');
+var test-grid = document.querySelector('#timeline');
 var item = document.createElement('article');
 
-salvattore[<span class="highlight">'append_elements'</span>](<span class="highlight">grid</span>, <span class="highlight">[item]</span>)
+salvattore[<span class="highlight">'append_elements'</span>](<span class="highlight">test-grid</span>, <span class="highlight">[item]</span>)
 item.outerHTML = 'I’ve been appended!';</pre>
 
-      <p>Here's a demonstration of this principle applied to a working grid, you can check the <a href="scripts/main.js">code used</a> for it:</p>
+      <p>Here's a demonstration of this principle applied to a working test-grid, you can check the <a href="scripts/main.js">code used</a> for it:</p>
 
-	    <section class="grid grid--extraposts" data-columns>
+	    <section class="test-grid-b clear" data-columns>
 	      <article class="item">
 	        <h1 class="font-gamma">1</h1>
 	        <p>Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura ché la diritta via era smarrita.</article>
@@ -134,17 +137,30 @@ item.outerHTML = 'I’ve been appended!';</pre>
 	        <p>E come quei che con lena affannata uscito fuor del pelago a la riva si volge a l'acqua perigliosa e guata, così l'animo mio, ch'ancor fuggiva, si volse a retro a rimirar lo passo che non lasciò già mai persona viva.</article>
 	    </section>
 	    <p id="js-button-block" class="t-center double-border-heading dark">
-        <span class="page-bg"><a class="button post-prepend" title="Adds content on the top">Prepend content</a>
+        <span><a class="button post-prepend" title="Adds content on the top">Prepend content</a>
           <a class="button post-append" title="Adds content on the bottom">Append content</a></span>
       </p>
-      <p>Items are appended and prepended on the same grid without conflicts. You can combine this API with your XHR functions to have a dynamic layout with live content.</p>
+      <p>Items are appended and prepended on the same container without conflicts. You can combine this API with your XHR functions to have a dynamic layout with live content.</p>
     </section>
 
-    <section class="layout-redux">
-      <h1 class="double-border-heading"><span class="page-bg">Compatibility</span></h1>
-      <p>Salvattore works in Safari, Chrome, Firefox and IE9+. Feel free to help us make it work for other browsers.</p>
-    </section>
+    <div class="h-contrast">
+      <section class="layout-redux">
+        <h1 class="double-border-heading"><span>Get salvattore</span></h1>
 
+        <a class="button primary" href="#">Download .zip</a>
+        <span><br>— or —<br></span>
+        <a class="button" href="http://github.com/bandd/salvattore">Github repository</a>
+
+        Notes:
+        Salvattore only works in Safari, Chrome, Firefox and IE9+. 
+        The script only creates HTML elements, the user is in charge of all the styling.
+      </section>
+    </div>
+    <footer class="site-footer layout-redux">
+      <img class="logo" src="assets/bandd.svg" alt="" />
+      This project was created and coded by
+      <br><a href="http://www.bandd.co/">Rolando Murillo</a> and <a href="http://github.com/ppold">Giorgio Leveroni.</a>
+    </footer>
     <script type="text/javascript" src="scripts/main.min.js"></script>
   </body>
 </html>

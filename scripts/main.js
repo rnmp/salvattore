@@ -44,7 +44,7 @@ define(function(require) {
 
   var salvattore = require('salvattore');
 
-  var grid = document.querySelector('.grid--extraposts');
+  var grid = document.querySelector('.test-grid-b');
   var prependButton = document.querySelector('.post-prepend');
   var appendButton = document.querySelector('.post-append');
   var buttonBlock = document.querySelector('#js-button-block');
