@@ -171,6 +171,10 @@ section {
   margin-bottom: -0.1em;
   font-size: 128px;
 }
+.sub-branding {
+  position: relative;
+  z-index: 3;
+}
 
 .div-lines {
   position: relative;
