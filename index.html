@@ -11,8 +11,8 @@
   <body>
     <a href="https://github.com/bandd/salvattore"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
     <hgroup class="page-header layout-redux">
-      <h1 class="branding double-border-heading"><span>Salvattore</span></h1>
-      <h2 class="font-body t-center rs-font-gamma font-accent">Beautiful & responsive multi-column layouts</h2>
+      <h1 class="branding div-lines"><span>Salvattore</span></h1>
+      <h2 class="font-body t-center rs-font-delta font-accent">Beautiful & responsive multi-column layouts</h2>
     </hgroup>
     <section class="test-grid clear" data-columns>
       <article class="item">
@@ -41,10 +41,10 @@
         <p>Vinca tua guardia i movimenti umani: vedi Beatrice con quanti beati per li miei prieghi ti chiudon le mani!</article>
     </section>
     <section class="layout-redux">
-      <h1 class="double-border-heading"><span>How it works?</span></h1>
+      <h1 class="div-lines"><span>How it works?</span></h1>
       <p>Salvattore creates HTML elements depending on the number of columns you specify. Each of the items of your container is placed on these columns by turn. To get started simply add a <code>data-columns</code> attribute to the container.</p>
 
-      <pre>
+<pre>
 &lt;div id=&quot;timeline&quot; <span class="highlight">data-columns</span>&gt;
   &lt;div&gt;Item #1&lt;/div&gt;
   &lt;div&gt;Item #2&lt;/div&gt;
@@ -53,9 +53,8 @@
   &lt;div&gt;Item #5&lt;/div&gt;
 &lt;/div&gt;</pre>
 
-      <p>In your CSS file, set the number of columns you want to be created inside that element. You can even use media queries.</p>
-
-      <pre>
+		<p>In your CSS file you can set the number of columns you want to be created inside that element. You can even use media queries.</p>
+<pre>
 #timeline[data-columns] {
     content: <span class="highlight">'2'</span>;
 }
@@ -66,9 +65,11 @@
   }
 }</pre>
 
-      <p>Use the <code>content</code> property as a wildcard to tell Salvattore how many columns you want for the container and the elements will be created accordingly.</p>
-
-      <pre>
+		<p>Use the <code>content</code> property as a wildcard to tell Salvattore
+			 how many columns you want. The script will create columns as elements
+			 where each of the original element’s items will be distributed
+			 mathematically in these new columns.</p>
+<pre>
 &lt;div id=&quot;timeline&quot; data-columns&gt;
   &lt;div class=&quot;column&quot;&gt;
     &lt;div&gt;Item #001&lt;/div&gt;
@@ -85,7 +86,7 @@
     </section>
 
     <section class="layout-redux">
-      <h1 class="double-border-heading"><span>Customization</span></h1>
+      <h1 class="div-lines"><span>Customization</span></h1>
       <p>The default class for each column is <code>.column</code>, but you can re-define it or even use more than one so that you have a flexible and modular code.</p>
 
       <pre>
@@ -101,14 +102,14 @@
     </section>
 
     <section class="layout-redux">
-      <h1 class="double-border-heading"><span>Dynamic content</span></h1>
+      <h1 class="div-lines"><span>Dynamic content</span></h1>
       <p>Salvattore has two functions you can work with: <code>append_elements</code> and <code>prepend_elements</code>. These two functions have the same attributes: the <code>test-grid</code> and the <code>elements</code> you want added to it.</p>
 
       <pre>
-var test-grid = document.querySelector('#timeline');
+var grid = document.querySelector('#timeline');
 var item = document.createElement('article');
 
-salvattore[<span class="highlight">'append_elements'</span>](<span class="highlight">test-grid</span>, <span class="highlight">[item]</span>)
+salvattore[<span class="highlight">'append_elements'</span>](<span class="highlight">grid</span>, <span class="highlight">[item]</span>)
 item.outerHTML = 'I’ve been appended!';</pre>
 
       <p>Here's a demonstration of this principle applied to a working test-grid, you can check the <a href="scripts/main.js">code used</a> for it:</p>
@@ -136,7 +137,7 @@ item.outerHTML = 'I’ve been appended!';</pre>
 	        <h1 class="font-gamma">7</h1>
 	        <p>E come quei che con lena affannata uscito fuor del pelago a la riva si volge a l'acqua perigliosa e guata, così l'animo mio, ch'ancor fuggiva, si volse a retro a rimirar lo passo che non lasciò già mai persona viva.</article>
 	    </section>
-	    <p id="js-button-block" class="t-center double-border-heading dark">
+	    <p id="js-button-block" class="t-center div-lines dark">
         <span><a class="button post-prepend" title="Adds content on the top">Prepend content</a>
           <a class="button post-append" title="Adds content on the bottom">Append content</a></span>
       </p>
@@ -144,16 +145,16 @@ item.outerHTML = 'I’ve been appended!';</pre>
     </section>
 
     <div class="h-contrast">
-      <section class="layout-redux">
-        <h1 class="double-border-heading"><span>Get salvattore</span></h1>
+      <section class="layout-redux t-center">
+        <h1 class="div-lines"><span>Get salvattore</span></h1>
 
-        <a class="button primary" href="#">Download .zip</a>
-        <span><br>— or —<br></span>
-        <a class="button" href="http://github.com/bandd/salvattore">Github repository</a>
+        <p>
+            <a class="button primary" href="https://raw.github.com/bandd/salvattore/gh-pages/salvattore.js">Download .js</a>
+            <a class="button" href="http://github.com/bandd/salvattore">Github repository</a>
+        </p>
 
-        Notes:
-        Salvattore only works in Safari, Chrome, Firefox and IE9+. 
-        The script only creates HTML elements, the user is in charge of all the styling.
+        <p>Notes:
+            Salvattore only works in Safari, Chrome, Firefox and IE9+. </p>
       </section>
     </div>
     <footer class="site-footer layout-redux">
@@ -163,4 +164,3 @@ item.outerHTML = 'I’ve been appended!';</pre>
     </footer>
     <script type="text/javascript" src="scripts/main.min.js"></script>
   </body>
-</html>
