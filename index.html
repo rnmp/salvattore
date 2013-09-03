@@ -65,12 +65,14 @@
 
 		<p>In your CSS file you can set the number of columns you want to be created inside that element. To create a responsive columnar design, just use media queries!</p>
 <pre>
-#timeline[data-columns] {
+[data-columns]::before { display: none; } /* Don't forget this. */
+
+#timeline[data-columns]::before {
     content: <span class="highlight">'2'</span>;
 }
 
 @media screen and (min-width: 601px){
-  #timeline[data-columns] {
+  #timeline[data-columns]::before {
     content: <span class="highlight">'3'</span>;
   }
 }</pre>
@@ -100,12 +102,12 @@
       <p>The default class for each column is <code>.column</code>, but you can re-define it or even use more than one so that you have a flexible and modular code.</p>
 
       <pre>
-#timeline[data-columns] {
+#timeline[data-columns]::before {
   content: '2 <span class="highlight">.col.one-half</span>';
 }
 
 @media screen and (min-width: 601px){
-  #timeline[data-columns] {
+  #timeline[data-columns]::before {
     content: '3 <span class="highlight">.col.one-third</span>';
   }
 }</pre>
