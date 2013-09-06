@@ -52,7 +52,7 @@
     </section>
     <section class="layout-redux">
       <h1 class="div-lines"><span>How it works?</span></h1>
-      <p>Salvattore creates HTML elements depending on the number of columns you specify. Each of the items of your container is placed on these columns by turn. To get started simply add a <code>data-columns</code> attribute to the container.</p>
+      <p>Salvattore organizes your HTML elements according to the number of columns you specify. Each of the items in your container is placed within these columns, one by one. To get started simply add a <code>data-columns</code> attribute to the container.</p>
 
 <pre>
 &lt;div id=&quot;timeline&quot; <span class="highlight">data-columns</span>&gt;
@@ -63,49 +63,51 @@
   &lt;div&gt;Item #5&lt;/div&gt;
 &lt;/div&gt;</pre>
 
-		<p>In your CSS file you can set the number of columns you want to be created inside that element. You can even use media queries.</p>
+		<p>In your CSS file you can set the number of columns you want to be created inside that element. To create a responsive columnar design, just use media queries!</p>
 <pre>
-#timeline[data-columns] {
+[data-columns]::before { display: none; } /* Don't forget this. */
+
+#timeline[data-columns]::before {
     content: <span class="highlight">'2'</span>;
 }
 
 @media screen and (min-width: 601px){
-  #timeline[data-columns] {
+  #timeline[data-columns]::before {
     content: <span class="highlight">'3'</span>;
   }
 }</pre>
 
-		<p>Use the <code>content</code> property as a wildcard to tell Salvattore
-			 how many columns you want. The script will create columns as elements
-			 where each of the original element’s items will be distributed
-			 mathematically in these new columns.</p>
+		<p>Use the <code>content</code> property to tell Salvattore how many columns to generate. The script will distribute the original container's child elements automatically into the newly generated columns.</p>
 <pre>
 &lt;div id=&quot;timeline&quot; data-columns&gt;
   &lt;div class=&quot;column&quot;&gt;
-    &lt;div&gt;Item #001&lt;/div&gt;
-    &lt;div&gt;Item #004&lt;/div&gt;
+    &lt;div&gt;Item #1&lt;/div&gt;
+    &lt;div&gt;Item #4&lt;/div&gt;
   &lt;/div&gt;
   &lt;div class=&quot;column&quot;&gt;
-    &lt;div&gt;Item #002&lt;/div&gt;
-    &lt;div&gt;Item #005&lt;/div&gt;
+    &lt;div&gt;Item #2&lt;/div&gt;
+    &lt;div&gt;Item #5&lt;/div&gt;
   &lt;/div&gt;
   &lt;div class=&quot;column&quot;&gt;
-    &lt;div&gt;Item #003&lt;/div&gt;
+    &lt;div&gt;Item #3&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
     </section>
-
+    <section class="layout-redux">
+      <h1 class="div-lines"><span>Requirements</span></h1>
+      <p>None. Salvattore is a standalone JS file, it will run automatically once called in the HTML document. It does not use jQuery to work. However, you can still use jQuery or any other JS library to work with the API to get advanced functionality.</p>
+    </section>
     <section class="layout-redux">
       <h1 class="div-lines"><span>Customization</span></h1>
       <p>The default class for each column is <code>.column</code>, but you can re-define it or even use more than one so that you have a flexible and modular code.</p>
 
       <pre>
-#timeline[data-columns] {
+#timeline[data-columns]::before {
   content: '2 <span class="highlight">.col.one-half</span>';
 }
 
 @media screen and (min-width: 601px){
-  #timeline[data-columns] {
+  #timeline[data-columns]::before {
     content: '3 <span class="highlight">.col.one-third</span>';
   }
 }</pre>
@@ -113,7 +115,7 @@
 
     <section class="layout-redux">
       <h1 class="div-lines"><span>Dynamic content</span></h1>
-      <p>Salvattore has two functions you can work with: <code>append_elements</code> and <code>prepend_elements</code>. These two functions have the same attributes: the <code>grid</code> and the <code>elements</code> you want added to it.</p>
+      <p>Salvattore has two functions you can work with: <code>append_elements</code> and <code>prepend_elements</code>. These two functions have the same arguments: the <code>grid</code> and the <code>elements</code> you want added to it.</p>
 
       <pre>
 var grid = document.querySelector('#timeline');
