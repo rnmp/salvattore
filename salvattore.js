@@ -258,7 +258,8 @@
     return {
       append_elements: append_elements,
       prepend_elements: prepend_elements,
-      register_grid: register_grid
+      register_grid: register_grid,
+      recreate_columns: recreate_columns
     };
   });
 
