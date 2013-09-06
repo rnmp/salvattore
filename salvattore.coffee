@@ -4,234 +4,272 @@
 ###
 
 ((root, factory) ->
-  if typeof define is 'function' and define.amd
-    define(factory)
-  else if typeof exports is 'object'
-    module.exports = factory()
-  else
-    root.salvattore = factory()
+	if typeof define is 'function' and define.amd
+		define(factory)
+	else if typeof exports is 'object'
+		module.exports = factory()
+	else
+		root.salvattore = factory()
 )(this, ->
-  add_to_dataset = (element, key, value) ->
-    dataset = element.dataset
-    if dataset
-      return dataset[key] = value
-    else
-      return element.setAttribute("data-#{key}", value)
 
-  get_from_dataset = (element, key) ->
-    dataset = element.dataset
-    if dataset
-      return dataset[key]
-    else
-      return element.getAttribute("data-#{key}")
+	grids = []
 
-  obtain_grid_settings = (element) ->
-    computedStyle = getComputedStyle(element, ':before')
-    content = computedStyle.getPropertyValue('content').slice(1, -1)
-    matchResult = content.match(/^\s*(\d+)(?:\s?\.(.+))?\s*$/)
+	add_to_dataset = (element, key, value) ->
+		# adds a data attribute using the dataset API,
+		# otherwise it adds it using the Element.setAttribute method.
 
-    if matchResult
-      numberOfColumns = matchResult[1]
-      columnClasses = matchResult[2]?.split('.') or ['column']
-    else
-      matchResult = content.match(/^\s*\.(.+)\s+(\d+)\s*$/)
-      columnClasses = matchResult[1]
-      numberOfColumns = matchResult[2]?.split('.')
+		dataset = element.dataset
+		if dataset
+			return dataset[key] = value
+		else
+			return element.setAttribute("data-#{key}", value)
 
-    return { numberOfColumns, columnClasses }
+	obtain_grid_settings = (element) ->
+		# returns the number of columns and the classes a column should have,
+		# from computing the style of the ::before pseudo-element of the grid.
 
-  add_columns = (element, items) ->
-    {numberOfColumns, columnClasses} = obtain_grid_settings(element)
-    elements = new Array(+numberOfColumns)
+		computedStyle = getComputedStyle(element, ':before')
+		content = computedStyle.getPropertyValue('content').slice(1, -1)
+		# console.log 'content:', computedStyle.getPropertyValue('content')
+		matchResult = content.match(/^\s*(\d+)(?:\s?\.(.+))?\s*$/)
 
-    unless items
-      # retrieve the list of items from the element itself
-      items = element
+		if matchResult
+			numberOfColumns = matchResult[1]
+			columnClasses = matchResult[2]?.split('.') or ['column']
+		else
+			matchResult = content.match(/^\s*\.(.+)\s+(\d+)\s*$/)
+			columnClasses = matchResult[1]
+			numberOfColumns = matchResult[2]?.split('.')
 
-      range = document.createRange()
-      range.selectNodeContents(items)
-      items = document.createElement('div')
-      items.appendChild(range.extractContents())
-      add_to_dataset(items, 'columns', 0)
+		return { numberOfColumns, columnClasses }
 
-      columns = Array::filter.call(items.childNodes, (node) ->
-        node instanceof HTMLElement
-      )
+	add_columns = (grid, items) ->
+		# from the settings obtained, it creates columns with
+		# the configured classes and adds to them a list of items.
 
-    i = numberOfColumns
-    while i-- isnt 0
-      selector = "[data-columns] > *:nth-child(#{numberOfColumns}n-#{i})"
-      elements.push items.querySelectorAll(selector)
+		{numberOfColumns, columnClasses} = obtain_grid_settings(grid)
+		columnsItems = new Array(+numberOfColumns)
 
-    columnsFragment = document.createDocumentFragment()
+		console.log 'settings', numberOfColumns, columnClasses
 
-    elements.forEach (rows) ->
-      column = document.createElement('div')
-      column.className = columnClasses.join(' ')
+		i = numberOfColumns
+		while i-- isnt 0
+			selector = "[data-columns] > *:nth-child(#{numberOfColumns}n-#{i})"
+			columnsItems.push items.querySelectorAll(selector)
 
-      rowsFragment = document.createDocumentFragment()
-      Array::forEach.call(rows, (row) ->
-        rowsFragment.appendChild(row)
-      )
-      column.appendChild(rowsFragment)
+		columnsFragment = document.createDocumentFragment()
 
-      columnsFragment.appendChild(column)
+		columnsItems.forEach (rows) ->
+			column = document.createElement('div')
+			column.className = columnClasses.join(' ')
 
-    element.appendChild(columnsFragment)
+			rowsFragment = document.createDocumentFragment()
+			Array::forEach.call(rows, (row) ->
+				rowsFragment.appendChild(row)
+			)
+			column.appendChild(rowsFragment)
 
-    add_to_dataset(element, 'columns', numberOfColumns)
+			columnsFragment.appendChild(column)
 
-  remove_columns = (element) ->
-    range = document.createRange()
-    range.selectNodeContents(element)
-    element = range.extractContents()
+		grid.appendChild(columnsFragment)
+		add_to_dataset(grid, 'columns', numberOfColumns)
 
-    columns = Array::filter.call(element.childNodes, (node) ->
-      node instanceof HTMLElement
-    )
+	remove_columns = (grid) ->
+		# removes all the columns from a grid, and returns a list
+		# of items sorted by the ordering of columns.
 
-    numberOfColumns = columns.length
-    numberOfRowsInFirstColumn = columns[0].childNodes.length
-    sortedRows = new Array(numberOfRowsInFirstColumn*numberOfColumns)
+		range = document.createRange()
+		range.selectNodeContents(grid)
 
-    Array::forEach.call(columns, (column, columnIndex) ->
-      Array::forEach.call(column.children, (row, rowIndex) ->
-        sortedRows[rowIndex*numberOfColumns+columnIndex] = row
-      )
-    )
+		columns = Array::filter.call(range.extractContents().childNodes, (node) ->
+			node instanceof HTMLElement
+		)
 
-    container = document.createElement('div')
-    add_to_dataset(container, 'columns', 0)
+		numberOfColumns = columns.length
+		numberOfRowsInFirstColumn = columns[0].childNodes.length
+		sortedRows = new Array(numberOfRowsInFirstColumn*numberOfColumns)
 
-    sortedRows.filter((child) -> child?).forEach (child) ->
-      container.appendChild(child)
+		Array::forEach.call(columns, (column, columnIndex) ->
+			Array::forEach.call(column.children, (row, rowIndex) ->
+				sortedRows[rowIndex*numberOfColumns+columnIndex] = row
+			)
+		)
 
-    return container
+		container = document.createElement('div')
+		add_to_dataset(container, 'columns', 0)
 
-  recreate_columns = (grid) ->
-    add_columns(grid, remove_columns(grid))
+		sortedRows.filter((child) -> child?).forEach (child) ->
+			container.appendChild(child)
 
-  media_query_change = (mql) ->
-    if mql.matches
-      Array::forEach.call(grids, recreate_columns)
+		return container
 
-  get_css_rules = (stylesheet) ->
-    try
-      cssRules = stylesheet.sheet.cssRules
-    catch e
-      return []
+	recreate_columns = (grid) ->
+		# removes all the columns from the grid, and adds them again,
+		# it is used when the number of columns change.
 
-    if cssRules
-      return cssRules
-    else
-      return []
+		requestAnimationFrame(->
+			items = remove_columns(grid)
+			add_columns(grid, items)
+		)
 
-  get_stylesheets = ->
-    return Array::concat.call(
-      Array::slice.call(document.querySelectorAll('style[type="text/css"]')),
-      Array::slice.call(document.querySelectorAll('link[rel="stylesheet"]'))
-    )
+	media_query_change = (mql) ->
+		# recreates the columns when a media query matches the current state
+		# of the browser.
 
-  media_rule_has_columns_selector = (rules) ->
-    i = rules.length
-    while i--
-      rule = rules[i]
-      if rule.selectorText.match(/\[data-columns\](.*)::?before$/)
-        return true
+		if mql.matches
+			Array::forEach.call(grids, recreate_columns)
 
-    return false
+	get_css_rules = (stylesheet) ->
+		# returns a list of css rules from a stylesheet
 
-  scan_media_queries = ->
-    return unless matchMedia?
+		try
+			cssRules = stylesheet.sheet.cssRules
+		catch e
+			return []
 
-    mediaQueries = []
-    get_stylesheets().forEach (stylesheet) ->
-      Array::forEach.call(get_css_rules(stylesheet), (rule) ->
-        if rule.media? and media_rule_has_columns_selector(rule.cssRules)
-          mediaQueries.push matchMedia(rule.media.mediaText)
-      )
+		if cssRules
+			return cssRules
+		else
+			return []
 
-    mediaQueries.forEach (mql) ->
-      mql.addListener(media_query_change)
+	get_stylesheets = ->
+		# returns a list of all the styles in the document (that are accessible).
 
-  next_element_column_index = (grid, element) ->
-    children = grid.children
-    m = children.length
+		return Array::concat.call(
+			Array::slice.call(document.querySelectorAll('style[type="text/css"]')),
+			Array::slice.call(document.querySelectorAll('link[rel="stylesheet"]'))
+		)
 
-    for own child, i in children
-      currentRowCount = child.children.length
-      if i isnt 0 and highestRowCount > currentRowCount
-        break
-      else if (i+1) is m
-        i = 0
-        break
+	media_rule_has_columns_selector = (rules) ->
+		# checks if a media query css rule has in its contents a selector that
+		# styles the grid.
 
-      highestRowCount = currentRowCount
+		i = rules.length
+		while i--
+			rule = rules[i]
+			if rule.selectorText.match(/\[data-columns\](.*)::?before$/)
+				return true
 
-    return i
+		return false
 
-  create_list_of_fragments = (quantity) ->
-    fragments = new Array(quantity)
+	scan_media_queries = ->
+		# scans all the stylesheets for selectors that style grids,
+		# if the matchMedia API is supported.
 
-    i = 0
-    while i isnt quantity
-      fragments[i] = document.createDocumentFragment()
-      i++
+		return unless matchMedia?
 
-    return fragments
+		mediaQueries = []
+		get_stylesheets().forEach (stylesheet) ->
+			Array::forEach.call(get_css_rules(stylesheet), (rule) ->
+				if rule.media? and media_rule_has_columns_selector(rule.cssRules)
+					mediaQueries.push matchMedia(rule.media.mediaText)
+			)
 
-  append_elements = (grid, elements) ->
-    columns = grid.children
-    numberOfColumns = columns.length
-    fragments = create_list_of_fragments(numberOfColumns)
+		mediaQueries.forEach (mql) ->
+			mql.addListener(media_query_change)
 
-    columnIndex = next_element_column_index(grid, elements[0])
-    elements.forEach (element) ->
-      fragments[columnIndex].appendChild(element)
-      if columnIndex is (numberOfColumns - 1)
-        columnIndex = 0
-      else
-        columnIndex++
+	next_element_column_index = (grid, element) ->
+		# returns the index of the column where the given element must be added.
 
-    Array::forEach.call(columns, (column, columnIndex) ->
-      column.appendChild(fragments[columnIndex])
-    )
+		children = grid.children
+		m = children.length
 
-  prepend_elements = (grid, elements) ->
-    columns = grid.children
-    numberOfColumns = columns.length
-    fragments = create_list_of_fragments(numberOfColumns)
+		for own child, i in children
+			currentRowCount = child.children.length
+			if i isnt 0 and highestRowCount > currentRowCount
+				break
+			else if (i+1) is m
+				i = 0
+				break
 
-    columnIndex = numberOfColumns - 1
-    elements.forEach (element) ->
-      fragment = fragments[columnIndex]
-      fragment.insertBefore(element, fragment.firstChild)
-      if columnIndex is 0
-        columnIndex = numberOfColumns - 1
-      else
-        columnIndex--
+			highestRowCount = currentRowCount
 
-    Array::forEach.call(columns, (column, columnIndex) ->
-      column.insertBefore(fragments[columnIndex], column.firstChild)
-    )
+		return i
 
-    # populates a fragment with n columns till the right
-    fragment = document.createDocumentFragment()
-    numberOfColumnsToExtract = elements.length % numberOfColumns
-    while numberOfColumnsToExtract-- isnt 0
-      fragment.appendChild(grid.lastChild)
+	create_list_of_fragments = (quantity) ->
+		# returns a list of fragments
 
-    # adds the fragment to the left
-    grid.insertBefore(fragment, grid.firstChild)
+		fragments = new Array(quantity)
 
-  grids = null
+		i = 0
+		while i isnt quantity
+			fragments[i] = document.createDocumentFragment()
+			i++
 
-  setup = ->
-    grids = document.querySelectorAll('[data-columns]')
-    Array::forEach.call(grids, (grid) -> add_columns(grid))
-    scan_media_queries()
+		return fragments
 
-  setup()
+	append_elements = (grid, elements) ->
+		# adds a list of elements to the end of a grid
 
-  return { append_elements, prepend_elements }
+		columns = grid.children
+		numberOfColumns = columns.length
+		fragments = create_list_of_fragments(numberOfColumns)
+
+		columnIndex = next_element_column_index(grid, elements[0])
+		elements.forEach (element) ->
+			fragments[columnIndex].appendChild(element)
+			if columnIndex is (numberOfColumns - 1)
+				columnIndex = 0
+			else
+				columnIndex++
+
+		Array::forEach.call(columns, (column, columnIndex) ->
+			column.appendChild(fragments[columnIndex])
+		)
+
+	prepend_elements = (grid, elements) ->
+		# adds a list of elements to the start of a grid
+
+		columns = grid.children
+		numberOfColumns = columns.length
+		fragments = create_list_of_fragments(numberOfColumns)
+
+		columnIndex = numberOfColumns - 1
+		elements.forEach (element) ->
+			fragment = fragments[columnIndex]
+			fragment.insertBefore(element, fragment.firstChild)
+			if columnIndex is 0
+				columnIndex = numberOfColumns - 1
+			else
+				columnIndex--
+
+		Array::forEach.call(columns, (column, columnIndex) ->
+			column.insertBefore(fragments[columnIndex], column.firstChild)
+		)
+
+		# populates a fragment with n columns till the right
+		fragment = document.createDocumentFragment()
+		numberOfColumnsToExtract = elements.length % numberOfColumns
+		while numberOfColumnsToExtract-- isnt 0
+			fragment.appendChild(grid.lastChild)
+
+		# adds the fragment to the left
+		grid.insertBefore(fragment, grid.firstChild)
+
+	register_grid = (grid) ->
+		return if getComputedStyle(grid).display is 'none'
+
+		# retrieve the list of items from the grid itself
+		range = document.createRange()
+		range.selectNodeContents(grid)
+
+		items = document.createElement('div')
+		items.appendChild(range.extractContents())
+
+		add_to_dataset(items, 'columns', 0)
+
+		add_columns(grid, items)
+
+		grids.push(grid)
+
+	setup = ->
+		# scans all the grids in the document and generates
+		# columns from their configuration.
+		Array::forEach.call(document.querySelectorAll('[data-columns]'), register_grid)
+
+		scan_media_queries()
+
+	setup()
+
+	return { append_elements, prepend_elements, register_grid }
 )
