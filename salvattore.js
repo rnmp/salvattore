@@ -15,8 +15,9 @@
       return root.salvattore = factory();
     }
   })(this, function() {
-    var add_columns, add_to_dataset, append_elements, create_list_of_fragments, get_css_rules, get_from_dataset, get_stylesheets, grids, media_query_change, media_rule_has_columns_selector, next_element_column_index, obtain_grid_settings, prepend_elements, recreate_columns, remove_columns, scan_media_queries, setup;
+    var add_columns, add_to_dataset, append_elements, create_list_of_fragments, get_css_rules, get_stylesheets, grids, media_query_change, media_rule_has_columns_selector, next_element_column_index, obtain_grid_settings, prepend_elements, recreate_columns, register_grid, remove_columns, scan_media_queries, setup;
 
+    grids = [];
     add_to_dataset = function(element, key, value) {
       var dataset;
 
@@ -25,16 +26,6 @@
         return dataset[key] = value;
       } else {
         return element.setAttribute("data-" + key, value);
-      }
-    };
-    get_from_dataset = function(element, key) {
-      var dataset;
-
-      dataset = element.dataset;
-      if (dataset) {
-        return dataset[key];
-      } else {
-        return element.getAttribute("data-" + key);
       }
     };
     obtain_grid_settings = function(element) {
@@ -56,29 +47,19 @@
         columnClasses: columnClasses
       };
     };
-    add_columns = function(element, items) {
-      var columnClasses, columns, columnsFragment, elements, i, numberOfColumns, range, selector, _ref;
+    add_columns = function(grid, items) {
+      var columnClasses, columnsFragment, columnsItems, i, numberOfColumns, selector, _ref;
 
-      _ref = obtain_grid_settings(element), numberOfColumns = _ref.numberOfColumns, columnClasses = _ref.columnClasses;
-      elements = new Array(+numberOfColumns);
-      if (!items) {
-        items = element;
-        range = document.createRange();
-        range.selectNodeContents(items);
-        items = document.createElement('div');
-        items.appendChild(range.extractContents());
-        add_to_dataset(items, 'columns', 0);
-        columns = Array.prototype.filter.call(items.childNodes, function(node) {
-          return node instanceof HTMLElement;
-        });
-      }
+      _ref = obtain_grid_settings(grid), numberOfColumns = _ref.numberOfColumns, columnClasses = _ref.columnClasses;
+      columnsItems = new Array(+numberOfColumns);
+      console.log('settings', numberOfColumns, columnClasses);
       i = numberOfColumns;
       while (i-- !== 0) {
         selector = "[data-columns] > *:nth-child(" + numberOfColumns + "n-" + i + ")";
-        elements.push(items.querySelectorAll(selector));
+        columnsItems.push(items.querySelectorAll(selector));
       }
       columnsFragment = document.createDocumentFragment();
-      elements.forEach(function(rows) {
+      columnsItems.forEach(function(rows) {
         var column, rowsFragment;
 
         column = document.createElement('div');
@@ -90,16 +71,15 @@
         column.appendChild(rowsFragment);
         return columnsFragment.appendChild(column);
       });
-      element.appendChild(columnsFragment);
-      return add_to_dataset(element, 'columns', numberOfColumns);
+      grid.appendChild(columnsFragment);
+      return add_to_dataset(grid, 'columns', numberOfColumns);
     };
-    remove_columns = function(element) {
+    remove_columns = function(grid) {
       var columns, container, numberOfColumns, numberOfRowsInFirstColumn, range, sortedRows;
 
       range = document.createRange();
-      range.selectNodeContents(element);
-      element = range.extractContents();
-      columns = Array.prototype.filter.call(element.childNodes, function(node) {
+      range.selectNodeContents(grid);
+      columns = Array.prototype.filter.call(range.extractContents().childNodes, function(node) {
         return node instanceof HTMLElement;
       });
       numberOfColumns = columns.length;
@@ -120,7 +100,12 @@
       return container;
     };
     recreate_columns = function(grid) {
-      return add_columns(grid, remove_columns(grid));
+      return requestAnimationFrame(function() {
+        var items;
+
+        items = remove_columns(grid);
+        return add_columns(grid, items);
+      });
     };
     media_query_change = function(mql) {
       if (mql.matches) {
@@ -251,18 +236,29 @@
       }
       return grid.insertBefore(fragment, grid.firstChild);
     };
-    grids = null;
+    register_grid = function(grid) {
+      var items, range;
+
+      if (getComputedStyle(grid).display === 'none') {
+        return;
+      }
+      range = document.createRange();
+      range.selectNodeContents(grid);
+      items = document.createElement('div');
+      items.appendChild(range.extractContents());
+      add_to_dataset(items, 'columns', 0);
+      add_columns(grid, items);
+      return grids.push(grid);
+    };
     setup = function() {
-      grids = document.querySelectorAll('[data-columns]');
-      Array.prototype.forEach.call(grids, function(grid) {
-        return add_columns(grid);
-      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-columns]'), register_grid);
       return scan_media_queries();
     };
     setup();
     return {
       append_elements: append_elements,
-      prepend_elements: prepend_elements
+      prepend_elements: prepend_elements,
+      register_grid: register_grid
     };
   });
 
