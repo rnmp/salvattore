@@ -13,6 +13,6 @@ Features
 
 ### Upcoming
 * __IE8 support:__ without media queries, they aren't needed anyway.
-* __Balanced columns:__ to keep columns about the same height.
+* __Balanced columns:__ to keep all columns about the same height.
 
 To find out more and see it in action, please visit [our website.](http://salvattore.com)
