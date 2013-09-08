@@ -11,8 +11,7 @@ Features
 * __Media queries ready:__ the same parameters can be used inside media queries for better results on different devices.
 * __Wide browser support:__ modern browsers and IE9+ (though we're working on IE8.)
 
-Upcoming
---------
+### Upcoming
 * __IE8 support:__ without media queries, they aren't needed anyway.
 * __Balanced columns:__ to keep columns about the same height.
 
