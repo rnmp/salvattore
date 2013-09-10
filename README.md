@@ -17,4 +17,4 @@ Features
 
 To find out more and see it in action, please visit [our website.](http://salvattore.com)
 
-You can also [follow us](http://twitter.com/salvattore) on Twitter.
+You can also [follow us](http://twitter.com/salvattorejs) on Twitter.
