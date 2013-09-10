@@ -16,3 +16,5 @@ Features
 * __Balanced columns:__ to keep all columns about the same height.
 
 To find out more and see it in action, please visit [our website.](http://salvattore.com)
+
+You can also [follow us](http://twitter.com/salvattore) on Twitter.
