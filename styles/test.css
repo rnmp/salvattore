@@ -357,6 +357,10 @@ section {
     color: #E75F33;
 }
 
+.h-contrast a.button {
+    color: #fff;
+}
+
 .site-footer {
   padding: 2em 0;
 }
