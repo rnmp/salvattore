@@ -353,6 +353,10 @@ section {
   color: #3A180B;
 }
 
+.h-contrast a {
+    color: #E75F33;
+}
+
 .site-footer {
   padding: 2em 0;
 }
