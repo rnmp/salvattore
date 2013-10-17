@@ -136,7 +136,7 @@
       i = rules.length;
       while (i--) {
         rule = rules[i];
-        if (rule.selectorText.match(/\[data-columns\](.*)::?before$/)) {
+        if (rule.selectorText && rule.selectorText.match(/\[data-columns\](.*)::?before$/)) {
           return true;
         }
       }
