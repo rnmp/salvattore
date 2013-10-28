@@ -45,7 +45,8 @@ body {
   color: #3a1806;
 }
 
-h1, .button, .intro-grid .item {
+h1, .button, .intro-grid .item,
+.showcase-grid figcaption {
   text-transform: uppercase;
   font: 32px/1 Franchise;
 }
@@ -145,7 +146,8 @@ section:last-child {
   padding: 60px 70px 50px;
 }
 
-.site-header, .site-footer {
+.site-header, .site-footer,
+.showcase-grid figcaption {
   color: #fff;
   background: #e9632f url('../assets/body.gif') center;
   text-shadow: 0 1px 0 rgba(0,0,0,0.15);
@@ -290,6 +292,42 @@ section:last-child {
   animation: showsup 0.5s;
 }
 
+/* GRIDS: SHOWCASE GRID */
+.showcase {
+  margin-bottom: 0;
+}
+.showcase h1 {
+  margin-bottom: 0.1em;
+}
+.showcase .layout-redux {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.showcase p {
+  font-size: 1.5em;
+  line-height: 1.25;
+}
+.showcase span {
+  margin-right: 10px;
+}
+.showcase .button {
+  margin-top: 10px;
+}
+
+.showcase-grid {
+  margin-bottom: 1em;
+}
+.showcase-grid .item {
+  position: relative;
+  margin: 0; padding: 0;
+  overflow: hidden;
+}
+.showcase-grid figcaption {
+  position: absolute;
+  bottom: 0;
+  padding: 0 0.1em;
+}
+
 /* RESPONSIVE & SALVATTORE */
 @media screen and (max-width: 690px) {
   .layout-redux {
@@ -329,8 +367,15 @@ section:last-child {
 
   .intro-grid[data-columns]::before,
   .test-grid[data-columns]::before,
-  #intro-settings::before {
+  #intro-settings::before,
+  .showcase-grid[data-columns]::before {
     content: '1 .column.size-1of1';
+  }
+}
+
+@media screen and (min-width: 481px) {
+  .showcase-grid[data-columns]::before {
+    content: '3 .column.size-1of3';
   }
 }
 
