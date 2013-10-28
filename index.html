@@ -1,66 +1,58 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Salvattore — A jQuery Masonry alternative with CSS-driven configuration.</title>
-    <meta name="description" content="Beautiful & responsive multi-column layouts.">
-    <meta name="google" value="notranslate">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="styles/test.css" />
+	<head>
+		<meta charset="utf-8" />
+		<title>Salvattore — A jQuery Masonry alternative with CSS-driven configuration</title>
+		<meta name="description" content="Beautiful & responsive multi-column layouts.">
+		<meta name="google" value="notranslate">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" href="styles/test.css" />
 
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-35016870-2', 'salvattore.com');
-      ga('send', 'pageview');
-    </script>
-  </head>
-  <body>
-    <a href="https://github.com/rnmp/salvattore"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
-    <hgroup class="page-header layout-redux">
-      <h1 class="branding div-lines"><span>Salvattore</span></h1>
-      <h2 class="sub-branding font-body t-center rs-font-delta font-accent">A jQuery Masonry alternative with CSS-driven configuration.</h2>
-    </hgroup>
-    <section class="test-grid clear" data-columns>
-      <article class="item">
-        <h1 class="font-gamma">1</h1>
-        <p>Vergine Madre, figlia del tuo figlio, umile e alta più che creatura, termine fisso d’etterno consiglio, u se’ colei che l’umana natura nobilitasti sì, che ’l suo fattore non disdegnò di farsi sua fattura.</article>
-      <article class="item">
-        <h1 class="font-gamma">2</h1>
-        <p>Nel ventre tuo si raccese l’amore, per lo cui caldo ne l’etterna pace così è germinato questo fiore. Qui se’ a noi meridïana face10 di caritate, e giuso, intra ’ mortali, se’ di speranza fontana vivace.</article>
-      <article class="item">
-        <h1 class="font-gamma">3</h1>
-        <p>Donna, se’ tanto grande e tanto vali, che qual vuol grazia e a te non ricorre, sua disïanza vuol volar sanz’ ali. La tua benignità non pur soccorre a chi domanda, ma molte fïate liberamente al dimandar precorre.</article>
-      <article class="item">
-        <h1 class="font-gamma">4</h1>
-        <p>In te misericordia, in te pietate, in te magnificenza, in te s’aduna quantunque in creatura è di bontate.</article>
-      <article class="item">
-        <h1 class="font-gamma">5</h1>
-        <p>Or questi, che da l’infima lacuna de l’universo infin qui ha vedute le vite spiritali ad una ad una, supplica a te, per grazia, di virtute tanto, che possa con li occhi levarsi più alto verso l’ultima salute.</article>
-      <article class="item">
-        <h1 class="font-gamma">6</h1>
-        <p>E io, che mai per mio veder non arsi più ch’i’ fo per lo suo, tutti miei prieghi ti porgo, e priego che non sieno scarsi, perché tu ogne nube li disleghi di sua mortalità co’ prieghi tuoi, sì che ’l sommo piacer li si dispieghi.</article>
-      <article class="item">
-        <h1 class="font-gamma">7</h1>
-        <p>Ancor ti priego, regina, che puoi ciò che tu vuoli, che conservi sani, dopo tanto veder, li affetti suoi.</article>
-      <article class="item">
-        <h1 class="font-gamma">8</h1>
-        <p>Vinca tua guardia i movimenti umani: vedi Beatrice con quanti beati per li miei prieghi ti chiudon le mani!</article>
-    </section>
-    <section class="layout-redux">
-      <h1 class="div-lines"><span>How it works?</span></h1>
-      <p>Salvattore organizes your HTML elements according to the number of columns you specify. Each of the items in your container is placed within these columns, one by one. To get started simply add a <code>data-columns</code> attribute to the container.</p>
+			ga('create', 'UA-35016870-2', 'salvattore.com');
+			ga('send', 'pageview');
+		</script>
+	</head>
+	<body>
+		<header class="site-header clear">
+			<nav>
+				<a class="button download" href="https://raw.github.com/rnmp/salvattore/master/salvattore.min.js">Download .min.js </a>
+				<a class="button" href="https://raw.github.com/rnmp/salvattore/master/salvattore.js">.js</a>
+				<a class="button" href="http://github.com/rnmp/salvattore">Github repository</a>
+			</nav>
+			<h1 class="title">Salvattore</h1>
+			<p class="subtitle">
+				A jQuery Masonry alternative with CSS-driven configuration.<br/>
+				With Salvattore you can turn <code>content: '<span id="intro-settings"></span>';</code> into this:
+			</p>
+			<figure class="intro-grid" data-columns>
+				<div class="item" data-n="1"></div>
+				<div class="item" data-n="2"></div>
+				<div class="item" data-n="3"></div>
+				<div class="item" data-n="4"></div>
+				<div class="item" data-n="5"></div>
+				<div class="item" data-n="6"></div>
+				<div class="item" data-n="7"></div>
+				<div class="item" data-n="8"></div>
+				<figcaption class="hide">A multi-column grid.</figcaption>
+			</figure>
+		</header>
+		<section class="layout-redux">
+			<h1 class="div-lines"><span>How it works?</span></h1>
+			<p>Salvattore organizes your HTML elements according to the number of columns you specify. Each of the items in your container is placed within these columns, one by one. To get started simply add a <code>data-columns</code> attribute to the container.</p>
 
 <pre>
 &lt;div id=&quot;timeline&quot; <span class="highlight">data-columns</span>&gt;
-  &lt;div&gt;Item #1&lt;/div&gt;
-  &lt;div&gt;Item #2&lt;/div&gt;
-  &lt;div&gt;Item #3&lt;/div&gt;
-  &lt;div&gt;Item #4&lt;/div&gt;
-  &lt;div&gt;Item #5&lt;/div&gt;
+	&lt;div&gt;Item #1&lt;/div&gt;
+	&lt;div&gt;Item #2&lt;/div&gt;
+	&lt;div&gt;Item #3&lt;/div&gt;
+	&lt;div&gt;Item #4&lt;/div&gt;
+	&lt;div&gt;Item #5&lt;/div&gt;
 &lt;/div&gt;</pre>
 
 		<p>In your CSS file you can set the number of columns you want to be created inside that element. To create a responsive columnar design, just use media queries!</p>
@@ -68,112 +60,106 @@
 [data-columns]::before { display: none; } /* Don't forget this. */
 
 #timeline[data-columns]::before {
-    content: <span class="highlight">'2'</span>;
+		content: <span class="highlight">'2'</span>;
 }
 
 @media screen and (min-width: 601px){
-  #timeline[data-columns]::before {
-    content: <span class="highlight">'3'</span>;
-  }
+	#timeline[data-columns]::before {
+		content: <span class="highlight">'3'</span>;
+	}
 }</pre>
 
 		<p>Use the <code>content</code> property to tell Salvattore how many columns to generate. The script will distribute the original container's child elements automatically into the newly generated columns.</p>
 <pre>
 &lt;div id=&quot;timeline&quot; data-columns&gt;
-  &lt;div class=&quot;column&quot;&gt;
-    &lt;div&gt;Item #1&lt;/div&gt;
-    &lt;div&gt;Item #4&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;column&quot;&gt;
-    &lt;div&gt;Item #2&lt;/div&gt;
-    &lt;div&gt;Item #5&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;column&quot;&gt;
-    &lt;div&gt;Item #3&lt;/div&gt;
-  &lt;/div&gt;
+	&lt;div class=&quot;column&quot;&gt;
+		&lt;div&gt;Item #1&lt;/div&gt;
+		&lt;div&gt;Item #4&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;column&quot;&gt;
+		&lt;div&gt;Item #2&lt;/div&gt;
+		&lt;div&gt;Item #5&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;column&quot;&gt;
+		&lt;div&gt;Item #3&lt;/div&gt;
+	&lt;/div&gt;
 &lt;/div&gt;</pre>
-    </section>
-    <section class="layout-redux">
-      <h1 class="div-lines"><span>Requirements</span></h1>
-      <p>None. Salvattore is a standalone JS file, it will run automatically once called in the HTML document. It does not use jQuery to work. However, you can still use jQuery or any other JS library to work with the API to get advanced functionality.</p>
-    </section>
-    <section class="layout-redux">
-      <h1 class="div-lines"><span>Customization</span></h1>
-      <p>The default class for each column is <code>.column</code>, but you can re-define it or even use more than one so that you have a flexible and modular code.</p>
+		</section>
+		<section class="layout-redux">
+			<h1 class="div-lines"><span>Requirements</span></h1>
+			<p>None. Salvattore is a standalone JS file, it will run automatically once called in the HTML document. It does not use jQuery to work. However, you can still use jQuery or any other JS library to work with the API to get advanced functionality.</p>
+		</section>
+		<section class="layout-redux">
+			<h1 class="div-lines"><span>Customization</span></h1>
+			<p>The default class for each column is <code>.column</code>, but you can re-define it or even use more than one so that you have a flexible and modular code.</p>
 
-      <pre>
+			<pre>
 #timeline[data-columns]::before {
-  content: '2 <span class="highlight">.col.one-half</span>';
+	content: '2 <span class="highlight">.col.one-half</span>';
 }
 
 @media screen and (min-width: 601px){
-  #timeline[data-columns]::before {
-    content: '3 <span class="highlight">.col.one-third</span>';
-  }
+	#timeline[data-columns]::before {
+		content: '3 <span class="highlight">.col.one-third</span>';
+	}
 }</pre>
-    </section>
+		</section>
 
-    <section class="layout-redux">
-      <h1 class="div-lines"><span>Dynamic content</span></h1>
-      <p>Salvattore has two functions you can work with: <code>append_elements</code> and <code>prepend_elements</code>. These two functions have the same arguments: the <code>grid</code> and the <code>elements</code> you want added to it.</p>
+		<section>
+			<h1 class="div-lines"><span>Dynamic content</span></h1>
+			<p>Salvattore has two functions you can work with: <code>append_elements</code> and <code>prepend_elements</code>. These two functions have the same arguments: the <code>grid</code> and the <code>elements</code> you want added to it.</p>
 
-      <pre>
+			<pre>
 var grid = document.querySelector('#timeline');
 var item = document.createElement('article');
 
 salvattore[<span class="highlight">'append_elements'</span>](<span class="highlight">grid</span>, <span class="highlight">[item]</span>)
 item.outerHTML = 'I’ve been appended!';</pre>
 
-      <p>Here's a demonstration of this principle applied to a working grid, you can check the <a href="https://gist.github.com/rnmp/bf6c5d8db9487862aba1">code used</a> for it:</p>
+			<p>Here's a demonstration of this principle applied to a working grid, you can check the <a href="https://gist.github.com/rnmp/bf6c5d8db9487862aba1">code used</a> for it:</p>
 
-	    <section class="test-grid-b clear" data-columns>
-	      <article class="item">
-	        <h1 class="font-gamma">1</h1>
-	        <p>Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura ché la diritta via era smarrita.</article>
-	      <article class="item">
-	        <h1 class="font-gamma">2</h1>
-	        <p>Ahi quanto a dir qual era è cosa dura esta selva selvaggia e aspra e forte che nel pensier rinova la paura!</article>
-	      <article class="item">
-	        <h1 class="font-gamma">3</h1>
-	        <p>Tant'è amara che poco è più morte; ma per trattar del ben ch'i' vi trovai, dirò de l'altre cose ch'i' v'ho scorte.</article>
-	      <article class="item">
-	        <h1 class="font-gamma">4</h1>
-	        <p>Io non so ben ridir com'i' v'intrai, tant'era pien di sonno a quel punto che la verace via abbandonai.</article>
-	      <article class="item">
-	        <h1 class="font-gamma">5</h1>
-	        <p>Ma poi ch'i' fui al piè d'un colle giunto, là dove terminava quella valle che m'avea di paura il cor compunto, guardai in alto, e vidi le sue spalle vestite già de' raggi del pianeta che mena dritto altrui per ogne calle.</article>
-	      <article class="item">
-	        <h1 class="font-gamma">6</h1>
-	        <p>Allor fu la paura un poco queta che nel lago del cor m'era durata la notte ch'i' passai con tanta pieta.</article>
-	      <article class="item">
-	        <h1 class="font-gamma">7</h1>
-	        <p>E come quei che con lena affannata uscito fuor del pelago a la riva si volge a l'acqua perigliosa e guata, così l'animo mio, ch'ancor fuggiva, si volse a retro a rimirar lo passo che non lasciò già mai persona viva.</article>
-	    </section>
-	    <p id="js-button-block" class="t-center div-lines dark">
-        <span><a class="button post-prepend" title="Adds content on the top">Prepend content</a>
-          <a class="button post-append" title="Adds content on the bottom">Append content</a></span>
-      </p>
-      <p>Items are appended and prepended on the same container without conflicts. You can combine this API with your XHR functions to have a dynamic layout with live content.</p>
-    </section>
+			<section class="test-grid clear" data-columns>
+				<article class="item">
+					<h1 class="">1</h1>
+					<p>Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura ché la diritta via era smarrita.</article>
+				<article class="item">
+					<h1 class="">2</h1>
+					<p>Ahi quanto a dir qual era è cosa dura esta selva selvaggia e aspra e forte che nel pensier rinova la paura!</article>
+				<article class="item">
+					<h1 class="">3</h1>
+					<p>Tant'è amara che poco è più morte; ma per trattar del ben ch'i' vi trovai, dirò de l'altre cose ch'i' v'ho scorte.</article>
+				<article class="item">
+					<h1 class="">4</h1>
+					<p>Io non so ben ridir com'i' v'intrai, tant'era pien di sonno a quel punto che la verace via abbandonai.</article>
+				<article class="item">
+					<h1 class="">5</h1>
+					<p>Ma poi ch'i' fui al piè d'un colle giunto, là dove terminava quella valle che m'avea di paura il cor compunto, guardai in alto, e vidi le sue spalle vestite già de' raggi del pianeta che mena dritto altrui per ogne calle.</article>
+				<article class="item">
+					<h1 class="">6</h1>
+					<p>Allor fu la paura un poco queta che nel lago del cor m'era durata la notte ch'i' passai con tanta pieta.</article>
+				<article class="item">
+					<h1 class="">7</h1>
+					<p>E come quei che con lena affannata uscito fuor del pelago a la riva si volge a l'acqua perigliosa e guata, così l'animo mio, ch'ancor fuggiva, si volse a retro a rimirar lo passo che non lasciò già mai persona viva.</article>
+			</section>
+			<p id="js-button-block" class="t-center div-lines dark">
+				<span><a class="button post-prepend" title="Adds content on the top">Prepend content</a>
+					<a class="button post-append" title="Adds content on the bottom">Append content</a></span>
+			</p>
+			<p>Items are appended and prepended on the same container without conflicts. You can combine this API with your XHR functions to have a dynamic layout with live content.</p>
+		</section>
+		<footer class="site-footer">
 
-    <div class="h-contrast">
-      <section class="layout-redux t-center">
-        <h1 class="div-lines"><span>Get salvattore</span></h1>
+			<h1 class="div-lines"><span>Get salvattore</span></h1>
 
-        <p>
-            <a class="button primary" href="https://raw.github.com/rnmp/salvattore/master/salvattore.min.js">Download .min.js</a>
-            <a class="button" href="https://raw.github.com/rnmp/salvattore/master/salvattore.js">.js</a>
-            <a class="button" href="http://github.com/rnmp/salvattore">Github repository</a>
-        </p>
+			<p>
+					<a class="button download" href="https://raw.github.com/rnmp/salvattore/master/salvattore.min.js">Download .min.js</a>
+					<a class="button" href="https://raw.github.com/rnmp/salvattore/master/salvattore.js">.js</a>
+					<a class="button" href="http://github.com/rnmp/salvattore">Github repository</a>
+			</p>
 
-        <p>Notes:
-            Salvattore only works in Safari, Chrome, Firefox and IE9+. Please <a href="http://twitter.com/salvattorejs" target="_blank">follow us</a> on Twitter for updates.</p>
-      </section>
-    </div>
-    <footer class="site-footer layout-redux">
-      <img class="logo" src="assets/bandd.svg" alt="" />
-      This project was created and coded by
-      <br><a href="http://rolandomurillo.com/">Rolando Murillo</a> and <a href="http://github.com/ppold">Giorgio Leveroni.</a>
-    </footer>
-    <script src="site.js"></script>
-  </body>
+			<p>Notes:
+					Salvattore only works in Safari, Chrome, Firefox and IE9+. Please <a href="http://twitter.com/salvattorejs" target="_blank">follow us</a> on Twitter for updates.</p>
+			Made by <a href="http://rolandomurillo.com/">Rolando Murillo</a> and <a href="http://github.com/ppold">Giorgio Leveroni.</a>
+		</footer>
+		<script src="site.js"></script>
+	</body>
