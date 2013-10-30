@@ -1,6 +1,8 @@
 Salvattore
 ==========
 
+![](http://files.bandd.co/zQf5+)
+
 Salvattore is a library agnostic JS script that will help you organize your HTML elements according to the number of columns you specify, like jQuery Masonry.
 
 Features
