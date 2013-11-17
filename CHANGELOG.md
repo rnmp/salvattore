@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2 - 2013-11-17
+
+- Source code rewritten in JS (previously CoffeeScript) for easier contribution!
+
 ## 1.0.1 - 2013-09-06
 
 - Fix column rearrangement on window resize. ([#9](https://github.com/rnmp/salvattore/issues/9))
