@@ -1,6 +1,3 @@
-# IMPORTANT
-Version 1.0.2 is unstable, please use v1.0.1 available at: https://github.com/rnmp/salvattore/releases
-
 Salvattore
 ==========
 
@@ -23,3 +20,7 @@ Features
 To find out more and see it in action, please visit [our website.](http://salvattore.com)
 
 You can also [follow us](http://twitter.com/salvattorejs) on Twitter.
+
+How to contribute
+-----------------
+We use Grunt to add polyfills and minify the script in the `dist/` folder. To make changes to the script itself, please edit `src/salvattore.js` and send us a pull request.

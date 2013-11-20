@@ -281,7 +281,7 @@ if (!document.documentElement.dataset &&
             clearTimeout(id);
         };
 }());
-;(function (global, document, undefined) {
+;var library = (function (global, document, undefined) {
 "use strict";
 
 var self = {}

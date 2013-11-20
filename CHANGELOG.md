@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3 - 2013-11-20
+
+- Fixes `register_grid is not defined` error
+
 ## 1.0.2 - 2013-11-17
 
 - Source code rewritten in JS (previously CoffeeScript) for easier contribution!
