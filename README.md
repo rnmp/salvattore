@@ -1,3 +1,6 @@
+# IMPORTANT
+Version 1.0.2 is unstable, please use v1.0.1 available at: https://github.com/rnmp/salvattore/releases
+
 Salvattore
 ==========
 
