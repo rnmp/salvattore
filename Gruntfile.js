@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       all: {
         src: '<%= concat.dist.dest %>',
         amdModuleId: '<%= pkg.name %>',
-        objectToExport: 'library',
+        objectToExport: '<%= pkg.name %>',
         globalAlias: '<%= pkg.name %>'
       }
     }

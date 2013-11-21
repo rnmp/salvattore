@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.4 - 2013-11-20
+
+- Fixes error regarding JS API
+
 ## 1.0.3 - 2013-11-20
 
 - Fixes `register_grid is not defined` error

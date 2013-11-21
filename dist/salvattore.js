@@ -281,7 +281,7 @@ if (!document.documentElement.dataset &&
             clearTimeout(id);
         };
 }());
-;var library = (function (global, document, undefined) {
+;var salvattore = (function (global, document, undefined) {
 "use strict";
 
 var self = {}
@@ -324,7 +324,7 @@ self.add_columns = function add_columns(grid, items) {
   // from the settings obtained, it creates columns with
   // the configured classes and adds to them a list of items.
 
-  var settings = obtain_grid_settings(grid)
+  var settings = self.obtain_grid_settings(grid)
     , numberOfColumns = settings.numberOfColumns
     , columnClasses = settings.columnClasses
     , columnsItems = new Array(+numberOfColumns)
@@ -397,7 +397,7 @@ self.recreate_columns = function recreate_columns(grid) {
   // it is used when the number of columns change.
 
   global.requestAnimationFrame(function render_after_css_media_query_change() {
-    add_columns(grid, remove_columns(grid));
+    self.add_columns(grid, self.remove_columns(grid));
   });
 };
 
@@ -407,7 +407,7 @@ self.media_query_change = function media_query_change(mql) {
   // of the browser.
 
   if (mql.matches) {
-    Array.prototype.forEach.call(grids, recreate_columns);
+    Array.prototype.forEach.call(grids, self.recreate_columns);
   }
 };
 
@@ -465,16 +465,16 @@ self.scan_media_queries = function scan_media_queries() {
     return;
   }
 
-  get_stylesheets().forEach(function extract_rules(stylesheet) {
-    Array.prototype.forEach.call(get_css_rules(stylesheet), function filter_by_column_selector(rule) {
-      if (rule.media && media_rule_has_columns_selector(rule.cssRules)) {
+  self.get_stylesheets().forEach(function extract_rules(stylesheet) {
+    Array.prototype.forEach.call(self.get_css_rules(stylesheet), function filter_by_column_selector(rule) {
+      if (rule.media && self.media_rule_has_columns_selector(rule.cssRules)) {
         mediaQueries.push(global.matchMedia(rule.media.mediaText));
       }
     });
   });
 
   mediaQueries.forEach(function listen_to_changes(mql) {
-    mql.addListener(media_query_change);
+    mql.addListener(self.media_query_change);
   });
 };
 
@@ -528,8 +528,8 @@ self.append_elements = function append_elements(grid, elements) {
 
   var columns = grid.children
     , numberOfColumns = columns.length
-    , fragments = create_list_of_fragments(numberOfColumns)
-    , columnIndex = next_element_column_index(grid)
+    , fragments = self.create_list_of_fragments(numberOfColumns)
+    , columnIndex = self.next_element_column_index(grid)
   ;
 
   elements.forEach(function append_to_next_fragment(element) {
@@ -541,7 +541,7 @@ self.append_elements = function append_elements(grid, elements) {
     }
   });
 
-  Array.prototype.forEach.call(columns, function insert_column_fragments(column, index) {
+  Array.prototype.forEach.call(columns, function insert_column(column, index) {
     column.appendChild(fragments[index]);
   });
 };
@@ -552,7 +552,7 @@ self.prepend_elements = function prepend_elements(grid, elements) {
 
   var columns = grid.children
     , numberOfColumns = columns.length
-    , fragments = create_list_of_fragments(numberOfColumns)
+    , fragments = self.create_list_of_fragments(numberOfColumns)
     , columnIndex = numberOfColumns - 1
   ;
 
@@ -566,7 +566,7 @@ self.prepend_elements = function prepend_elements(grid, elements) {
     }
   });
 
-  Array.prototype.forEach.call(columns, function insert_column_fragments(column, index) {
+  Array.prototype.forEach.call(columns, function insert_column(column, index) {
     column.insertBefore(fragments[index], column.firstChild);
   });
 
@@ -597,19 +597,22 @@ self.register_grid = function register_grid (grid) {
   items.appendChild(range.extractContents());
 
   items.dataset.columns = 0;
-  add_columns(grid, items);
+  self.add_columns(grid, items);
   grids.push(grid);
 };
 
 
-(function setup() {
+self.init = function init() {
   // scans all the grids in the document and generates
   // columns from their configuration.
 
-  Array.prototype.forEach.call(document.querySelectorAll("[data-columns]"), register_grid);
-  scan_media_queries();
-})();
+  var gridElements = document.querySelectorAll("[data-columns]");
+  Array.prototype.forEach.call(gridElements, self.register_grid);
+  self.scan_media_queries();
+};
 
+
+self.init();
 
 return {
   append_elements: self.append_elements,
@@ -619,5 +622,5 @@ return {
 
 })(window, window.document);
 
-    return library;
+    return salvattore;
 }));
