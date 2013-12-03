@@ -1,5 +1,20 @@
-var salvattore = (function (global, document, undefined) {
+(function (root, factory) {
+  if (typeof exports === 'object') {
+    // CommonJS
+    module.exports = factory;
+  } else if (typeof define === 'function' && define.amd) {
+    // AMD
+    define([], function (b) {
+      return (root.exports = factory;
+    });
+  } else {
+    // Global Variables
+    root.salvattore = factory;
+  }
+}(this, (function (global, undefined) {
 "use strict";
+
+var document = global.document;
 
 var self = {}
   , grids = []
@@ -337,4 +352,4 @@ return {
   register_grid: self.register_grid
 };
 
-})(window, window.document);
+})(window)));
