@@ -216,12 +216,13 @@ self.add_columns = function add_columns(grid, items) {
     , columnClasses = settings.columnClasses
     , columnsItems = new Array(+numberOfColumns)
     , columnsFragment = document.createDocumentFragment()
+    , i = numberOfColumns
     , selector
   ;
 
-  for(var i = 0; i < numberOfColumns; i++){
+  while (i-- !== 0) {
     selector = "[data-columns] > *:nth-child(" + numberOfColumns + "n-" + i + ")";
-    columnsItems[i] = (items.querySelectorAll(selector));
+    columnsItems.push(items.querySelectorAll(selector));
   }
 
   columnsItems.forEach(function append_to_grid_fragment(rows) {
