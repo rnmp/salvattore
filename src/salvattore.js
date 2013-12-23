@@ -1,10 +1,17 @@
 var salvattore = (function (global, document, undefined) {
 "use strict";
 
-var self = {}
-  , grids = []
-;
-
+var self = {},
+    grids = [],
+    add_to_dataset = function(element, key, value) {
+      // uses dataset function or a fallback for <ie10
+      if (element.dataset) {
+        element.dataset[key] = value;
+      } else {
+        element.setAttribute("data-" + key, value);
+      }
+      return;
+    };
 
 self.obtain_grid_settings = function obtain_grid_settings(element) {
   // returns the number of columns and the classes a column should have,
@@ -46,13 +53,12 @@ self.add_columns = function add_columns(grid, items) {
     , columnClasses = settings.columnClasses
     , columnsItems = new Array(+numberOfColumns)
     , columnsFragment = document.createDocumentFragment()
-    , i = numberOfColumns
     , selector
   ;
 
-  while (i-- !== 0) {
+  for(var i = 0; i < numberOfColumns; i++){
     selector = "[data-columns] > *:nth-child(" + numberOfColumns + "n-" + i + ")";
-    columnsItems.push(items.querySelectorAll(selector));
+    columnsItems[i] = (items.querySelectorAll(selector));
   }
 
   columnsItems.forEach(function append_to_grid_fragment(rows) {
@@ -70,7 +76,7 @@ self.add_columns = function add_columns(grid, items) {
   });
 
   grid.appendChild(columnsFragment);
-  grid.dataset.columns = numberOfColumns;
+  add_to_dataset(grid, 'columns', numberOfColumns);
 };
 
 
@@ -97,7 +103,7 @@ self.remove_columns = function remove_columns(grid) {
   });
 
   var container = document.createElement("div");
-  container.dataset.columns = 0;
+  add_to_dataset(container, 'columns', 0);
 
   sortedRows.filter(function filter_non_null(child) {
     return !!child;
@@ -134,7 +140,7 @@ self.get_css_rules = function get_css_rules(stylesheet) {
 
   var cssRules;
   try {
-    cssRules = stylesheet.sheet.cssRules;
+    cssRules = stylesheet.sheet.cssRules || stylesheet.sheet.rules;
   } catch (e) {
     return [];
   }
@@ -313,7 +319,8 @@ self.register_grid = function register_grid (grid) {
   var items = document.createElement("div");
   items.appendChild(range.extractContents());
 
-  items.dataset.columns = 0;
+
+  add_to_dataset(items, 'columns', 0);
   self.add_columns(grid, items);
   grids.push(grid);
 };
