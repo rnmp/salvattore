@@ -2,10 +2,11 @@
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-img, object, embed {
+img,object,embed {
     max-width: 100%;
 }
 
@@ -16,11 +17,9 @@ img, object, embed {
  * #743115 Mid
  * #FFF    White
  */
-
 body {
     max-width: 1050px;
     margin: 0 auto;
-
     font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 100%;
     line-height: 1.4em;
@@ -46,7 +45,7 @@ h1 {
     margin: 0;
 }
 
-h1 small{
+h1 small {
     text-transform: none;
     font-weight: normal;
     font-size: 0.5em;
@@ -55,16 +54,18 @@ h1 small{
 }
 
 #timeline {
+    -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.2);
     box-shadow: 0 0 12px rgba(0,0,0,0.2);
     overflow: hidden;
 }
 
-.footer{
+.footer {
     font-size: 1em;
     color: #FFF;
     margin: 0.5em;
 }
-.footer a{
+
+.footer a {
     color: #FFF;
     text-decoration: underline;
     font-weight: bold;
