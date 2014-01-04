@@ -8,7 +8,11 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['src/polyfills/*.js', 'src/*.js'],
+        src: [
+         'src/polyfills/matchMedia.js',
+         'src/polyfills/matchMedia.addListener.js',
+         'src/polyfills/requestAnimationFrame.js',
+         'src/*.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
