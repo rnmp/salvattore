@@ -3,10 +3,17 @@
     <head>
         <meta charset="utf-8">
         <title>Salvattore content test</title>
-        <link rel="stylesheet" href="timeline.css">
+        <!-- Include some stylesheet containing your configuration -->
+        <link rel="stylesheet" href="salvattore.css">
+
+        <!-- For demo only -->
+        <link rel="stylesheet" href="normalize.css">
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h1>Fake portfolio</h1>
+        <h1>Salvattore <small>Example</small></h1>
+
+        <!-- include 'data-columns' at the container -->
         <div id="timeline" data-columns>
             <div class="item">
                 <img src="http://hhhhold.com/l?545" alt="">
@@ -15,8 +22,8 @@
                 <img src="http://hhhhold.com/l?54sdf5" alt="">
             </div>
             <div class="item">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni culpa ab modi repellendus voluptatibus quis.</p>
                 <img src="http://hhhhold.com/l?54s5" alt="">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni culpa ab modi repellendus voluptatibus quis.</p>
             </div>
             <div class="item">
                 <img src="http://hhhhold.com/l?54erw5" alt="">
@@ -56,6 +63,9 @@
                 <img src="http://hhhhold.com/l?54hsh5" alt="">
             </div>
             <div class="item">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, ullam, explicabo nisi ipsam fuga possimus beatae facilis praesentium sapiente nam odit sequi repellendus dolorum non veniam placeat sint. Omnis, obcaecati, perferendis officia a cupiditate molestiae delectus corporis aliquid aperiam asperiores pariatur eius accusantium nisi! Ad, incidunt, tempore, officia, ipsum et nulla asperiores libero provident non sit exercitationem neque magnam repudiandae eius eligendi consectetur eum! Ipsum vero dolor repudiandae aliquam illo autem odio nesciunt labore. Nulla repudiandae dolorem amet consequuntur consectetur.</p>
+            </div>
+            <div class="item">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, harum, officia, tenetur nam mollitia sed quia animi veniam molestiae illo magnam aliquam eligendi delectus. Accusantium, nostrum, quidem, excepturi, consequuntur facere praesentium odio deserunt ipsam magnam accusamus eveniet ab vero dolores repellat dolorem delectus pariatur repudiandae recusandae provident dolore nesciunt quasi!</p>
                 <img src="http://hhhhold.com/l?de345" alt="">
             </div>
@@ -84,6 +94,14 @@
                 <img src="http://hhhhold.com/l?577p4" alt="">
             </div>
         </div>
+        <div class="footer">
+          <a href="http://salvattore.com/" target="_blank">Website</a> |
+          <a href="http://twitter.com/salvattorejs" target="_blank">Twitter</a> |
+          Made by <a href="http://rolandomurillo.com/" target="_blank">Rolando Murillo</a>
+          and <a href="http://github.com/ppold" target="_blank">Giorgio Leveroni.</a>
+        </div>
+
+        <!-- The script must be included at the bottom of the body to work -->
         <script src="../dist/salvattore.min.js"></script>
     </body>
 </html>

@@ -1,0 +1,72 @@
+/* Styles for example pages */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+img,object,embed {
+    max-width: 100%;
+}
+
+/* Base colors
+ * #E9632F Orange
+ * #F6CDB9 Orange light
+ * #3A180B Dark
+ * #743115 Mid
+ * #FFF    White
+ */
+body {
+    max-width: 1050px;
+    margin: 0 auto;
+    font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 100%;
+    line-height: 1.4em;
+    background: #E9632F;
+    color: #FFF;
+}
+
+p {
+    padding: 1em;
+    background: #743115;
+    font-size: 1em;
+    margin: 0;
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans serif;
+    font-size: 4.5em;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    line-height: 1.5em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+}
+
+h1 small {
+    text-transform: none;
+    font-weight: normal;
+    font-size: 0.5em;
+    letter-spacing: normal;
+    font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#timeline {
+    -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.footer {
+    font-size: 1em;
+    color: #FFF;
+    margin: 0.5em;
+}
+
+.footer a {
+    color: #FFF;
+    text-decoration: underline;
+    font-weight: bold;
+}
