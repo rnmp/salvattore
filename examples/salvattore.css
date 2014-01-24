@@ -20,7 +20,15 @@
 
 /* Be sure to hide the element containing the configuration */
 [data-columns]::before {
-    display: none;
+    visibility: hidden;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
 }
 
 /* Configurate salvattore with media queries */
