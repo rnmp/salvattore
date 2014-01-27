@@ -161,7 +161,24 @@ window.matchMedia || (window.matchMedia = function() {
             clearTimeout(id);
         };
 }());
-;var salvattore = (function (global, document, undefined) {
+;// https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent
+
+if (typeof window.CustomEvent !== "function") {
+  (function() {
+    function CustomEvent(event, params) {
+      params = params || { bubbles: false, cancelable: false, detail: undefined };
+      var evt = document.createEvent('CustomEvent');
+      evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+      return evt;
+     }
+
+    CustomEvent.prototype = window.CustomEvent.prototype;
+
+    window.CustomEvent = CustomEvent;
+  })();
+}
+;/* jshint laxcomma: true */
+var salvattore = (function (global, document, undefined) {
 "use strict";
 
 var self = {},
@@ -175,6 +192,8 @@ var self = {},
       }
       return;
     };
+
+self.ready = self.ready || false;
 
 self.obtain_grid_settings = function obtain_grid_settings(element) {
   // returns the number of columns and the classes a column should have,
@@ -285,6 +304,8 @@ self.recreate_columns = function recreate_columns(grid) {
 
   global.requestAnimationFrame(function render_after_css_media_query_change() {
     self.add_columns(grid, self.remove_columns(grid));
+    var salvattoreChange = new CustomEvent("salvattoreChange", {detail: grid});
+    window.dispatchEvent(salvattoreChange);
   });
 };
 
@@ -494,18 +515,21 @@ self.init = function init() {
   // scans all the grids in the document and generates
   // columns from their configuration.
 
-  var gridElements = document.querySelectorAll("[data-columns]");
+  var gridElements = document.querySelectorAll("[data-columns]"),
+    salvattoreInit = new CustomEvent("salvattoreInit");
   Array.prototype.forEach.call(gridElements, self.register_grid);
   self.scan_media_queries();
+
+  self.ready = true;
+  window.dispatchEvent(salvattoreInit);
 };
-
-
-self.init();
 
 return {
   append_elements: self.append_elements,
   prepend_elements: self.prepend_elements,
-  register_grid: self.register_grid
+  register_grid: self.register_grid,
+  init: self.init,
+  ready: function() { return self.ready; }
 };
 
 })(window, window.document);
