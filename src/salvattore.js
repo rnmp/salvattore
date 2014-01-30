@@ -13,7 +13,7 @@ var self = {},
       return;
     };
 
-self.obtain_grid_settings = function obtain_grid_settings(element) {
+self.obtainGridSettings = function obtainGridSettings(element) {
   // returns the number of columns and the classes a column should have,
   // from computing the style of the ::before pseudo-element of the grid.
 
@@ -44,11 +44,11 @@ self.obtain_grid_settings = function obtain_grid_settings(element) {
 };
 
 
-self.add_columns = function add_columns(grid, items) {
+self.addColumns = function addColumns(grid, items) {
   // from the settings obtained, it creates columns with
   // the configured classes and adds to them a list of items.
 
-  var settings = self.obtain_grid_settings(grid)
+  var settings = self.obtainGridSettings(grid)
     , numberOfColumns = settings.numberOfColumns
     , columnClasses = settings.columnClasses
     , columnsItems = new Array(+numberOfColumns)
@@ -81,7 +81,7 @@ self.add_columns = function add_columns(grid, items) {
 };
 
 
-self.remove_columns = function remove_columns(grid) {
+self.removeColumns = function removeColumns(grid) {
   // removes all the columns from a grid, and returns a list
   // of items sorted by the ordering of columns.
 
@@ -116,27 +116,27 @@ self.remove_columns = function remove_columns(grid) {
 };
 
 
-self.recreate_columns = function recreate_columns(grid) {
+self.recreateColumns = function recreateColumns(grid) {
   // removes all the columns from the grid, and adds them again,
   // it is used when the number of columns change.
 
-  global.requestAnimationFrame(function render_after_css_media_query_change() {
-    self.add_columns(grid, self.remove_columns(grid));
+  global.requestAnimationFrame(function render_after_css_mediaQueryChange() {
+    self.addColumns(grid, self.removeColumns(grid));
   });
 };
 
 
-self.media_query_change = function media_query_change(mql) {
+self.mediaQueryChange = function mediaQueryChange(mql) {
   // recreates the columns when a media query matches the current state
   // of the browser.
 
   if (mql.matches) {
-    Array.prototype.forEach.call(grids, self.recreate_columns);
+    Array.prototype.forEach.call(grids, self.recreateColumns);
   }
 };
 
 
-self.get_css_rules = function get_css_rules(stylesheet) {
+self.getCSSRules = function getCSSRules(stylesheet) {
   // returns a list of css rules from a stylesheet
 
   var cssRules;
@@ -150,7 +150,7 @@ self.get_css_rules = function get_css_rules(stylesheet) {
 };
 
 
-self.get_stylesheets = function get_stylesheets() {
+self.getStylesheets = function getStylesheets() {
   // returns a list of all the styles in the document (that are accessible).
 
   return Array.prototype.concat.call(
@@ -160,7 +160,7 @@ self.get_stylesheets = function get_stylesheets() {
 };
 
 
-self.media_rule_has_columns_selector = function media_rule_has_columns_selector(rules) {
+self.mediaRuleHasColumnsSelector = function mediaRuleHasColumnsSelector(rules) {
   // checks if a media query css rule has in its contents a selector that
   // styles the grid.
 
@@ -179,7 +179,7 @@ self.media_rule_has_columns_selector = function media_rule_has_columns_selector(
 };
 
 
-self.scan_media_queries = function scan_media_queries() {
+self.scanMediaQueries = function scanMediaQueries() {
   // scans all the stylesheets for selectors that style grids,
   // if the matchMedia API is supported.
 
@@ -189,21 +189,21 @@ self.scan_media_queries = function scan_media_queries() {
     return;
   }
 
-  self.get_stylesheets().forEach(function extract_rules(stylesheet) {
-    Array.prototype.forEach.call(self.get_css_rules(stylesheet), function filter_by_column_selector(rule) {
-      if (rule.media && self.media_rule_has_columns_selector(rule.cssRules)) {
+  self.getStylesheets().forEach(function extract_rules(stylesheet) {
+    Array.prototype.forEach.call(self.getCSSRules(stylesheet), function filter_by_column_selector(rule) {
+      if (rule.media && self.mediaRuleHasColumnsSelector(rule.cssRules)) {
         mediaQueries.push(global.matchMedia(rule.media.mediaText));
       }
     });
   });
 
   mediaQueries.forEach(function listen_to_changes(mql) {
-    mql.addListener(self.media_query_change);
+    mql.addListener(self.mediaQueryChange);
   });
 };
 
 
-self.next_element_column_index = function next_element_column_index(grid) {
+self.nextElementColumnIndex = function nextElementColumnIndex(grid) {
   // returns the index of the column where the given element must be added.
 
   var children = grid.children
@@ -231,7 +231,7 @@ self.next_element_column_index = function next_element_column_index(grid) {
 };
 
 
-self.create_list_of_fragments = function create_list_of_fragments(quantity) {
+self.createFragmentsList = function createFragmentsList(quantity) {
   // returns a list of fragments
 
   var fragments = new Array(quantity)
@@ -247,13 +247,13 @@ self.create_list_of_fragments = function create_list_of_fragments(quantity) {
 };
 
 
-self.append_elements = function append_elements(grid, elements) {
+self.appendElements = function appendElements(grid, elements) {
   // adds a list of elements to the end of a grid
 
   var columns = grid.children
     , numberOfColumns = columns.length
-    , fragments = self.create_list_of_fragments(numberOfColumns)
-    , columnIndex = self.next_element_column_index(grid)
+    , fragments = self.createFragmentsList(numberOfColumns)
+    , columnIndex = self.nextElementColumnIndex(grid)
   ;
 
   elements.forEach(function append_to_next_fragment(element) {
@@ -271,12 +271,12 @@ self.append_elements = function append_elements(grid, elements) {
 };
 
 
-self.prepend_elements = function prepend_elements(grid, elements) {
+self.prependElements = function prependElements(grid, elements) {
   // adds a list of elements to the start of a grid
 
   var columns = grid.children
     , numberOfColumns = columns.length
-    , fragments = self.create_list_of_fragments(numberOfColumns)
+    , fragments = self.createFragmentsList(numberOfColumns)
     , columnIndex = numberOfColumns - 1
   ;
 
@@ -308,7 +308,7 @@ self.prepend_elements = function prepend_elements(grid, elements) {
 };
 
 
-self.register_grid = function register_grid (grid) {
+self.registerGrid = function registerGrid (grid) {
   if (global.getComputedStyle(grid).display === "none") {
     return;
   }
@@ -322,7 +322,7 @@ self.register_grid = function register_grid (grid) {
 
 
   add_to_dataset(items, 'columns', 0);
-  self.add_columns(grid, items);
+  self.addColumns(grid, items);
   grids.push(grid);
 };
 
@@ -332,17 +332,17 @@ self.init = function init() {
   // columns from their configuration.
 
   var gridElements = document.querySelectorAll("[data-columns]");
-  Array.prototype.forEach.call(gridElements, self.register_grid);
-  self.scan_media_queries();
+  Array.prototype.forEach.call(gridElements, self.registerGrid);
+  self.scanMediaQueries();
 };
 
 
 self.init();
 
 return {
-  append_elements: self.append_elements,
-  prepend_elements: self.prepend_elements,
-  register_grid: self.register_grid
+  appendElements: self.appendElements,
+  prependElements: self.prependElements,
+  registerGrid: self.registerGrid
 };
 
 })(window, window.document);
