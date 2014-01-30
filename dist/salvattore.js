@@ -305,7 +305,7 @@ self.recreate_columns = function recreate_columns(grid) {
   global.requestAnimationFrame(function render_after_css_media_query_change() {
     self.add_columns(grid, self.remove_columns(grid));
     var salvattoreChange = new CustomEvent("salvattoreChange", {detail: grid});
-    window.dispatchEvent(salvattoreChange);
+    global.dispatchEvent(salvattoreChange);
   });
 };
 
@@ -521,7 +521,7 @@ self.init = function init() {
   self.scan_media_queries();
 
   self.ready = true;
-  window.dispatchEvent(salvattoreInit);
+  global.dispatchEvent(salvattoreInit);
 };
 
 return {
