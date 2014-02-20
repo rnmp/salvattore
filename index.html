@@ -71,7 +71,12 @@
 <span class="highlight">.size-1of3</span> { width: 33.333%; }
 
 /* Also, don't forget to add this: */
-[data-columns]::before { display: none; }</pre>
+[data-columns]::before { 
+    position: absolute;
+    right: 9999em;
+    bottom: 9999em;
+    visibility: hidden;
+}</pre>
 <!-- /Code -->
 			
 			<p>With those settings, Salvattore is ready to go! And the resulting HTML should be the following:</p>

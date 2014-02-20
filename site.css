@@ -18,7 +18,10 @@ img, object, embed {
 }
 
 [data-columns]::before {
-  display: none;
+    position: absolute;
+    right: 9999em;
+    bottom: 9999em;
+    visibility: hidden;
 }
 
 @font-face {
