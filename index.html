@@ -72,10 +72,14 @@
 
 /* Also, don't forget to add this: */
 [data-columns]::before { 
-    visibility: hidden;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
     position: absolute;
-    top: -9999em;
-    left: -9999em;
+    width: 1px;
 }</pre>
 <!-- /Code -->
 			
