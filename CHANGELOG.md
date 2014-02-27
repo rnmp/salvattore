@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.5 - 2014-02-26
+
+- Fixes Chrome Canary bug ([#40](https://github.com/rnmp/salvattore/issues/40) and [#38](https://github.com/rnmp/salvattore/issues/38))
+
 ## 1.0.4 - 2013-11-20
 
 - Fixes error regarding JS API

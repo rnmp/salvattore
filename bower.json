@@ -1,6 +1,6 @@
 {
   "name": "salvattore",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/salvattore.min.js",
   "ignore": [
     "**/.*",
@@ -10,7 +10,7 @@
     "tests"
   ],
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "~0.4.2",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-jshint": "~0.7.2",
     "grunt-contrib-uglify": "~0.2.7",
