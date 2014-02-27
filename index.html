@@ -68,19 +68,7 @@
 
 /* These are the classes that are going to be applied: */
 <span class="highlight">.column</span> { float: left; }
-<span class="highlight">.size-1of3</span> { width: 33.333%; }
-
-/* Also, don't forget to add this: */
-[data-columns]::before { 
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}</pre>
+<span class="highlight">.size-1of3</span> { width: 33.333%; }</pre>
 <!-- /Code -->
 			
 			<p>With those settings, Salvattore is ready to go! And the resulting HTML should be the following:</p>
@@ -139,7 +127,7 @@
 <!-- /Code -->
 
 				<p>This whole website is responsive, so you can see how well this works by resizing your viewport. Also, please make sure you set the <code>min-width</code> and <code>max-width</code> very detailed like above so that the script <a href="https://github.com/rnmp/salvattore/issues/54" target="_blank">runs properly.</a></p>
-				<p>Note: media queries only work on a <a href="http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python" target="_blank">local server.</a></p>
+				<p>Note: media queries compatibility only works on a <a href="http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python" target="_blank">server</a> (local or remote). And unfortunately, it won’t play well with other at-rules, such as <code>@charset</code> or <code>@import</code>.</p>
 			</section>
 
 			<section>
