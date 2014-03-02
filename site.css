@@ -76,7 +76,7 @@ section {
 
 code, pre, .intro-grid .column::before {
   font-family: 'andale mono', monospace;
-  color: #e25126;
+  color: #74321d;
   background: #f6cdb9;
   border-radius: 2px;
   text-shadow: none;
@@ -85,7 +85,7 @@ code, pre, .intro-grid .column::before {
 
 pre {
   overflow: scroll;
-  padding: 1em;
+  padding: 1.5em;
 }
 
 pre .highlight {

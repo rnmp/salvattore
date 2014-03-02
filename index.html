@@ -28,7 +28,7 @@
 			<h1 class="title">Salvattore</h1>
 			<p class="subtitle">
 				A jQuery Masonry alternative with CSS-driven configuration.
-				<br>With Salvattore you can turn <code>content: '<span id="intro-settings"></span>';</code> into this:
+				<br>With Salvattore you can turn <code class="highlight">content: '<span id="intro-settings"></span>';</code> into this:
 			</p>
 			<figure class="intro-grid" data-columns>
 				<div class="item" data-n="1"></div>
@@ -45,7 +45,7 @@
 		<div class="layout-redux">
 			<section>
 				<h1>How it works</h1>
-				<p>Salvattore distributes your grid items according to the number of columns you specify. Each of the items in your grid is placed within these columns, one by one. To get started, simply add the <code>data-columns</code> attribute to the grid element.</p>
+				<p>Salvattore distributes your grid items according to the number of columns you specify. Each of the items in your grid is placed within these columns, one by one. To get started, simply add the <code class="highlight">data-columns</code> attribute to the grid element.</p>
 
 <!-- Code -->
 			<pre data-lang="HTML">
@@ -58,7 +58,7 @@
 &lt;/div&gt;</pre>
 <!-- /Code -->
 			
-			<p>Now, in your CSS file, simply refer to the grid, followed by the <code>::before</code> pseudo-element. The number of columns desired and the class or classes for each of them should be defined on the <code>content</code> property.</p>
+			<p>Now, in your CSS file, simply refer to the grid, followed by the <code class="highlight">::before</code> pseudo-element. The number of columns desired and the class or classes for each of them should be defined on the <code class="highlight">content</code> property.</p>
 
 <!-- Code -->
 			<pre data-lang="CSS">
@@ -93,12 +93,12 @@
 	&lt;/div&gt;
 &lt;/div&gt;</pre>
 <!-- /Code -->
-				<p>If you didn't provide any classes in your CSS settings, <code>.column</code> will be used by default.</p>
+				<p>If you didn't provide any classes in your CSS settings, <code class="highlight">.column</code> will be used by default.</p>
 			</section>
 
 			<section>
 				<h1>Media queries</h1>
-				<p>Making your design responsive is just as easy as you would think. You only need to wrap your Salvattore settings in your <code>@media</code> rule.</p>
+				<p>Making your design responsive is just as easy as you would think. You only need to wrap your Salvattore settings in your <code class="highlight">@media</code> rule.</p>
 
 <!-- Code -->
 			<pre data-lang="CSS">
@@ -119,20 +119,20 @@
 	}
 }
 
-/* Again, you're free to use and define the classes: */
+/* Again, you’re free to use and define the classes: */
 <span class="highlight">.column</span> { float: left; }
 <span class="highlight">.size-1of1</span> { width: 100%; }
 <span class="highlight">.size-1of2</span> { width: 50%; }
 <span class="highlight">.size-1of3</span> { width: 33.333%; }</pre>
 <!-- /Code -->
 
-				<p>This whole website is responsive, so you can see how well this works by resizing your viewport. Also, please make sure you set the <code>min-width</code> and <code>max-width</code> very detailed like above so that the script <a href="https://github.com/rnmp/salvattore/issues/54" target="_blank">runs properly.</a></p>
-				<p>Note: media queries compatibility only works on a <a href="http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python" target="_blank">server</a> (local or remote). And unfortunately, it won’t play well with other at-rules, such as <code>@charset</code> or <code>@import</code>.</p>
+				<p>This whole website is responsive, so you can see how well this works by resizing your viewport. Also, please make sure you set the <code class="highlight">min-width</code> and <code class="highlight">max-width</code> very detailed like above so that the script <a href="https://github.com/rnmp/salvattore/issues/54" target="_blank">runs properly.</a></p>
+				<p>Note: media queries compatibility only works on a <a href="http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python" target="_blank">server</a> (local or remote). And unfortunately, it won’t play well with other at-rules, such as <code class="highlight">@charset</code> or <code class="highlight">@import</code>.</p>
 			</section>
 
 			<section>
 				<h1>Dynamic content</h1>
-				<p>Salvattore has two functions you can work with: <code>append_elements</code> and <code>prepend_elements</code>. These two functions have the same arguments: the <code>grid</code> and the <code>elements</code> you want added to it.</p>
+				<p>Salvattore has two functions you can work with: <code class="highlight">append_elements</code> and <code class="highlight">prepend_elements</code>. These two functions have the same arguments: the <code class="highlight">grid</code> and the <code class="highlight">elements</code> you want added to it.</p>
 <!-- Code -->
 				<pre data-lang="JavaScript">
 var grid = document.querySelector('#grid');
