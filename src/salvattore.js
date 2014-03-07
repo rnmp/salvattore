@@ -208,26 +208,25 @@ self.next_element_column_index = function next_element_column_index(grid) {
 
   var children = grid.children
     , m = children.length
-    , highestRowCount
+    , lowestRowCount = 0
     , child
     , currentRowCount
-    , i = children.length - 1
+    , i
+    , index = 0
   ;
-
-  for (i; i >= 0; i--) {
+  for (i = 0; i < m; i++) {
     child = children[i];
     currentRowCount = child.children.length;
-    if (i !== 0 && highestRowCount > currentRowCount) {
-      break;
-    } else if (i + 1 === m) {
-      i = 0;
-      break;
+  if(lowestRowCount == 0) {
+    lowestRowCount = currentRowCount;
+  }
+    if(currentRowCount < lowestRowCount) {
+      index = i;
+      lowestRowCount = currentRowCount;
     }
-
-    highestRowCount = currentRowCount;
   }
 
-  return i;
+  return index;
 };
 
 
@@ -253,16 +252,11 @@ self.append_elements = function append_elements(grid, elements) {
   var columns = grid.children
     , numberOfColumns = columns.length
     , fragments = self.create_list_of_fragments(numberOfColumns)
-    , columnIndex = self.next_element_column_index(grid)
   ;
 
   elements.forEach(function append_to_next_fragment(element) {
+    var columnIndex = self.next_element_column_index(grid);
     fragments[columnIndex].appendChild(element);
-    if (columnIndex === numberOfColumns - 1) {
-      columnIndex = 0;
-    } else {
-      columnIndex++;
-    }
   });
 
   Array.prototype.forEach.call(columns, function insert_column(column, index) {
