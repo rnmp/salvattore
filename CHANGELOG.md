@@ -2,7 +2,7 @@
 
 ## 1.0.6 - 2014-03-10
 
-- Fixes append_elements bug ([#59](https://github.com/rnmp/salvattore/issues/59). (from pull request [#62](https://github.com/rnmp/salvattore/pull/62) by [@jlawrence-yellostudio](https://github.com/jlawrence-yellostudio))
+- Fixes append_elements bug [#59](https://github.com/rnmp/salvattore/issues/59). (from pull request [#62](https://github.com/rnmp/salvattore/pull/62) by [@jlawrence-yellostudio](https://github.com/jlawrence-yellostudio))
 
 ## 1.0.5 - 2014-02-26
 
