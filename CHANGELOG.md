@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6 - 2014-03-10
+
+- Fixes append_elements bug (#59). (from pull request #62 @jlawrence-yellostudio)
+
 ## 1.0.5 - 2014-02-26
 
 - Fixes Chrome Canary bug ([#40](https://github.com/rnmp/salvattore/issues/40) and [#38](https://github.com/rnmp/salvattore/issues/38))
