@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.7 - 2014-03-13
+
+- Fixes append_elements bug for empty grids [#67](https://github.com/rnmp/salvattore/pull/67).
+
 ## 1.0.6 - 2014-03-10
 
 - Fixes append_elements bug [#59](https://github.com/rnmp/salvattore/issues/59). (from pull request [#62](https://github.com/rnmp/salvattore/pull/62) by [@jlawrence-yellostudio](https://github.com/jlawrence-yellostudio))
