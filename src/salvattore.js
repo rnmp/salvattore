@@ -203,7 +203,7 @@ self.scan_media_queries = function scan_media_queries() {
 };
 
 
-self.next_element_column_index = function next_element_column_index(grid) {
+self.next_element_column_index = function next_element_column_index(grid, fragments) {
   // returns the index of the column where the given element must be added.
 
   var children = grid.children
@@ -216,7 +216,7 @@ self.next_element_column_index = function next_element_column_index(grid) {
   ;
   for (i = 0; i < m; i++) {
     child = children[i];
-    currentRowCount = child.children.length;
+    currentRowCount = child.children.length + fragments[i].children.length;
   if(lowestRowCount == 0) {
     lowestRowCount = currentRowCount;
   }
@@ -255,7 +255,7 @@ self.append_elements = function append_elements(grid, elements) {
   ;
 
   elements.forEach(function append_to_next_fragment(element) {
-    var columnIndex = self.next_element_column_index(grid);
+    var columnIndex = self.next_element_column_index(grid, fragments);
     fragments[columnIndex].appendChild(element);
   });
 
