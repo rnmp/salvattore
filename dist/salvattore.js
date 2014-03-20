@@ -540,7 +540,7 @@ self.init = function init() {
   // configuration.
 
   var css = document.createElement("style");
-  css.innerHTML = "[data-columns]::before{visibility:hidden;position:absolute;font-size:1px;}";
+  css.innerHTML = "[data-columns]::before{display:block;visibility:hidden;position:absolute;font-size:1px;}";
   document.head.appendChild(css);
 
   // scans all the grids in the document and generates
