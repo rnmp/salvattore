@@ -26,3 +26,7 @@ You can also [follow us](http://twitter.com/salvattorejs) on Twitter.
 How to contribute
 -----------------
 We use Grunt to add polyfills and minify the script in the `dist/` folder. To make changes to the script itself, please edit `src/salvattore.js` and send us a pull request.
+
+### Share feedback & ideas
+You can even contribute by using Salvattore and sharing bugs, ideas or solutions on the Issues page.
+Protip: if you're posting a bug please share all the relevant data and ideally a live URL so that we can debug (yeah we do that!)
