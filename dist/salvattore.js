@@ -6,9 +6,10 @@
         define('salvattore', [], factory);
     }
     else {
-        root.salvattore = factory();
+        root['salvattore'] = factory();
     }
 }(this, function() {
+
 /*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas, David Knight. Dual MIT/BSD license */
 
 window.matchMedia || (window.matchMedia = function() {
@@ -379,7 +380,7 @@ self.next_element_column_index = function next_element_column_index(grid, fragme
   ;
   for (i = 0; i < m; i++) {
     child = children[i];
-    currentRowCount = child.children.length + fragments[i].children.length;
+    currentRowCount = child.children.length + (fragments[i].children || fragments[i].childNodes).length;
   if(lowestRowCount === 0) {
     lowestRowCount = currentRowCount;
   }
@@ -506,10 +507,13 @@ self.init();
 return {
   append_elements: self.append_elements,
   prepend_elements: self.prepend_elements,
-  register_grid: self.register_grid
+  register_grid: self.register_grid,
+  recreate_columns: self.recreate_columns
 };
 
 })(window, window.document);
 
-    return salvattore;
+
+return salvattore;
+
 }));
