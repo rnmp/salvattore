@@ -164,9 +164,12 @@ self.media_rule_has_columns_selector = function media_rule_has_columns_selector(
   // checks if a media query css rule has in its contents a selector that
   // styles the grid.
 
-  var i = rules.length
-    , rule
-  ;
+  try {
+    var i = rules.length, rule;
+  }
+  catch (e) {
+    var i = 0, rule;
+  }
 
   while (i--) {
     rule = rules[i];
