@@ -191,7 +191,7 @@ self.scan_media_queries = function scan_media_queries() {
 
   self.get_stylesheets().forEach(function extract_rules(stylesheet) {
     Array.prototype.forEach.call(self.get_css_rules(stylesheet), function filter_by_column_selector(rule) {
-      if (rule.media && self.media_rule_has_columns_selector(rule.cssRules)) {
+      if (rule.media && rule.cssRules && self.media_rule_has_columns_selector(rule.cssRules)) {
         mediaQueries.push(global.matchMedia(rule.media.mediaText));
       }
     });
