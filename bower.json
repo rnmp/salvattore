@@ -1,7 +1,7 @@
 {
   "name": "salvattore",
   "version": "1.0.5",
-  "main": "dist/salvattore.min.js",
+  "main": "dist/salvattore.js",
   "ignore": [
     "**/.*",
     "node_modules",
