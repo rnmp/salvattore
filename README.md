@@ -1,5 +1,6 @@
 Salvattore
 ==========
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/rnmp/salvattore?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![](http://files.bandd.co/zQf5+)](http://salvattore.com/)
 
