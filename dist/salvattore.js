@@ -174,6 +174,14 @@ var self = {},
         element.setAttribute("data-" + key, value);
       }
       return;
+    },
+    get_from_dataset = function(element, key, value) {
+      // uses dataset function or a fallback for <ie10
+      if (element.dataset) {
+        return element.dataset[key];
+      } else {
+        return element.setAttribute("data-" + key);
+      }
     };
 
 self.obtain_grid_settings = function obtain_grid_settings(element) {
@@ -221,25 +229,14 @@ self.add_columns = function add_columns(grid, items) {
   ;
 
   while (i-- !== 0) {
-    selector = "[data-columns] > *:nth-child(" + numberOfColumns + "n-" + i + ")";
-    columnsItems.push(items.querySelectorAll(selector));
+    var column = document.createElement("div");
+    column.className = columnClasses.join(" ");
+    columnsFragment.appendChild(column);
   }
 
-  columnsItems.forEach(function append_to_grid_fragment(rows) {
-    var column = document.createElement("div")
-      , rowsFragment = document.createDocumentFragment()
-    ;
-
-    column.className = columnClasses.join(" ");
-
-    Array.prototype.forEach.call(rows, function append_to_column(row) {
-      rowsFragment.appendChild(row);
-    });
-    column.appendChild(rowsFragment);
-    columnsFragment.appendChild(column);
-  });
-
   grid.appendChild(columnsFragment);
+  self.append_elements(grid, Array.prototype.slice.call(items.children));
+
   add_to_dataset(grid, 'columns', numberOfColumns);
 };
 
@@ -376,13 +373,33 @@ self.next_element_column_index = function next_element_column_index(grid, fragme
     , currentRowCount
     , i
     , index = 0
+    , colsHeight = []
+    , minColHeight
   ;
+
+  var get_possible_height = function get_possible_height(el) {
+    colsHeight[i] += self.get_height_from_element(el);
+  };
+  for (i = 0; i < m; i++) {
+    // get used height
+    colsHeight[i] = self.get_height_from_element(children[i]);
+    // get probably used height
+    Array.prototype.forEach.call(fragments[i].childNodes, get_possible_height);
+  }
+  minColHeight = Math.min.apply(Math, colsHeight);
+  // we assume height were available if we have something
+  // so we return the index of the column with the shortest height
+  if (minColHeight > 0) {
+    return colsHeight.indexOf(minColHeight);
+  }
+
+  // otherwise, previous method fallback
   for (i = 0; i < m; i++) {
     child = children[i];
-    currentRowCount = child.children.length + fragments[i].children.length;
-  if(lowestRowCount === 0) {
-    lowestRowCount = currentRowCount;
-  }
+    currentRowCount = child.children.length + (fragments[i].children || fragments[i].childNodes).length;
+    if(lowestRowCount === 0) {
+      lowestRowCount = currentRowCount;
+    }
     if(currentRowCount < lowestRowCount) {
       index = i;
       lowestRowCount = currentRowCount;
@@ -415,7 +432,16 @@ self.append_elements = function append_elements(grid, elements) {
   var columns = grid.children
     , numberOfColumns = columns.length
     , fragments = self.create_list_of_fragments(numberOfColumns)
+    , heightContainer = document.createElement("div")
   ;
+
+  // first of all, append all items to a column to be able to retrieve proper height
+  // (if you try to do that hidden from the screen, you can miss the good DOM/CSS context)
+  heightContainer.className = self.obtain_grid_settings(grid).columnClasses.join(" ");
+  heightContainer.appendChild(self.create_fragment(elements));
+  grid.appendChild(heightContainer);
+  self.save_elements_height(elements);
+  grid.removeChild(heightContainer);
 
   elements.forEach(function append_to_next_fragment(element) {
     var columnIndex = self.next_element_column_index(grid, fragments);
@@ -483,13 +509,38 @@ self.register_grid = function register_grid (grid) {
   grids.push(grid);
 };
 
+self.create_fragment = function create_fragment (elements) {
+  var frag = document.createDocumentFragment();
+  Array.prototype.forEach.call(elements, function create_fragment_loop(element) {
+    frag.appendChild(element);
+  });
+  return frag;
+};
+
+self.get_height_from_element = function get_height_from_element(el) {
+  var height = el.getBoundingClientRect().height;
+  if (!height) {
+    var h = get_from_dataset(el, "salvatorreHeight");
+    if (h) {
+      height = parseInt(h, 10);
+    }
+  }
+  return height;
+};
+
+self.save_elements_height = function save_elements_height (elements) {
+  Array.prototype.forEach.call(elements, function save_element_height(el) {
+    add_to_dataset(el, "salvatorreHeight", el.getBoundingClientRect().height);
+  });
+};
+
 
 self.init = function init() {
   // adds required CSS rule to hide 'content' based
   // configuration.
 
   var css = document.createElement("style");
-  css.innerHTML = "[data-columns]::before{visibility:hidden;position:absolute;font-size:1px;}";
+  css.innerHTML = "[data-columns]::before{display:block;visibility:hidden;position:absolute;font-size:1px;}";
   document.head.appendChild(css);
 
   // scans all the grids in the document and generates
