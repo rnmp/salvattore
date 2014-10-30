@@ -254,7 +254,7 @@ self.append_elements = function append_elements(grid, elements) {
     , fragments = self.create_list_of_fragments(numberOfColumns)
   ;
 
-  elements.forEach(function append_to_next_fragment(element) {
+  Array.prototype.forEach.call(elements, function append_to_next_fragment(element) {
     var columnIndex = self.next_element_column_index(grid, fragments);
     fragments[columnIndex].appendChild(element);
   });
