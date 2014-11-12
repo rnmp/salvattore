@@ -343,7 +343,12 @@ self.init();
 return {
   appendElements: self.appendElements,
   prependElements: self.prependElements,
-  registerGrid: self.registerGrid
+  registerGrid: self.registerGrid,
+
+  // maintains backwards compatibility with underscore style method names
+  append_elements: self.appendElements,
+  prepend_elements: self.prependElements,
+  register_grid: self.registerGrid
 };
 
 })(window, window.document);
