@@ -193,7 +193,7 @@ self.scanMediaQueries = function scanMediaQueries() {
 
   self.getStylesheets().forEach(function extract_rules(stylesheet) {
     Array.prototype.forEach.call(self.getCSSRules(stylesheet), function filter_by_column_selector(rule) {
-      if (rule.media && self.mediaRuleHasColumnsSelector(rule.cssRules)) {
+      if (rule.media && rule.cssRules && self.mediaRuleHasColumnsSelector(rule.cssRules)) {
         mediaQueries.push(global.matchMedia(rule.media.mediaText));
       }
     });
