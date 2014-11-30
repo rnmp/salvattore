@@ -20,8 +20,8 @@ self.obtainGridSettings = function obtainGridSettings(element) {
   var computedStyle = global.getComputedStyle(element, ":before")
     , content = computedStyle.getPropertyValue("content").slice(1, -1)
     , matchResult = content.match(/^\s*(\d+)(?:\s?\.(.+))?\s*$/)
-    , numberOfColumns
-    , columnClasses
+    , numberOfColumns = 1
+    , columnClasses = []
   ;
 
   if (matchResult) {
@@ -30,10 +30,12 @@ self.obtainGridSettings = function obtainGridSettings(element) {
     columnClasses = columnClasses? columnClasses.split(".") : ["column"];
   } else {
     matchResult = content.match(/^\s*\.(.+)\s+(\d+)\s*$/);
-    columnClasses = matchResult[1];
-    numberOfColumns = matchResult[2];
-    if (numberOfColumns) {
-      numberOfColumns = numberOfColumns.split(".");
+    if (matchResult) {
+      columnClasses = matchResult[1];
+      numberOfColumns = matchResult[2];
+      if (numberOfColumns) {
+	    numberOfColumns = numberOfColumns.split(".");
+      }
     }
   }
 
