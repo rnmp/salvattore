@@ -349,11 +349,13 @@ return {
   appendElements: self.appendElements,
   prependElements: self.prependElements,
   registerGrid: self.registerGrid,
+  recreateColumns: self.recreateColumns,
 
   // maintains backwards compatibility with underscore style method names
   append_elements: self.appendElements,
   prepend_elements: self.prependElements,
-  register_grid: self.registerGrid
+  register_grid: self.registerGrid,
+  recreate_columns: self.recreateColumns
 };
 
 })(window, window.document);
