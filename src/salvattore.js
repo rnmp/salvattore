@@ -1,3 +1,4 @@
+/* jshint laxcomma: true */
 var salvattore = (function (global, document, undefined) {
 "use strict";
 
@@ -34,7 +35,7 @@ self.obtainGridSettings = function obtainGridSettings(element) {
       columnClasses = matchResult[1];
       numberOfColumns = matchResult[2];
       if (numberOfColumns) {
-	    numberOfColumns = numberOfColumns.split(".");
+            numberOfColumns = numberOfColumns.split(".");
       }
     }
   }
@@ -124,6 +125,8 @@ self.recreateColumns = function recreateColumns(grid) {
 
   global.requestAnimationFrame(function render_after_css_mediaQueryChange() {
     self.addColumns(grid, self.removeColumns(grid));
+    var columnsChange = new CustomEvent("columnsChange");
+    grid.dispatchEvent(columnsChange);
   });
 };
 
@@ -166,11 +169,13 @@ self.mediaRuleHasColumnsSelector = function mediaRuleHasColumnsSelector(rules) {
   // checks if a media query css rule has in its contents a selector that
   // styles the grid.
 
+  var i, rule;
+
   try {
-    var i = rules.length, rule;
+    i = rules.length;
   }
   catch (e) {
-    var i = 0, rule;
+    i = 0;
   }
 
   while (i--) {
@@ -341,7 +346,6 @@ self.init = function init() {
   Array.prototype.forEach.call(gridElements, self.registerGrid);
   self.scanMediaQueries();
 };
-
 
 self.init();
 
