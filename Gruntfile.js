@@ -12,6 +12,7 @@ module.exports = function(grunt) {
          'src/polyfills/matchMedia.js',
          'src/polyfills/matchMedia.addListener.js',
          'src/polyfills/requestAnimationFrame.js',
+         'src/polyfills/customEvent.js',
          'src/*.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }

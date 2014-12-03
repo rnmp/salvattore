@@ -6,10 +6,9 @@
         define('salvattore', [], factory);
     }
     else {
-        root['salvattore'] = factory();
+        root.salvattore = factory();
     }
 }(this, function() {
-
 /*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas, David Knight. Dual MIT/BSD license */
 
 window.matchMedia || (window.matchMedia = function() {
@@ -162,7 +161,24 @@ window.matchMedia || (window.matchMedia = function() {
             clearTimeout(id);
         };
 }());
-;var salvattore = (function (global, document, undefined) {
+;// https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent
+
+if (typeof window.CustomEvent !== "function") {
+  (function() {
+    function CustomEvent(event, params) {
+      params = params || { bubbles: false, cancelable: false, detail: undefined };
+      var evt = document.createEvent('CustomEvent');
+      evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+      return evt;
+     }
+
+    CustomEvent.prototype = window.Event.prototype;
+
+    window.CustomEvent = CustomEvent;
+  })();
+}
+;/* jshint laxcomma: true */
+var salvattore = (function (global, document, undefined) {
 "use strict";
 
 var self = {},
@@ -184,8 +200,8 @@ self.obtainGridSettings = function obtainGridSettings(element) {
   var computedStyle = global.getComputedStyle(element, ":before")
     , content = computedStyle.getPropertyValue("content").slice(1, -1)
     , matchResult = content.match(/^\s*(\d+)(?:\s?\.(.+))?\s*$/)
-    , numberOfColumns
-    , columnClasses
+    , numberOfColumns = 1
+    , columnClasses = []
   ;
 
   if (matchResult) {
@@ -194,10 +210,12 @@ self.obtainGridSettings = function obtainGridSettings(element) {
     columnClasses = columnClasses? columnClasses.split(".") : ["column"];
   } else {
     matchResult = content.match(/^\s*\.(.+)\s+(\d+)\s*$/);
-    columnClasses = matchResult[1];
-    numberOfColumns = matchResult[2];
-    if (numberOfColumns) {
-      numberOfColumns = numberOfColumns.split(".");
+    if (matchResult) {
+      columnClasses = matchResult[1];
+      numberOfColumns = matchResult[2];
+      if (numberOfColumns) {
+            numberOfColumns = numberOfColumns.split(".");
+      }
     }
   }
 
@@ -286,6 +304,8 @@ self.recreateColumns = function recreateColumns(grid) {
 
   global.requestAnimationFrame(function render_after_css_mediaQueryChange() {
     self.addColumns(grid, self.removeColumns(grid));
+    var columnsChange = new CustomEvent("columnsChange");
+    grid.dispatchEvent(columnsChange);
   });
 };
 
@@ -328,9 +348,14 @@ self.mediaRuleHasColumnsSelector = function mediaRuleHasColumnsSelector(rules) {
   // checks if a media query css rule has in its contents a selector that
   // styles the grid.
 
-  var i = rules.length
-    , rule
-  ;
+  var i, rule;
+
+  try {
+    i = rules.length;
+  }
+  catch (e) {
+    i = 0;
+  }
 
   while (i--) {
     rule = rules[i];
@@ -418,7 +443,7 @@ self.appendElements = function appendElements(grid, elements) {
     , fragments = self.createFragmentsList(numberOfColumns)
   ;
 
-  elements.forEach(function append_to_next_fragment(element) {
+  Array.prototype.forEach.call(elements, function append_to_next_fragment(element) {
     var columnIndex = self.next_element_column_index(grid, fragments);
     fragments[columnIndex].appendChild(element);
   });
@@ -501,7 +526,6 @@ self.init = function init() {
   self.scanMediaQueries();
 };
 
-
 self.init();
 
 return {
@@ -519,7 +543,5 @@ return {
 
 })(window, window.document);
 
-
-return salvattore;
-
+    return salvattore;
 }));
