@@ -1,13 +1,15 @@
+/*!
+ * Salvattore 1.0.5 by @rnmp and @ppold
+ * https://github.com/rnmp/salvattore
+ */
 (function(root, factory) {
-    if(typeof exports === 'object') {
-        module.exports = factory();
-    }
-    else if(typeof define === 'function' && define.amd) {
-        define('salvattore', [], factory);
-    }
-    else {
-        root.salvattore = factory();
-    }
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.salvattore = factory();
+  }
 }(this, function() {
 /*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas, David Knight. Dual MIT/BSD license */
 
@@ -55,7 +57,8 @@ window.matchMedia || (window.matchMedia = function() {
         };
     };
 }());
-;/*! matchMedia() polyfill addListener/removeListener extension. Author & copyright (c) 2012: Scott Jehl. Dual MIT/BSD license */
+
+/*! matchMedia() polyfill addListener/removeListener extension. Author & copyright (c) 2012: Scott Jehl. Dual MIT/BSD license */
 (function(){
     // Bail out for browsers that have addListener support
     if (window.matchMedia && window.matchMedia('all').addListener) {
@@ -130,7 +133,8 @@ window.matchMedia || (window.matchMedia = function() {
         return mql;
     };
 }());
-;// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+
+// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
 
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
@@ -161,7 +165,8 @@ window.matchMedia || (window.matchMedia = function() {
             clearTimeout(id);
         };
 }());
-;// https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent
+
+// https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent
 
 if (typeof window.CustomEvent !== "function") {
   (function() {
@@ -177,7 +182,8 @@ if (typeof window.CustomEvent !== "function") {
     window.CustomEvent = CustomEvent;
   })();
 }
-;/* jshint laxcomma: true */
+
+/* jshint laxcomma: true */
 var salvattore = (function (global, document, undefined) {
 "use strict";
 
@@ -444,7 +450,7 @@ self.appendElements = function appendElements(grid, elements) {
   ;
 
   Array.prototype.forEach.call(elements, function append_to_next_fragment(element) {
-    var columnIndex = self.next_element_column_index(grid, fragments);
+    var columnIndex = self.nextElementColumnIndex(grid, fragments);
     fragments[columnIndex].appendChild(element);
   });
 
@@ -543,5 +549,5 @@ return {
 
 })(window, window.document);
 
-    return salvattore;
+return salvattore;
 }));
