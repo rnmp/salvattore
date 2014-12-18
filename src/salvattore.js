@@ -4,6 +4,8 @@ var salvattore = (function (global, document, undefined) {
 
 var self = {},
     grids = [],
+    mediaRules = [],
+    mediaQueries = [],
     add_to_dataset = function(element, key, value) {
       // uses dataset function or a fallback for <ie10
       if (element.dataset) {
@@ -193,7 +195,7 @@ self.scanMediaQueries = function scanMediaQueries() {
   // scans all the stylesheets for selectors that style grids,
   // if the matchMedia API is supported.
 
-  var mediaQueries = [];
+  var newMediaRules = [];
 
   if (!global.matchMedia) {
     return;
@@ -202,14 +204,42 @@ self.scanMediaQueries = function scanMediaQueries() {
   self.getStylesheets().forEach(function extract_rules(stylesheet) {
     Array.prototype.forEach.call(self.getCSSRules(stylesheet), function filter_by_column_selector(rule) {
       if (rule.media && rule.cssRules && self.mediaRuleHasColumnsSelector(rule.cssRules)) {
-        mediaQueries.push(global.matchMedia(rule.media.mediaText));
+        newMediaRules.push(rule);
       }
     });
   });
 
-  mediaQueries.forEach(function listen_to_changes(mql) {
-    mql.addListener(self.mediaQueryChange);
+  // remove matchMedia listeners from the old rules
+  var oldRules = mediaRules.filter(function (el) {
+      return newMediaRules.indexOf(el) === -1;
   });
+  mediaQueries.filter(function (el) {
+    return oldRules.indexOf(el.rule) !== -1;
+  }).forEach(function (el) {
+      el.mql.removeListener(self.mediaQueryChange);
+  });
+  mediaQueries = mediaQueries.filter(function (el) {
+    return oldRules.indexOf(el.rule) === -1;
+  });
+
+  // add matchMedia listeners to the new rules
+  newMediaRules.filter(function (el) {
+    return mediaRules.indexOf(el) == -1;
+  }).forEach(function (rule) {
+      var mql = global.matchMedia(rule.media.mediaText);
+      mql.addListener(self.mediaQueryChange);
+      mediaQueries.push({rule: rule, mql:mql});
+  });
+
+  // swap mediaRules with the new set
+  mediaRules.length = 0;
+  mediaRules = newMediaRules;
+};
+
+
+self.rescanMediaQueries = function rescanMediaQueries() {
+    self.scanMediaQueries();
+    Array.prototype.forEach.call(grids, self.recreateColumns);
 };
 
 
@@ -354,12 +384,14 @@ return {
   prependElements: self.prependElements,
   registerGrid: self.registerGrid,
   recreateColumns: self.recreateColumns,
+  rescanMediaQueries: self.rescanMediaQueries,
 
   // maintains backwards compatibility with underscore style method names
   append_elements: self.appendElements,
   prepend_elements: self.prependElements,
   register_grid: self.registerGrid,
-  recreate_columns: self.recreateColumns
+  recreate_columns: self.recreateColumns,
+  rescan_media_queries: self.rescanMediaQueries
 };
 
 })(window, window.document);
