@@ -1,7 +1,29 @@
 {
   "name": "salvattore",
-  "version": "1.0.7",
+  "homepage": "http://salvattore.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rnmp/salvattore"
+  },
+  "description": "A jQuery Masonry alternative with CSS-driven configuration",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rolando Murillo",
+      "email": "rolando@bandd.co",
+      "homepage": "http://rolandomurillo.com/"
+    },
+    {
+      "name": "Giorgio Leveroni",
+      "email": "giorgio.m.leveroni@gmail.com"
+    }
+  ],
   "main": "dist/salvattore.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
   "ignore": [
     "**/.*",
     "node_modules",
@@ -9,21 +31,10 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
-    "gulp": "^3.8.10",
-    "gulp-concat": "^2.4.2",
-    "gulp-header": "^1.2.2",
-    "gulp-jshint": "^1.9.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^1.0.2",
-    "gulp-umd": "^0.1.3",
-    "jshint-stylish": "^1.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rnmp/salvattore"
-  },
-  "bugs": {
-    "url": "https://github.com/rnmp/salvattore/issues"
-  }
+  "keywords": [
+    "grid",
+    "layout",
+    "browser",
+    "masonry"
+  ]
 }
