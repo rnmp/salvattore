@@ -1,5 +1,5 @@
 /*!
- * Salvattore 1.0.5 by @rnmp and @ppold
+ * Salvattore 1.0.7 by @rnmp and @ppold
  * https://github.com/rnmp/salvattore
  */
 (function(root, factory) {
