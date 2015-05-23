@@ -26,11 +26,11 @@ img, object, embed {
 
 @font-face {
   font-family: Franchise;
-  src: url('../assets/franchise.eot');
-  src: url('../assets/franchise.eot?#iefix') format('embedded-opentype'),
-    url('../assets/franchise.woff') format('woff'),
-    url('../assets/franchise.ttf') format('truetype'),
-    url('../assets/franchise.svg#franchiseregular') format('svg');
+  src: url('./assets/franchise.eot');
+  src: url('./assets/franchise.eot?#iefix') format('embedded-opentype'),
+    url('./assets/franchise.woff') format('woff'),
+    url('./assets/franchise.ttf') format('truetype'),
+    url('./assets/franchise.svg#franchiseregular') format('svg');
   font-weight: bold;
   font-style: normal;
 }
@@ -152,7 +152,7 @@ section:last-child {
 .site-header, .site-footer,
 .showcase-grid figcaption {
   color: #fff;
-  background: #e9632f url('../assets/body.gif') center;
+  background: #e9632f url('./assets/body.gif') center;
   text-shadow: 0 1px 0 rgba(0,0,0,0.15);
 }
 
@@ -186,7 +186,7 @@ section:last-child {
 
 /* GRIDS */
 .intro-grid,
-.test-grid { 
+.test-grid {
   margin: 0 -10px;
 }
 

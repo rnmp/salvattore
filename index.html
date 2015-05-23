@@ -57,7 +57,7 @@
 	&lt;div&gt;Item #20&lt;/div&gt;
 &lt;/div&gt;</pre>
 <!-- /Code -->
-			
+
 			<p>Now, in your CSS file, simply refer to the grid (with the <code class="highlight">[data-columns]</code> attribute selector included, Salvattore relies on this), followed by the <code class="highlight">::before</code> pseudo-element. The number of columns desired and the class or classes for each of them should be defined on the <code class="highlight">content</code> property.</p>
 
 <!-- Code -->
@@ -70,9 +70,9 @@
 <span class="highlight">.column</span> { float: left; }
 <span class="highlight">.size-1of3</span> { width: 33.333%; }</pre>
 <!-- /Code -->
-			
+
 			<p>With those settings, Salvattore is ready to go! And the resulting HTML should be the following:</p>
-			
+
 <!-- Code -->
 			<pre data-lang="HTML">
 &lt;div id=&quot;grid&quot; data-columns&gt;
@@ -141,31 +141,38 @@ var item = document.createElement('article');
 salvattore[<span class="highlight">'append_elements'</span>](<span class="highlight">grid</span>, <span class="highlight">[item]</span>)
 item.outerHTML = 'I’ve been appended!';</pre>
 <!-- /Code -->
-			
+
 				<p>Here's a demonstration of this principle applied to a working grid, you can check the <a href="https://gist.github.com/rnmp/bf6c5d8db9487862aba1">code used</a> for it:</p>
-			
+
 				<section class="test-grid clear" data-columns>
 					<article class="item">
 						<h1 class="">1</h1>
-						<p>Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura ché la diritta via era smarrita.</article>
+						<p>Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura ché la diritta via era smarrita.</p>
+					</article>
 					<article class="item">
 						<h1 class="">2</h1>
-						<p>Ahi quanto a dir qual era è cosa dura esta selva selvaggia e aspra e forte che nel pensier rinova la paura!</article>
+						<p>Ahi quanto a dir qual era è cosa dura esta selva selvaggia e aspra e forte che nel pensier rinova la paura!</p>
+					</article>
 					<article class="item">
 						<h1 class="">3</h1>
-						<p>Tant'è amara che poco è più morte; ma per trattar del ben ch'i' vi trovai, dirò de l'altre cose ch'i' v'ho scorte.</article>
+						<p>Tant'è amara che poco è più morte; ma per trattar del ben ch'i' vi trovai, dirò de l'altre cose ch'i' v'ho scorte.</p>
+					</article>
 					<article class="item">
 						<h1 class="">4</h1>
-						<p>Io non so ben ridir com'i' v'intrai, tant'era pien di sonno a quel punto che la verace via abbandonai.</article>
+						<p>Io non so ben ridir com'i' v'intrai, tant'era pien di sonno a quel punto che la verace via abbandonai.</p>
+					</article>
 					<article class="item">
 						<h1 class="">5</h1>
-						<p>Ma poi ch'i' fui al piè d'un colle giunto, là dove terminava quella valle che m'avea di paura il cor compunto, guardai in alto, e vidi le sue spalle vestite già de' raggi del pianeta che mena dritto altrui per ogne calle.</article>
+						<p>Ma poi ch'i' fui al piè d'un colle giunto, là dove terminava quella valle che m'avea di paura il cor compunto, guardai in alto, e vidi le sue spalle vestite già de' raggi del pianeta che mena dritto altrui per ogne calle.</p>
+					</article>
 					<article class="item">
 						<h1 class="">6</h1>
-						<p>Allor fu la paura un poco queta che nel lago del cor m'era durata la notte ch'i' passai con tanta pieta.</article>
+						<p>Allor fu la paura un poco queta che nel lago del cor m'era durata la notte ch'i' passai con tanta pieta.</p>
+					</article>
 					<article class="item">
 						<h1 class="">7</h1>
-						<p>E come quei che con lena affannata uscito fuor del pelago a la riva si volge a l'acqua perigliosa e guata, così l'animo mio, ch'ancor fuggiva, si volse a retro a rimirar lo passo che non lasciò già mai persona viva.</article>
+						<p>E come quei che con lena affannata uscito fuor del pelago a la riva si volge a l'acqua perigliosa e guata, così l'animo mio, ch'ancor fuggiva, si volse a retro a rimirar lo passo che non lasciò già mai persona viva.</p>
+					</article>
 				</section>
 				<p id="js-button-block" class="t-center div-lines dark">
 					<span><a class="button post-prepend" title="Adds content on the top">Prepend content</a>
@@ -257,7 +264,7 @@ item.outerHTML = 'I’ve been appended!';</pre>
 				</figure>
 				<figure class="item">
 					<a href="http://deadtype.ca/news/" target="_blank">
-						<img src="assets/showcase/deadtype.jpg" srcset="assets/showcase/deadtype.png 2x" alt="">
+						<img src="assets/showcase/deadtype.jpg" srcset="assets/showcase/deadtype-2x.png 2x" alt="">
 						<figcaption>Deadtype</figcaption>
 					</a>
 				</figure>
@@ -302,10 +309,11 @@ item.outerHTML = 'I’ve been appended!';</pre>
 					<a class="button" href="https://raw.github.com/rnmp/salvattore/master/dist/salvattore.js">.js</a>
 					<a class="button" href="http://github.com/rnmp/salvattore">Github repository</a>
 				</p>
-				
+
 				<p>Salvattore works in Safari, Chrome, Firefox, Opera and IE9+. <a href="http://twitter.com/salvattorejs" target="_blank">Follow us</a> on Twitter for updates.</p>
 				Made by <a href="http://rolandomurillo.com/" target="_blank">Rolando Murillo</a> and <a href="http://github.com/ppold" target="_blank">Giorgio Leveroni.</a>
 			</div>
 		</footer>
 		<script src="site.js"></script>
 	</body>
+</html>
