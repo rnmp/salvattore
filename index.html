@@ -71,7 +71,7 @@
 <span class="highlight">.size-1of3</span> { width: 33.333%; }</pre>
 <!-- /Code -->
 
-			<p>With those settings, Salvattore is ready to go! And the resulting HTML should be the following:</p>
+			<p>With those settings, Salvattore is ready to go! Just include the script at the bottom of your page and the resulting HTML should be the following:</p>
 
 <!-- Code -->
 			<pre data-lang="HTML">
@@ -132,13 +132,13 @@
 
 			<section>
 				<h1>Dynamic content</h1>
-				<p>Salvattore has two functions you can work with: <code class="highlight">append_elements</code> and <code class="highlight">prepend_elements</code>. These two functions have the same arguments: the <code class="highlight">grid</code> and the <code class="highlight">elements</code> you want added to it.</p>
+				<p>Salvattore has two functions you can work with: <code class="highlight">appendElements</code> and <code class="highlight">prependElements</code>. These two functions have the same arguments: the <code class="highlight">grid</code> and the <code class="highlight">elements</code> you want added to it.</p>
 <!-- Code -->
 				<pre data-lang="JavaScript">
 var grid = document.querySelector('#grid');
 var item = document.createElement('article');
 
-salvattore[<span class="highlight">'append_elements'</span>](<span class="highlight">grid</span>, <span class="highlight">[item]</span>)
+salvattore.<span class="highlight">appendElements</span>(<span class="highlight">grid</span>, <span class="highlight">[item]</span>);
 item.outerHTML = 'I’ve been appended!';</pre>
 <!-- /Code -->
 
