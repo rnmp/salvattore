@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Salvattore Tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="resources/mocha-2.2.5.css">
+    <style>
+      .clearfix:after,.clearfix:before{content:" ";display:table}.clearfix:after{clear:both}
+      .grid{background: #DDD; margin-bottom: 10px;}
+      .grid .item{background: #FFF; margin: 5px;}
+    </style>
+  </head>
+  <body>
+    <div id="mocha"></div>
+
+    <div id="mocha-fixtures">
+      <!-- Non-responsive grid / inline block css -->
+      <style type="text/css">
+        #grid-1[data-columns]::before {
+          content: '3 .column.size-1of3';
+        }
+        .column { float: left; }
+        .size-1of3 { width: 33.333%; }
+      </style>
+      <div id="grid-1" class="grid clearfix" data-columns>
+        <div class="item">Item #1</div>
+        <div class="item">Item #2</div>
+        <div class="item">Item #3</div>
+        <div class="item">Item #4</div>
+        <div class="item">Item #5</div>
+        <div class="item">Item #6</div>
+      </div>
+
+      <!-- Non-responsive grid / external css -->
+      <link rel="stylesheet" href="resources/grid-2.css">
+      <div id="grid-2" class="grid clearfix" data-columns>
+        <div class="item">Item #1</div>
+        <div class="item">Item #2</div>
+        <div class="item">Item #3</div>
+        <div class="item">Item #4</div>
+        <div class="item">Item #5</div>
+        <div class="item">Item #6</div>
+        <div class="item">Item #7</div>
+        <div class="item">Item #8</div>
+      </div>
+
+      <!-- Dynamic grid / external css -->
+      <link rel="stylesheet" href="resources/grid-3.css">
+      <div id="grid-3" class="grid clearfix" data-columns></div>
+    </div>
+
+    <script src="resources/expect.js-0.3.1.js"></script>
+    <script src="resources/mocha-2.2.5.js"></script>
+    <script>mocha.setup('bdd');</script>
+    <script src="../dist/salvattore.js"></script>
+    <script src="tests.js"></script>
+    <script>
+      mocha.checkLeaks();
+      mocha.globals(['salvattore']);
+      mocha.run();
+    </script>
+  </body>
+</html>
