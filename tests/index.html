@@ -17,12 +17,18 @@
 
     <div id="mocha-fixtures">
       <!-- Non-responsive grid / inline block css -->
-      <style type="text/css">
+      <style>
         #grid-1[data-columns]::before {
           content: '3 .column.size-1of3';
         }
         .column { float: left; }
         .size-1of3 { width: 33.333%; }
+      </style>
+      <!-- This should not be loaded cause of wrong type -->
+      <style type="text/scss">
+        #grid-1[data-columns]::before {
+          content: '2 .column.size-1of2';
+        }
       </style>
       <div id="grid-1" class="grid clearfix" data-columns>
         <div class="item">Item #1</div>

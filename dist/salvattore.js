@@ -352,8 +352,15 @@ self.getCSSRules = function getCSSRules(stylesheet) {
 self.getStylesheets = function getStylesheets() {
   // returns a list of all the styles in the document (that are accessible).
 
+  var inlineStyleBlocks = Array.prototype.slice.call(document.querySelectorAll("style"));
+  inlineStyleBlocks.forEach(function(stylesheet, idx) {
+    if (stylesheet.type !== 'text/css' && stylesheet.type !== '') {
+      inlineStyleBlocks.splice(idx, 1);
+    }
+  });
+
   return Array.prototype.concat.call(
-    Array.prototype.slice.call(document.querySelectorAll("style[type='text/css']")),
+    inlineStyleBlocks,
     Array.prototype.slice.call(document.querySelectorAll("link[rel='stylesheet']"))
   );
 };
