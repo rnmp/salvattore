@@ -584,6 +584,7 @@ return {
   registerGrid: self.registerGrid,
   recreateColumns: self.recreateColumns,
   rescanMediaQueries: self.rescanMediaQueries,
+  init: self.init,
 
   // maintains backwards compatibility with underscore style method names
   append_elements: self.appendElements,

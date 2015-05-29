@@ -1,0 +1,21 @@
+<style>
+  #grid[data-columns]::before {
+    content: '3 .column.size-1of3';
+  }
+  .column { float: left; }
+  .size-1of3 { width: 33.333%; }
+</style>
+<style type="text/scss">
+  /* This should not be loaded cause of wrong type */
+  #grid[data-columns]::before {
+    content: '2 .column.size-1of2';
+  }
+</style>
+<div id="grid" class="grid clearfix" data-columns>
+  <div class="item">Item #1</div>
+  <div class="item">Item #2</div>
+  <div class="item">Item #3</div>
+  <div class="item">Item #4</div>
+  <div class="item">Item #5</div>
+  <div class="item">Item #6</div>
+</div>
