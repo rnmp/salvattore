@@ -47,6 +47,13 @@ describe('Non-responsive grid / 3 columns', function() {
     expect(element.querySelectorAll('.column .item')).to.have.length(6);
   });
 
+  it('optains correct settings internal', function() {
+    var settings = salvattore._test.obtainGridSettings(element);
+    expect(settings.numberOfColumns).to.be('3');
+    expect(settings.columnClasses).to.contain('column');
+    expect(settings.columnClasses).to.contain('size-1of3');
+  });
+
   it('has class from stylesheet appended to columns', function() {
     var columns = element.querySelectorAll('.column');
     var className = 'size-1of3';
@@ -98,6 +105,13 @@ describe('Non-responsive grid / 4 columns', function() {
     expect(element.querySelectorAll('.list .item')).to.have.length(8);
   });
 
+  it('optains correct settings internal', function() {
+    var settings = salvattore._test.obtainGridSettings(element);
+    expect(settings.numberOfColumns).to.be('4');
+    expect(settings.columnClasses).to.contain('list');
+    expect(settings.columnClasses).to.contain('size-1of4');
+  });
+
   it('has class from style appended to columns', function() {
     var columns = element.querySelectorAll('.list');
     var className = 'size-1of4';
@@ -143,6 +157,13 @@ describe('Non-responsive dynamic grid  / 4 columns', function() {
 
   it('contains four columns', function() {
     expect(element.querySelectorAll('.column')).to.have.length(4);
+  });
+
+  it('optains correct settings internal', function() {
+    var settings = salvattore._test.obtainGridSettings(element);
+    expect(settings.numberOfColumns).to.be('4');
+    expect(settings.columnClasses).to.contain('column');
+    expect(settings.columnClasses).to.contain('size-1of4');
   });
 
   it('has class from stylesheet appended to columns', function() {

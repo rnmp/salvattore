@@ -399,7 +399,11 @@ return {
   prepend_elements: self.prependElements,
   register_grid: self.registerGrid,
   recreate_columns: self.recreateColumns,
-  rescan_media_queries: self.rescanMediaQueries
+  rescan_media_queries: self.rescanMediaQueries,
+
+  _test: {
+    obtainGridSettings: self.obtainGridSettings
+  }
 };
 
 })(window, window.document);

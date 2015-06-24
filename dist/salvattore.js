@@ -2,7 +2,7 @@
  * Salvattore 1.0.8 by @rnmp and @ppold
  * https://github.com/rnmp/salvattore
  */
-(function(root, factory) {
+;(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define([], factory);
   } else if (typeof exports === 'object') {
@@ -591,7 +591,11 @@ return {
   prepend_elements: self.prependElements,
   register_grid: self.registerGrid,
   recreate_columns: self.recreateColumns,
-  rescan_media_queries: self.rescanMediaQueries
+  rescan_media_queries: self.rescanMediaQueries,
+
+  _test: {
+    obtainGridSettings: self.obtainGridSettings
+  }
 };
 
 })(window, window.document);
