@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     header = require('gulp-header'),
     rename = require('gulp-rename'),
     package = require('./package.json'),
+    size = require('gulp-size'),
     banner = [
         '/*!',
         ' * Salvattore <%= pkg.version %> by @rnmp and @ppold',
@@ -38,5 +39,6 @@ gulp.task('default', function() {
         .pipe(gulp.dest('dist/'))
         .pipe(uglify({preserveComments: 'some'}))
         .pipe(rename({suffix: '.min'}))
+        .pipe(size({showFiles: true, gzip: true}))
         .pipe(gulp.dest('dist/'));
 });
