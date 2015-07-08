@@ -102,6 +102,13 @@
         </div>
 
         <!-- The script must be included at the bottom of the body to work -->
-        <script src="../dist/salvattore.min.js"></script>
+        <script src="../dist/salvattore.js"></script>
+        <script>
+          // Recalc after images loaded to get correct height
+          // This is only needed if using images in the items and using balanced columns
+          window.onload = function() {
+            salvattore.recreateColumns(document.querySelector('#timeline'));
+          };
+        </script>
     </body>
 </html>

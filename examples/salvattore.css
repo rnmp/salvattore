@@ -27,18 +27,18 @@
 
 @media screen and (min-width: 451px) and (max-width: 700px) {
     #timeline[data-columns]::before {
-        content: '2 .column.size-1of2';
+        content: '2 .column.size-1of2 balanced';
     }
 }
 
 @media screen and (min-width: 701px) and (max-width: 850px) {
     #timeline[data-columns]::before {
-        content: '3 .column.size-1of3';
+        content: '3 .column.size-1of3 balanced';
     }
 }
 
 @media screen and (min-width: 851px) {
     #timeline[data-columns]::before {
-        content: '4 .column.size-1of4';
+        content: '4 .column.size-1of4 balanced';
     }
 }

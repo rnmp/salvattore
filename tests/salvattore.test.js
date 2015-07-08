@@ -18,6 +18,88 @@ describe('Globals', function() {
   });
 });
 
+describe('Settings', function() {
+  before(function() {
+    fixture.setBase('tests');
+  });
+
+  beforeEach(function() {
+      this.result = fixture.load('testSettings.html');
+      salvattore.init();
+  });
+
+  afterEach(function(){
+    fixture.cleanup();
+  });
+
+  it('content css values', function() {
+    var settings;
+    var elem1 = fixture.el.querySelector('#grid1');
+    var elem2 = fixture.el.querySelector('#grid2');
+    var elem3 = fixture.el.querySelector('#grid3');
+    var elem4 = fixture.el.querySelector('#grid4');
+    var elem5 = fixture.el.querySelector('#grid5');
+    var elem6 = fixture.el.querySelector('#grid6');
+    var elem7 = fixture.el.querySelector('#grid7');
+
+    // 2 .column.size-1of2
+    settings = salvattore._test.obtainGridSettings(elem1);
+    expect(settings.numberOfColumns).to.be('2');
+    expect(settings.columnClasses).to.have.length(2);
+    expect(settings.columnClasses).to.contain('column');
+    expect(settings.columnClasses).to.contain('size-1of2');
+    expect(settings.balanced).to.be(false);
+
+    // 4 .column.size-1of4 balanced
+    settings = salvattore._test.obtainGridSettings(elem2);
+    expect(settings.numberOfColumns).to.be('4');
+    expect(settings.columnClasses).to.have.length(2);
+    expect(settings.columnClasses).to.contain('column');
+    expect(settings.columnClasses).to.contain('size-1of4');
+    expect(settings.balanced).to.be(true);
+
+    // 64 .column  .size-1of6 balanced
+    settings = salvattore._test.obtainGridSettings(elem3);
+    expect(settings.numberOfColumns).to.be('64');
+    expect(settings.columnClasses).to.have.length(2);
+    expect(settings.columnClasses).to.contain('column');
+    expect(settings.columnClasses).to.contain('size-1of6');
+    expect(settings.balanced).to.be(true);
+
+    //  4 .list.size-1of4  .balanced balanced
+    settings = salvattore._test.obtainGridSettings(elem4);
+    expect(settings.numberOfColumns).to.be('4');
+    expect(settings.columnClasses).to.have.length(3);
+    expect(settings.columnClasses).to.contain('list');
+    expect(settings.columnClasses).to.contain('size-1of4');
+    expect(settings.columnClasses).to.contain('balanced');
+    expect(settings.balanced).to.be(true);
+
+    // 7 .boxes.size-1of7 .balanced
+    settings = salvattore._test.obtainGridSettings(elem5);
+    expect(settings.numberOfColumns).to.be('7');
+    expect(settings.columnClasses).to.have.length(3);
+    expect(settings.columnClasses).to.contain('boxes');
+    expect(settings.columnClasses).to.contain('size-1of7');
+    expect(settings.columnClasses).to.contain('balanced');
+    expect(settings.balanced).to.be(false);
+
+    //  1 .column
+    settings = salvattore._test.obtainGridSettings(elem6);
+    expect(settings.numberOfColumns).to.be('1');
+    expect(settings.columnClasses).to.have.length(1);
+    expect(settings.columnClasses).to.contain('column');
+    expect(settings.balanced).to.be(false);
+
+    //  4
+    settings = salvattore._test.obtainGridSettings(elem7);
+    expect(settings.numberOfColumns).to.be('1');
+    expect(settings.columnClasses).to.have.length(1);
+    expect(settings.columnClasses).to.contain('column');
+    expect(settings.balanced).to.be(false);
+  });
+});
+
 describe('Non-responsive grid / 3 columns', function() {
   var element;
 
