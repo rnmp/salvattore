@@ -2,7 +2,7 @@
  * Salvattore 1.0.8 by @rnmp and @ppold
  * https://github.com/rnmp/salvattore
  */
-(function(root, factory) {
+;(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define([], factory);
   } else if (typeof exports === 'object') {
@@ -402,9 +402,12 @@ self.scanMediaQueries = function scanMediaQueries() {
 
   self.getStylesheets().forEach(function extract_rules(stylesheet) {
     Array.prototype.forEach.call(self.getCSSRules(stylesheet), function filter_by_column_selector(rule) {
-      if (rule.media && rule.cssRules && self.mediaRuleHasColumnsSelector(rule.cssRules)) {
-        newMediaRules.push(rule);
-      }
+      // rule.media throws an 'not implemented error' in ie9 for import rules occasionally
+      try {
+        if (rule.media && rule.cssRules && self.mediaRuleHasColumnsSelector(rule.cssRules)) {
+          newMediaRules.push(rule);
+        }
+      } catch (e) {}
     });
   });
 

@@ -210,9 +210,12 @@ self.scanMediaQueries = function scanMediaQueries() {
 
   self.getStylesheets().forEach(function extract_rules(stylesheet) {
     Array.prototype.forEach.call(self.getCSSRules(stylesheet), function filter_by_column_selector(rule) {
-      if (rule.media && rule.cssRules && self.mediaRuleHasColumnsSelector(rule.cssRules)) {
-        newMediaRules.push(rule);
-      }
+      // rule.media throws an 'not implemented error' in ie9 for import rules occasionally
+      try {
+        if (rule.media && rule.cssRules && self.mediaRuleHasColumnsSelector(rule.cssRules)) {
+          newMediaRules.push(rule);
+        }
+      } catch (e) {}
     });
   });
 

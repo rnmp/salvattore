@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.9
+
+- Fix IE9 throwing error `not implemented` when using `@import` rule with an url [#159](https://github.com/rnmp/salvattore/issues/159)
+
 ## 1.0.8 - 2015-06-08
 
 Changes:
