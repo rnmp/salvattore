@@ -387,7 +387,7 @@ self.init = function init() {
   self.scanMediaQueries();
 };
 
-self.init();
+document.addEventListener('DOMContentLoaded', self.init);
 
 return {
   appendElements: self.appendElements,
