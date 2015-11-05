@@ -1,8 +1,8 @@
 /*!
- * Salvattore 1.0.8 by @rnmp and @ppold
+ * Salvattore 1.0.9 by @rnmp and @ppold
  * https://github.com/rnmp/salvattore
  */
-;(function(root, factory) {
+(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define([], factory);
   } else if (typeof exports === 'object') {
